@@ -1,0 +1,684 @@
+*** Settings ***
+Library           Selenium2Library
+Library           ExcelLibrary
+Library           Collections
+Library           pandas
+Resource          C:/Python27/ReadExcelFile.py
+Library           BuiltIn
+Library           Screenshot
+Library           pabot.PabotLib
+Library           OperatingSystem
+
+*** Variables ***
+${Username}       Id=username
+${Password}       Id=password
+${Contact_Tab}    Id=Contact_Tab
+${New_Button}     name=new
+${Record_Type_Selection}    xpath=.//*[@id='p3']
+${Salutation_C}    Id=name_salutationcon2
+${SpouseName_C}    Id=00Nf4000009here
+${Mailing_Address_Street}    Id=con19street
+${Login_button}    Id=Login
+${Continue/Save}    name=save
+${FirstName_Contact}    Id=name_firstcon2
+${LastName_Contact}    Id=name_lastcon2
+${Chrome_Driver}    D:/Softwares/chromedriver.exe
+${Browser}        Chrome | Firefox
+${test}           xpath=.//*[@id='bottomButtonRow']/input[1]
+${Deceased_Checkbox}    Id=00Nf4000009heqK
+${Mailing_City}    Id=con19city
+${Mailing_state}    Id=con19state
+${Mailing_Zip}    Id=con19zip
+${Mailing_Country}    Id=con19country
+${Mailing_Address_Type}    Id=00Nf4000009her8
+${Do Not Mail_Checkbox}    Id=00Nf4000009hepq
+${Mail_Opt-Out}    Id=00Nf4000009her7
+${MAil_Opt_Out_Date}    Id=00Nf4000009her6
+${Email}          Id=con15
+${Email_Status}    Id=00Nf4000009hepx
+${Don Not Email}    Id=00Nf4000009hepp
+${Email_Opt_Out_Date}    Id=00Nf4000009hepw
+${BirthDay}       Id=00Nf4000009hepb
+${BirthMonth}     Id=00Nf4000009hepc
+${BirthYear}      Id=00Nf4000009hepd
+${Head_of_Household}    Id=00Nf4000009heqM
+${Description}    xpath=.//*[@id='con20_ileinner']
+${Preffered_Phone}    Id=00Nf4000009herR
+${Primary_Phone}    Id=con10
+${Mobile_Phone}    Id=con12
+${Account_Name_c}    Id=con4
+${Account_Record_Type_Selection}    name=p3
+${Account_Name_A}    Id=acc2
+${Billing_Street}    Id=acc17street
+${Billing_City}    Id=acc17city
+${Billing_State}    Id=acc17state
+${Billing_Zip}    Id=acc17zip
+${Billing_Country}    Id=acc17country
+${RA-MailingStreet}    Id=00Nf4000009hew6
+${RA-City}        Id=00Nf4000009hew3
+${RA-State}       Id=00Nf4000009hew5
+${RA-Postal}      Id=00Nf4000009hew7
+${RA-Country}     Id=00Nf4000009hew4
+${Related_Contact}    Id=CF00Nf4000009henG
+${RE-Name}        Id=Name
+${RE-Contact}     Id=CF00Nf4000009henH
+${Donation_Name}    Id=opp3
+${Donor}          Id=CF00Nf4000009heuH
+${Stage}          Id=opp11
+${Amount}         Id=opp7
+${CloseDate}      Id=opp9
+${Type}           Id=opp5
+${SourceCode}     Id=00Nf4000009hevN
+${Edit_Button}    name=edit
+${Addressee}      Id=00Nf4000009hepX
+${Greeting}       Id=00Nf4000009heqG
+${BirthDate}      Id=con7
+${Cancel}         name=cancel
+${Account_Verifation_Contact}    xpath=.//*[@id='lookup001q000000mD8Fbcon4']
+${HoH_Verifcation}    xpath=.//*[@id='00Nf4000009heqM_chkbox']
+${Addresse_Verification}    xpath=.//*[@id='00Nf4000009hepX_ileinner']
+${Greeting_Verification}    xpath=.//*[@id='00Nf4000009heqG_ileinner']
+${BirthDate_Verification}    xpath=.//*[@id='con7_ileinner']
+${PrimaryPhone_Verification}    xpath=.//*[@id='con10_ileinner']
+${Excel}          E:\\Desktop\\ExcelFile.xls
+${j}              0
+${Excel_Clu}      Username
+${header}         Username
+${sSheetName}     Sheet1
+${sSearchedData}    ${EMPTY}
+${No}             2
+${Account_Obj}    xpath=.//*[@id='Account_Tab']/a
+${Acc_Type}       Id=acc6
+${ContactList-Account}    xpath=.//*[@id='001q000000nZblP_RelatedContactList_title']
+${ContactName_Accoubt}    xapth=.//*[@id='001q000000nZblP_RelatedContactList_body']/table/tbody/tr[2]/th/a
+${MailingStreet_Account}    xpath=.//*[@id='001q000000nZblP_RelatedContactList_body']/table/tbody/tr[2]/td[3]
+${MailingCity-Account}    xpath=.//*[@id='001q000000nZblP_RelatedContactList_body']/table/tbody/tr[2]/td[3]
+${Opportunity_Tab}    xpath=.//*[@id='Opportunity_Tab']/a
+@{Excel_Column}
+${U1}             ${EMPTY}
+${P1}             ${EMPTY}
+${TC}             6
+${AC1}            ${EMPTY}
+${Opportunity}    Id=Opportunity_Tab
+${DonorContactRole}    Donor
+${Table_Body}     xpath=.//*[@id='bodyCell']/div[3]/div[1]/div/div[2]/table/tbody
+${Table_Row}      tr
+${Contact_Name}    xpath=.//*[@id='con2_ileinner']
+${Account_Name}    xpath=.//*[@id='con4_ileinner']
+${HoH_Error_Alert}    Error: Invalid Data. Review all error messages below to correct your data. The Head of Household flag should be true for this Contact record!!!
+
+*** Test Cases ***
+ADF_REG-01
+    [Documentation]    *Functionality*
+    ...    To verify whether the household account record is created or not when creating a household contact
+    ...    *Steps*
+    ...    1. Open the new instance sandbox "test.salesforce.com"
+    ...    2. Enter the username and password
+    ...    3. Click login button
+    ...    4. Click new button and then choose the recortype
+    ...    5. Click continue button
+    ...    6. Enter the firstname, last name and other details
+    ...    7. Click save buttom
+    ...    8. Verif the expected result
+    ...    *Expected Result*
+    ...    Household account record should be created with name of contact name and the household name should append to the contact name
+    [Setup]
+    Open Excel Current Directory    ${Excel}
+    ${sTestCaseNo}=    Get Column Values    Sheet1    0
+    Log    ${sTestCaseNo}
+    ${Rowl_count}=    Get Row Count    Sheet1
+    Log    ${Rowl_count}
+    : FOR    ${i}    IN RANGE    1    ${Rowl_count}+1
+    \    Log    ${i}
+    \    ${TC1}=    Read Cell Data By Coordinates    ${sSheetName}    0    ${i}
+    \    Log    ${TC1}
+    \    Continue For Loop If    ${TC1}!=3
+    \    ${U1}=    Read Cell Data By Coordinates    ${sSheetName}    1    ${i}
+    \    Set Global Variable    ${U1}
+    \    ${P1}=    Read Cell Data By Coordinates    ${sSheetName}    2    ${i}
+    \    Set Global Variable    ${P1}
+    \    ${HCFN}=    Read Cell Data By Coordinates    ${sSheetName}    13    ${i}
+    \    Set Global Variable    ${HCFN}
+    \    ${HCLN}=    Read Cell Data By Coordinates    ${sSheetName}    14    ${i}
+    \    Set Global Variable    ${HCLN}
+    \    ${Mail_St}=    Read Cell Data By Coordinates    ${sSheetName}    15    ${i}
+    \    Set Global Variable    ${Mail_St}
+    \    ${Mail_City}=    Read Cell Data By Coordinates    ${sSheetName}    16    ${i}
+    \    Set Global Variable    ${Mail_City}
+    \    ${Mail_State}=    Read Cell Data By Coordinates    ${sSheetName}    17    ${i}
+    \    Set Global Variable    ${Mail_State}
+    \    ${Mail_Code}=    Read Cell Data By Coordinates    ${sSheetName}    18    ${i}
+    \    Set Global Variable    ${Mail_Code}
+    \    ${Mail_Country}=    Read Cell Data By Coordinates    ${sSheetName}    19    ${i}
+    \    Set Global Variable    ${Mail_Country}
+    \    ${Email1}=    Read Cell Data By Coordinates    ${sSheetName}    21    ${i}
+    \    Set Global Variable    ${Email1}
+    \    ${HomePhone}=    Read Cell Data By Coordinates    ${sSheetName}    22    ${i}
+    \    Set Global Variable    ${HomePhone}
+    \    ${Spouse1}=    Read Cell Data By Coordinates    ${sSheetName}    23    ${i}
+    \    Set Global Variable    ${Spouse1}
+    \    Exit For Loop
+    Login to the Salesforce
+    Household_Contact_Creation
+    Contact_Field verification
+    Close Browser
+
+ADF_REG-02
+    [Documentation]    *Functionality*
+    ...    To verify whether the organization donor proxy contact record is created or not when creating a organization account
+    ...    *Steps*
+    ...    1. Open the new instance sandbox "test.salesforce.com"
+    ...    2. Enter the username and password
+    ...    3. Click login button and then navigates to account object
+    ...    4. Click new button and then choose the recortype
+    ...    5. Click continue button
+    ...    6. Enter the account name and other details
+    ...    7. Click save buttom
+    ...    8. Verif the expected result
+    ...    *Expected Result*
+    ...    Organization donor proxy contact record should be created with name of the Account name
+    Open Excel Current Directory    ${Excel}
+    ${sTestCaseNo}=    Get Column Values    Sheet1    0
+    Log    ${sTestCaseNo}
+    ${Rowl_count}=    Get Row Count    Sheet1
+    Log    ${Rowl_count}
+    : FOR    ${i}    IN RANGE    1    ${Rowl_count}+1
+    \    Log    ${i}
+    \    ${TC1}=    Read Cell Data By Coordinates    ${sSheetName}    0    ${i}
+    \    Log    ${TC1}
+    \    Continue For Loop If    ${TC}!=${TC1}
+    \    ${U1}=    Read Cell Data By Coordinates    ${sSheetName}    1    ${i}
+    \    Set Global Variable    ${U1}
+    \    ${P1}=    Read Cell Data By Coordinates    ${sSheetName}    2    ${i}
+    \    Set Global Variable    ${P1}
+    \    ${AC1}=    Read Cell Data By Coordinates    ${sSheetName}    3    ${i}
+    \    Set Global Variable    ${AC1}
+    \    ${Bi_St}=    Read Cell Data By Coordinates    ${sSheetName}    4    ${i}
+    \    Set Global Variable    ${Bi_St}
+    \    ${Bi_City}=    Read Cell Data By Coordinates    ${sSheetName}    5    ${i}
+    \    Set Global Variable    ${Bi_City}
+    \    ${Bil_Code}    Read Cell Data By Coordinates    ${sSheetName}    6    ${i}
+    \    Set Global Variable    ${Bil_Code}
+    \    @{Variable}=    Create List    ${U1}    ${P1}    ${AC1}
+    \    Get Variable Value    @{Variable}
+    \    Exit For Loop
+    Login to the Salesforce
+    Organization_Account_Creation
+    Close Browser
+
+ADF_REG-03
+    [Documentation]    *Functionality*
+    ...    To verify whether the donation record is created or not when user create donation with ODP contact
+    ...    *Steps*
+    ...    1. Open the new instance sandbox "test.salesforce.com"
+    ...    2. Enter the username and password
+    ...    3. Click login button and then navigates to Donation object
+    ...    4. Click new button and then choose the recortype
+    ...    5. Click continue button
+    ...    6. Enter the donation name and then choose the donor
+    ...    7. Click save buttom
+    ...    8. Verif the expected result
+    ...    *Expected Result*
+    ...    Donation record should be created successfully
+    Open Excel Current Directory    ${Excel}
+    ${sTestCaseNo}=    Get Column Values    Sheet1    0
+    Log    ${sTestCaseNo}
+    ${Rowl_count}=    Get Row Count    Sheet1
+    Log    ${Rowl_count}
+    : FOR    ${i}    IN RANGE    1    ${Rowl_count}+1
+    \    Log    ${i}
+    \    ${TC1}=    Read Cell Data By Coordinates    ${sSheetName}    0    ${i}
+    \    Log    ${TC1}
+    \    Continue For Loop If    ${TC}!=${TC1}
+    \    ${U1}=    Read Cell Data By Coordinates    ${sSheetName}    1    ${i}
+    \    Set Global Variable    ${U1}
+    \    ${P1}=    Read Cell Data By Coordinates    ${sSheetName}    2    ${i}
+    \    Set Global Variable    ${P1}
+    \    ${DN1}=    Read Cell Data By Coordinates    ${sSheetName}    8    ${i}
+    \    Set Global Variable    ${DN1}
+    \    ${Donor1}=    Read Cell Data By Coordinates    ${sSheetName}    9    ${i}
+    \    Set Global Variable    ${Donor1}
+    \    ${Amt}=    Read Cell Data By Coordinates    ${sSheetName}    10    ${i}
+    \    Set Global Variable    ${Amt}
+    \    ${Code}=    Read Cell Data By Coordinates    ${sSheetName}    11    ${i}
+    \    Set Global Variable    ${Code}
+    \    ${Date}=    Read Cell Data By Coordinates    ${sSheetName}    12    ${i}
+    \    Set Global Variable    ${Date}
+    \    Exit For Loop
+    Login to the Salesforce
+    Donation_Creation
+    Close Browser
+
+ADF_REG-04
+    [Documentation]    *Functionality*
+    ...
+    ...    To check whether the \ "Head Of Household " is checked or not while creating the new household contact record
+    ...
+    ...    *Test Steps*
+    ...
+    ...    1. Open Sandbox "https://test.salesforce.com/"
+    ...    2. Enter valid username and password
+    ...    3. Click "Submit" button
+    ...    4. Navigates to "Contact" object and click "New" button
+    ...    5. Select Record type as "Household Contact" and click "Continue" button
+    ...    6. Enter the values in the contact edit page fields
+    ...    7. Click "Save" button.
+    ...
+    ...
+    ...    *Expected Result*
+    ...
+    ...    The "Head Of Household" field should be checked for the household contact
+    [Setup]
+    ExcelUtilities    ${sSheetName}
+    Login to the Salesforce
+    Wait Until Element Is Visible    ${Contact_Tab}
+    Click Element    ${Contact_Tab}
+    Wait Until Element Is Visible    ${New_Button}
+    Table_Iteration
+    Contact_Field verification
+    Click Button    ${Edit_Button}
+    Wait Until Element Is Enabled    xpath=.//*[@id='00Nf4000009heqM']
+    Unselect Checkbox    xpath=.//*[@id='00Nf4000009heqM']
+    Click Button    ${Continue/Save}
+    ${Alert}=    Get Text    xpath=.//*[@id='errorDiv_ep']
+    Log    ${Alert}
+    Textfield Should Contain    ${HoH_Error_Alert}    ${Alert}
+    Contact_Field verification
+    Close Browser
+
+ADF_REG-05
+    [Documentation]    To verify whether the related address and email record is created or not, when updating the contact's mailing address and email field
+    ...
+    ...    *Test Steps*
+    ...
+    ...    1. Open the Sandbox "https://test.salesforce.com/"
+    ...    2. Enter valid username and password
+    ...    3. Click "Submit" button
+    ...    4. Navigates to "Contact" object
+    ...    5. Select "Household" contact in recent list
+    ...    6. Click "Edit" button and Updated the Mailing address fields value as similar to the existing address in the Related Address object.
+    ...    7. Click "Save" button
+    ...
+    ...    *Expected Result*
+    ...
+    ...    7.1 The Related Address record should be created in \ Historical Address record type
+    ...    7.2 Old contact address should be mapped with the newly created related address record
+    ...    7.3. Following field should be updated on the Related Address record ""Bad Address, Do Not Mail,
+    ...    Mail Opt Out, and Mail Opt Out Date"
+    ...    7.4 Related Email record should be created
+    ...    7.5 Email status, Do Not Email, Email Opt Out, and Email Opt Out Date field shoudl be updated on the related email record
+    [Template]
+    ExcelUtilities    ${sSheetName}
+    Login to the Salesforce
+    Wait Until Element Is Visible    ${Contact_Tab}
+    Click Element    ${Contact_Tab}
+    Wait Until Element Is Visible    ${New_Button}
+    Table_Iteration
+    Contact_Field verification
+    Click Button    ${Edit_Button}
+    ${RA_PreviousStreet}=    Get Text    ${Mailing_Address_Street}
+    Input Text    ${Mailing_Address_Street}    TestAutomation3
+    Click Button    ${Continue/Save}
+    Wait Until Element Is Visible    ${Edit_Button}
+    Related Addres_Related List
+    Wait Until Element Is Visible    xpath=.//*[@id='00Nf4000009hew6_ileinner']
+    ${RA_Street}=    Get Text    xpath=.//*[@id='00Nf4000009hew6_ileinner']
+    Log    ${RA_Street}
+    Should Be Equal    ${RA_Street}    ${RA_PreviousStreet}
+    Close Browser
+
+ADF_REG-06
+    [Documentation]    *Functionality*
+    ...    To verify whether the donation contact role record is created or not
+    ...
+    ...    *Test Steps*
+    ...
+    ...    1. Open the sandbox "test.salesforce.com"
+    ...    2. Enter the valid username and password
+    ...    3. Click ""Submit"" button
+    ...    4. Navigates to "Donation" object
+    ...    5. Click new button and then choose the record type
+    ...    6. Click continue button
+    ...    7. Choose the donor and account name and then enter the donation record details
+    ...    8.Click save button
+    ...    9. Scroll down to donation contact role VF page section
+    ...    10. Click Edit contact roles button on VF page
+    ...    11. Verfiy the expected result"
+    ...
+    ...    *Expected Result*
+    ...
+    ...    11.1 Donation contact role record should be created with name of Donor and the amount field should be updates as "Full"
+    ...    11.2 New \ soft credit contact role record should \ be created \ from the donor's relaitionship viwer VF page
+    ExcelUtilities    ${sSheetName}
+    Open Browser    https://test.salesforce.com/    Chrome
+    Maximize Browser Window
+    Input Text    ${Username}    ${U1}
+    Input Text    ${Password}    ${P1}
+    Click Button    ${Login_button}
+    Set Selenium Implicit Wait    20s
+    Click Element    ${Opportunity_Tab}
+    Set Selenium Implicit Wait    10s
+    Click Element    xpath=.//*[@id='bodyCell']/div[3]/div[1]/div/div[2]/table/tbody/tr[2]/th/a
+    Set Selenium Implicit Wait    20s
+    ${DonorValue}=    Get Text    xpath=.//*[@id='CF00Nf4000009heuH_ileinner']
+    Log    ${DonorValue}
+    ${DonationAccountValue}=    Get Text    xpath=.//*[@id='opp4_ileinner']
+    Log    ${DonationAccountValue}
+    Select Frame    id=066f4000001HGzX
+    ${Table}=    Get Value    xpath=.//*[@id='thePage:theForm:thePageBlock:j_id9']
+    Log To Console    ${Table}
+    ${ContactRoleHeader}=    Get Text    xpath=.//*[@id='thePage:theForm:thePageBlock:j_id9']/thead/tr[2]
+    Log    ${ContactRoleHeader}
+    ${Row Count}=    Get Matching Xpath Count    xpath=.//*[@id='thePage:theForm:thePageBlock:j_id9:tb']
+    ${rc_int}=    Convert To Integer    ${Row Count}
+    ${Column_Count}=    Get Matching Xpath Count    xpath=.//*[@id='thePage:theForm:thePageBlock:j_id9']/thead/tr[2]/th
+    ${cc_int}=    Convert To Integer    ${Column_Count}
+    : FOR    ${i}    IN RANGE    1    ${rc_int}+1
+    \    Log    ${i}
+    \    ${ContactRoleValue}=    Get Text    xpath=.//*[@id='thePage:theForm:thePageBlock:j_id9:tb']/tr[${i}]/td[2]
+    \    Log    ${ContactRoleValue}
+    \    Run Keyword If    "${ContactRoleValue}"=="${DonorValue}"    Should Be Equal    ${ContactRoleValue}    ${DonorValue}
+    \    ${ContactRoleAccount}=    Get Text    xpath=.//*[@id='thePage:theForm:thePageBlock:j_id9:tb']/tr[${i}]/td[3]
+    \    Run Keyword If    "${ContactRoleAccount}"=="${DonationAccountValue}"    Should Be Equal    ${ContactRoleAccount}    ${DonationAccountValue}
+    \    ${Role}=    Get Text    xpath=.//*[@id='thePage:theForm:thePageBlock:j_id9:tb']/tr[${i}]/td[5]
+    \    Run Keyword If    "${Role}"=="${DonorContactRole}"    Should Be Equal    ${Role}    ${DonorContactRole}
+    \    Run Keyword If    "${Role}"!="${DonorContactRole}"    Should Be Equal    ${Role}    Soft Credit
+    \    ${ContacrRoleAmount}=    Get Text    xpath=.//*[@id='thePage:theForm:thePageBlock:j_id9:tb']/tr[${i}]/td[6]
+    \    Should Be Equal    ${ContacrRoleAmount}    Full
+    Close Browser
+
+ADF_REG-07
+    [Documentation]    *Functionality*
+    ...
+    ...    To verify the Desigation VF page after creating the Donation record
+    ...
+    ...    *Test Steps*
+    ...
+    ...    1. Open the sandbox "test.salesforce.com"
+    ...    2. Enter the valid username and password
+    ...    3. Click ""Submit"" button
+    ...    4. Navigates to "Donation" object
+    ...    5. Click new button and then choose the record type
+    ...    6. Click continue button
+    ...    7. Choose the donor and account name and then enter the donation record details
+    ...    8.Click save button
+    ...    9. Scroll down to Donation Designation VF page section
+    ...    10. Verfiy the expected result"
+    ...
+    ...    *Expected Result*
+    ...
+    ...    10.1 Total amount and Designated amuont should be equal
+    ...    10.2 Default Designation should be checked and it is available on center of the VF page
+    ExcelUtilities    ${sSheetName}
+    Login to the Salesforce
+    Click Element    ${Opportunity_Tab}
+    Set Selenium Implicit Wait    10s
+    Click Element    xpath=.//*[@id='bodyCell']/div[3]/div[1]/div/div[2]/table/tbody/tr[2]/th/a
+    Set Selenium Implicit Wait    20s
+    Select Frame    id=066f4000001HGzZ
+    ${Table}=    Get Value    xpath=.//*[@id='container']
+    Log To Console    ${Table}
+    ${Available_Des}=    Get Value    xpath=.//*[@id='example']/tbody/tr
+    Log To Console    ${Available_Des}
+    Click Element    xpath=.//*[@id='example']/tbody
+    ${Row Count}=    Get Matching Xpath Count    xpath=.//*[@id='example']/tbody/tr
+    ${rc_int}=    Convert To Integer    ${Row Count}
+    : FOR    ${i}    IN RANGE    2    ${rc_int}+1
+    \    Log    ${i}
+    \    ${Getvalue}=    Get Text    xpath=.//*[@id='example']/tbody/tr[${i}]
+    \    Log    ${Getvalue}
+    \    Run Keyword If    "${Getvalue}"==" Designation2"    Click Element    xpath=.//*[@id='example']/tbody/tr[${i}]/td/input
+    \    Exit For Loop If    "${Getvalue}"==" Designation2"
+    Click Element    xpath=.//*[@id='right']
+    ${TotalAmount}=    Get Text    xpath=.//*[@id='right']/label[1]
+    Log    ${TotalAmount}
+    ${DesignatedAmt}=    Get Text    xpath=.//*[@id='right']/label[2]
+    Log    ${DesignatedAmt}
+    ${UnDegAmount}=    Get Text    xpath=.//*[@id='right']/label[3]
+    Log    ${UnDegAmount}
+    Should Be Equal    ${TotalAmount}    ${DesignatedAmt}
+    Screenshot.Take Screenshot Without Embedding
+    Screenshot.Set Screenshot Directory    E:\\Desktop\\ADF_Project\\Screenshots
+    Close Browser
+
+ADF_REG-08
+    [Documentation]    *Functionality*
+    ...    To verify whether the Donation name is updated or not when updating the Donor
+    ExcelUtilities    ${sSheetName}
+    Login to the Salesforce
+    Click Element    ${Opportunity_Tab}
+    Wait Until Element Is Visible    xpath=.//*[@id='bodyCell']/div[3]/div[1]/div/div[2]/table/tbody/tr[2]/th/a
+    Click Element    xpath=.//*[@id='bodyCell']/div[3]/div[1]/div/div[2]/table/tbody/tr[2]/th/a
+    Wait Until Element Is Visible    ${Edit_Button}
+    ${DonationNameBefore}=    Get Text    Id=opp3_ileinner
+    Click Element    ${Edit_Button}
+    Clear Element Text    ${Donor}
+    Input Text    ${Donor}    Test Apirl_Account_4
+    Click Button    ${Continue/Save}
+    Wait Until Element Is Visible    ${Edit_Button}
+    ${DonationNameAfter}=    Get Text    Id=opp3_ileinner
+    Log    ${DonationNameAfter}
+    Should Not Be Equal    ${DonationNameBefore}    ${DonationNameAfter}
+    Log    Pass
+    ${Row Count}=    Get Matching Xpath Count    xpath=.//*[@id='thePage:theForm:thePageBlock:j_id9:tb']
+    ${rc_int}=    Convert To Integer    ${Row Count}
+    ${Column_Count}=    Get Matching Xpath Count    xpath=.//*[@id='thePage:theForm:thePageBlock:j_id9']/thead/tr[2]/th
+    ${cc_int}=    Convert To Integer    ${Column_Count}
+    : FOR    ${i}    IN RANGE    1    ${rc_int}+1
+    \    Log    ${i}
+    \    ${ContactRoleValue}=    Get Text    xpath=.//*[@id='thePage:theForm:thePageBlock:j_id9:tb']/tr[${i}]/td[2]
+    \    Log    ${ContactRoleValue}
+    \    Run Keyword If    "${ContactRoleValue}"=="${DonorValue}"    Should Be Equal    ${ContactRoleValue}    Test Apirl_Account_4
+    Take Screenshot
+    Close Browser
+
+ADF_REG-09
+
+ADF_REG-10
+    ExcelUtilities    ${sSheetName}
+    Login to the Salesforce
+    Wait Until Element Is Visible    ${Contact_Tab}
+    Click Element    ${Contact_Tab}
+    Wait Until Element Is Visible    ${New_Button}
+    Table_Iteration
+    #    Click Button    ${Edit_Button}
+    #    ${RA_PreviousStreet}=    Get Text    ${Mailing_Address_Street}
+    #    Input Text    ${Mailing_Address_Street}    TestAutomation1
+    #    Click Button    ${Continue/Save}
+    #    Wait Until Element Is Visible    ${Edit_Button}
+    #    Click Link    id=003q000000jbKpJ_00Nf4000009henG_link
+    #    : FOR    ${INDEX}    IN RANGE    2000
+    #    Log    ${INDEX}
+    #    Scroll To Page    2000    ${INDEX}
+    Related Addres_Related List
+    Close Browser
+
+*** Keywords ***
+Login to the Salesforce
+    Open Browser    https://test.salesforce.com/    Chrome
+    Maximize Browser Window
+    Input Text    ${Username}    ${U1}
+    Input Text    ${Password}    ${P1}
+    Click Button    ${Login_button}
+    Set Selenium Implicit Wait    20s
+
+Household_Contact_Creation
+    Wait Until Element Is Visible    ${Contact_Tab}
+    Click Element    ${Contact_Tab}
+    Wait Until Element Is Visible    ${New_Button}
+    Click Button    ${New_Button}
+    Set Selenium Implicit Wait    20s
+    Click Element    ${test}
+    Set Selenium Implicit Wait    10s
+    Set Selenium Speed    .10s
+    Input Text    ${FirstName_Contact}    ${HCFN}
+    Input Text    ${LastName_Contact}    ${HCLN}
+    Input Text    ${SpouseName_C}    ${Spouse1}
+    @{Salu}=    Get List Items    ${Salutation_C}
+    Select From List By Value    ${Salutation_C}    @{Salu}[2]
+    Click Element    ${Deceased_Checkbox}
+    Input Text    ${Mailing_Address_Street}    ${Mail_St}
+    Input Text    ${Mailing_City}    ${Mail_City}
+    Input Text    ${Mailing_Country}    ${Mail_Country}
+    Input Text    ${Mailing_state}    ${Mail_State}
+    Input Text    ${Mailing_Zip}    ${Mail_Code}
+    Click Element    ${Do Not Mail_Checkbox}
+    Input Text    ${Email}    ${Email1}
+    @{Em_Status}=    Get List Items    ${Email_Status}
+    Select From List By Value    ${Email_Status}    @{Em_Status}[2]
+    @{BirthDay1}=    Get List Items    ${BirthDay}
+    Select From List By Value    ${BirthDay}    @{BirthDay1}[6]
+    @{BirthMonth1}=    Get List Items    ${BirthMonth}
+    Select From List By Value    ${BirthMonth}    @{BirthMonth1}[6]
+    @{BirthYear1}=    Get List Items    ${BirthYear}
+    Select From List By Value    ${BirthYear}    @{BirthYear1}[28]
+    Input Text    ${Primary_Phone}    ${HomePhone}
+    Click Element    ${Continue/Save}
+
+Contact_Field verification
+    ${contactName}=    Get Text    ${Contact_Name}
+    Set Global Variable    ${contactName}
+    ${AccountName}=    Get Text    ${Account_Name}
+    Set Global Variable    ${AccountName}
+
+ExcelUtilities
+    [Arguments]    ${sSheetName}
+    [Timeout]
+    Open Excel Current Directory    ${Excel}
+    ${sTestCaseNo}=    Get Column Values    Sheet1    0
+    Log    ${sTestCaseNo}
+    ${Rowl_count}=    Get Row Count    Sheet1
+    Log    ${Rowl_count}
+    : FOR    ${i}    IN RANGE    1    ${Rowl_count}
+    \    Log    ${i}
+    \    ${TC1}=    Read Cell Data By Coordinates    ${sSheetName}    0    ${i}
+    \    Log    ${TC1}
+    \    ${U1}=    Run Keyword If    ${TC}!=${TC1}    Read Cell Data By Coordinates    ${sSheetName}    1
+    \    ...    ${i}
+    \    Set Global Variable    ${U1}
+    \    ${P1}=    Read Cell Data By Coordinates    ${sSheetName}    2    ${i}
+    \    Set Global Variable    ${P1}
+    \    Exit For Loop If    ${i}>>${Rowl_count}
+    [Return]    ${U1}    ${P1}
+
+Test_Keyword
+    [Arguments]    ${sSheetName}
+    Open Excel Current Directory    ${Excel}
+    ${Test}=    ExcelLibrary.Read Cell Data By Coordinates    ${sSheetName}    1    1
+    Log    ${Test}
+    ${sTestCaseNo}=    Get Column Values    Sheet1    0
+    Log    ${sTestCaseNo}
+    ${Rowl_count}=    Get Row Count    Sheet1
+    Log    ${Rowl_count}
+    ${Colu_Count}=    Get Column Count    Sheet1
+    Log    ${Colu_Count}
+    : FOR    ${iRowNo}    IN RANGE    0    ${Rowl_count}+1
+    \    Log    ${iRowNo}
+    \    ${header}=    Read Cell Data By Coordinates    ${sSheetName}    0    ${iRowNo}
+    \    Log    ${header}
+    \    Run Keyword If    "${header}" == "${sTestCaseNo}"    Set Test Variable    ${Colu_Count}    ${iRowNo}
+    \    Continue For Loop If    ${iRowNo}>>${Rowl_count}
+    : FOR    ${i}    IN RANGE    0    ${Colu_Count}
+    \    Log    ${i}
+    \    ${sSearchedData}=    Run Keyword If    "${sTestCaseNo}"=="${TC_Num}"    Read Cell Data By Coordinates    ${sSheetName}    ${i}
+    \    ...    ${iRowNo}
+    \    Log    ${sSearchedData}=
+    [Return]    ${sSearchedData}
+
+Organization_Account_Creation
+    Click Element    ${Account_Obj}
+    Click Element    ${New_Button}
+    Set Selenium Implicit Wait    20s
+    Click Element    ${test}
+    Set Browser Implicit Wait    10s
+    Set Selenium Speed    1s
+    Input Text    ${Account_Name_A}    ${AC1}
+    Input Text    ${Billing_Street}    ${Bi_St}
+    Input Text    ${Billing_City}    ${Bi_City}
+    Input Text    ${Billing_State}    Test state
+    Input Text    ${Billing_Zip}    ${Bil_Code}
+    @{Type1}=    Get List Items    ${Acc_Type}
+    Select From List By Value    ${Acc_Type}    @{Type1}[3]
+    Click Element    ${Continue/Save}
+    #Verify the ODP Contact
+
+Donation_Creation
+    Click Element    ${Opportunity_Tab}
+    Click Element    ${New_Button}
+    Set Selenium Implicit Wait    20s
+    Click Element    ${test}
+    Input Text    ${Donation_Name}    ${DN1}
+    Input Text    ${Amount}    ${Amt}
+    Input Text    ${SourceCode}    ${Code}
+    Input Text    ${Donor}    ${Donor1}
+    @{Stage1}=    Get List Items    ${Stage}
+    Select From List By Value    ${Stage}    @{Stage1}[4]
+    @{Type1}=    Get List Items    ${Type}
+    Select From List By Value    ${Type}    @{Type1}[1]
+    Input Text    ${CloseDate}    ${Date}
+    Click Link    xpath=.//*[@id='ep']/div[2]/div[3]/table/tbody/tr[7]/td[2]/div/span/span/a
+    Click Element    ${Continue/Save}
+    Wait Until Element Is Visible    xpath=.//*[@id='opp3_ileinner']
+    #Verify the ODP Contact
+
+Scroll To Page
+    [Arguments]    ${width}    ${height}
+    Execute Javascript    window.scrollTo(${width} , ${height})
+
+Donation_Contact_Role_Verification
+    ${DonorValue}=    Get Text    xpath=.//*[@id='CF00Nf4000009heuH_ileinner']
+    Log    ${DonorValue}
+    ${DonationAccountValue}=    Get Text    xpath=.//*[@id='opp4_ileinner']
+    Log    ${DonationAccountValue}
+    Select Frame    id=066f4000001HGzX
+    ${Table}=    Get Value    xpath=.//*[@id='thePage:theForm:thePageBlock:j_id9']
+    Log To Console    ${Table}
+    ${ContactRoleHeader}=    Get Text    xpath=.//*[@id='thePage:theForm:thePageBlock:j_id9']/thead/tr[2]
+    Log    ${ContactRoleHeader}
+    ${Row Count}=    Get Matching Xpath Count    xpath=.//*[@id='thePage:theForm:thePageBlock:j_id9:tb']
+    ${rc_int}=    Convert To Integer    ${Row Count}
+    ${Column_Count}=    Get Matching Xpath Count    xpath=.//*[@id='thePage:theForm:thePageBlock:j_id9']/thead/tr[2]/th
+    ${cc_int}=    Convert To Integer    ${Column_Count}
+    : FOR    ${i}    IN RANGE    1    ${rc_int}+1
+    \    Log    ${i}
+    \    ${DonorRole}=    Get Text    xpath=.//*[@id='thePage:theForm:thePageBlock:j_id9:tb']/tr[${i}]
+    \    Continue For Loop If    ${i}<<${rc_int}+1
+    : FOR    ${j}    IN RANGE    2    ${cc_int}+1
+    \    Log    ${j}
+    \    ${ContactRoleValue}=    Get Text    xpath=.//*[@id='thePage:theForm:thePageBlock:j_id9:tb']/tr[${i}]/td[${j}]
+    \    Log    ${ContactRoleValue}
+    \    Should Be Equal    ${ContactRoleValue}    ${DonorValue}
+    \    ${Role}=    Get Text    xpath=.//*[@id='thePage:theForm:thePageBlock:j_id9:tb']/tr[${i}]/td[${5}]
+    \    ${ContacrRoleAmount}=    Get Text    xpath=.//*[@id='thePage:theForm:thePageBlock:j_id9:tb']/tr[${i}]/td[${6}]
+    \    Should Be Equal    ${ContacrRoleAmount}    Full
+    \    ${ContactRoleAccount}=    Get Text    xpath=.//*[@id='thePage:theForm:thePageBlock:j_id9:tb']/tr[${i}]/td[${3}]
+    \    Should Be Equal    ${ContactRoleAccount}    ${DonationAccountValue}
+    \    Run Keyword If    "${Role}"=="${DonorContactRole}"    Should Be Equal    ${Role}    ${DonorContactRole}
+    \    Run Keyword If    "${Role}"!="${DonorContactRole}"    Should Be Equal    ${Role}    Soft Credit
+    \    Continue For Loop If    ${i}<<${rc_int}+1
+
+Table_Iteration
+    Sleep    10s
+    ${Row_Count}=    Get Matching Xpath Count    xpath=.//*[@id='bodyCell']/div[3]/div[1]/div/div[2]/table/tbody/tr
+    Log    ${Row_Count}
+    : FOR    ${i}    IN RANGE    1    ${Row_Count}+1
+    \    Log    ${i}
+    \    ${GetTablevalue}=    Get Text    ${Table_Body}/${Table_Row}[${i}]/th
+    \    Log    ${GetTablevalue}
+    \    Run Keyword If    "${GetTablevalue}"=="Test Demo"    Click Element    ${Table_Body}/${Table_Row}[${i}]/th/a
+    \    Exit For Loop If    "${GetTablevalue}"=="Test Demo"
+
+Related Addres_Related List
+    ${RA_Relate list}=    Get Matching Xpath Count    xpath=.//*[@id='003q000000kW21H_00Nf4000009henG_body']/table/tbody/tr
+    Log    ${RA_Relate list}
+    ${RA-Col_Count}=    Get Matching Xpath Count    xpath=.//*[@id='003q000000kW21H_00Nf4000009henG_body']/table/tbody/tr[1]/th
+    Log    ${RA-Col_Count}
+    : FOR    ${k}    IN RANGE    1    ${RA_Relate list}+1
+    \    Log    ${k}
+    \    Run Keyword If    ${k}!=2    Continue For Loop
+    : FOR    ${J}    IN RANGE    2    ${RA-Col_Count}+1
+    \    Log    ${J}
+    \    ${GetTablevalue}=    Get Text    xpath=.//*[@id='003q000000kW21H_00Nf4000009henG_body']/table/tbody/tr[${k}]/td[${J}]
+    \    Log    ${GetTablevalue}
+    \    Click Element    xpath=.//*[@id='003q000000kW21H_00Nf4000009henG_body']/table/tbody/tr[${k}]/td[${J}]/a
+    \    Exit For Loop
