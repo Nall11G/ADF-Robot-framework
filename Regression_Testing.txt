@@ -80,11 +80,11 @@ ${Addresse_Verification}    xpath=.//*[@id='00Nf4000009hepX_ileinner']
 ${Greeting_Verification}    xpath=.//*[@id='00Nf4000009heqG_ileinner']
 ${BirthDate_Verification}    xpath=.//*[@id='con7_ileinner']
 ${PrimaryPhone_Verification}    xpath=.//*[@id='con10_ileinner']
-${Excel}          E:\\Desktop\\ExcelFile.xls
+${Excel}          E:\\Desktop\\TestData.xls
 ${j}              0
 ${Excel_Clu}      Username
 ${header}         Username
-${sSheetName}     Sheet1
+${Account_SheetName}    Account
 ${sSearchedData}    ${EMPTY}
 ${No}             2
 ${Account_Obj}    xpath=.//*[@id='Account_Tab']/a
@@ -103,9 +103,11 @@ ${Opportunity}    Id=Opportunity_Tab
 ${DonorContactRole}    Donor
 ${Table_Body}     xpath=.//*[@id='bodyCell']/div[3]/div[1]/div/div[2]/table/tbody
 ${Table_Row}      tr
-${Contact_Name}    xpath=.//*[@id='con2_ileinner']
-${Account_Name}    xpath=.//*[@id='con4_ileinner']
-${HoH_Error_Alert}    Error: Invalid Data. Review all error messages below to correct your data. The Head of Household flag should be true for this Contact record!!!
+${Contact_Name2}    xpath=.//*[@id='con2_ileinner']
+${Account_Name2}    xpath=.//*[@id='con4_ileinner']
+${HoH_Error_Alert}    The Head of Household flag should be true for this Contact record!!!
+${Contact_Sheet}    Contact
+${Donation_Sheet}    Donation
 
 *** Test Cases ***
 ADF_REG-01
@@ -124,42 +126,43 @@ ADF_REG-01
     ...    Household account record should be created with name of contact name and the household name should append to the contact name
     [Setup]
     Open Excel Current Directory    ${Excel}
-    ${sTestCaseNo}=    Get Column Values    Sheet1    0
+    ${sTestCaseNo}=    Get Column Values    ${Contact_Sheet}    0
     Log    ${sTestCaseNo}
-    ${Rowl_count}=    Get Row Count    Sheet1
+    ${Rowl_count}=    Get Row Count    ${Contact_Sheet}
     Log    ${Rowl_count}
     : FOR    ${i}    IN RANGE    1    ${Rowl_count}+1
     \    Log    ${i}
-    \    ${TC1}=    Read Cell Data By Coordinates    ${sSheetName}    0    ${i}
+    \    ${TC1}=    Read Cell Data By Coordinates    ${Contact_Sheet}    0    ${i}
     \    Log    ${TC1}
     \    Continue For Loop If    ${TC1}!=3
-    \    ${U1}=    Read Cell Data By Coordinates    ${sSheetName}    1    ${i}
+    \    ${U1}=    Read Cell Data By Coordinates    ${Contact_Sheet}    1    ${i}
     \    Set Global Variable    ${U1}
-    \    ${P1}=    Read Cell Data By Coordinates    ${sSheetName}    2    ${i}
+    \    ${P1}=    Read Cell Data By Coordinates    ${Contact_Sheet}    2    ${i}
     \    Set Global Variable    ${P1}
-    \    ${HCFN}=    Read Cell Data By Coordinates    ${sSheetName}    13    ${i}
+    \    ${HCFN}=    Read Cell Data By Coordinates    ${Contact_Sheet}    3    ${i}
     \    Set Global Variable    ${HCFN}
-    \    ${HCLN}=    Read Cell Data By Coordinates    ${sSheetName}    14    ${i}
+    \    ${HCLN}=    Read Cell Data By Coordinates    ${Contact_Sheet}    4    ${i}
     \    Set Global Variable    ${HCLN}
-    \    ${Mail_St}=    Read Cell Data By Coordinates    ${sSheetName}    15    ${i}
+    \    ${Mail_St}=    Read Cell Data By Coordinates    ${Contact_Sheet}    5    ${i}
     \    Set Global Variable    ${Mail_St}
-    \    ${Mail_City}=    Read Cell Data By Coordinates    ${sSheetName}    16    ${i}
+    \    ${Mail_City}=    Read Cell Data By Coordinates    ${Contact_Sheet}    6    ${i}
     \    Set Global Variable    ${Mail_City}
-    \    ${Mail_State}=    Read Cell Data By Coordinates    ${sSheetName}    17    ${i}
+    \    ${Mail_State}=    Read Cell Data By Coordinates    ${Contact_Sheet}    7    ${i}
     \    Set Global Variable    ${Mail_State}
-    \    ${Mail_Code}=    Read Cell Data By Coordinates    ${sSheetName}    18    ${i}
+    \    ${Mail_Code}=    Read Cell Data By Coordinates    ${Contact_Sheet}    8    ${i}
     \    Set Global Variable    ${Mail_Code}
-    \    ${Mail_Country}=    Read Cell Data By Coordinates    ${sSheetName}    19    ${i}
+    \    ${Mail_Country}=    Read Cell Data By Coordinates    ${Contact_Sheet}    9    ${i}
     \    Set Global Variable    ${Mail_Country}
-    \    ${Email1}=    Read Cell Data By Coordinates    ${sSheetName}    21    ${i}
+    \    ${Email1}=    Read Cell Data By Coordinates    ${Contact_Sheet}    11    ${i}
     \    Set Global Variable    ${Email1}
-    \    ${HomePhone}=    Read Cell Data By Coordinates    ${sSheetName}    22    ${i}
+    \    ${HomePhone}=    Read Cell Data By Coordinates    ${Contact_Sheet}    12    ${i}
     \    Set Global Variable    ${HomePhone}
-    \    ${Spouse1}=    Read Cell Data By Coordinates    ${sSheetName}    23    ${i}
+    \    ${Spouse1}=    Read Cell Data By Coordinates    ${Contact_Sheet}    13    ${i}
     \    Set Global Variable    ${Spouse1}
     \    Exit For Loop
     Login to the Salesforce
     Household_Contact_Creation
+    Wait Until Element Is Visible    ${New_Button}
     Contact_Field verification
     Close Browser
 
@@ -178,26 +181,26 @@ ADF_REG-02
     ...    *Expected Result*
     ...    Organization donor proxy contact record should be created with name of the Account name
     Open Excel Current Directory    ${Excel}
-    ${sTestCaseNo}=    Get Column Values    Sheet1    0
+    ${sTestCaseNo}=    Get Column Values    ${Account_SheetName}    0
     Log    ${sTestCaseNo}
-    ${Rowl_count}=    Get Row Count    Sheet1
+    ${Rowl_count}=    Get Row Count    ${Account_SheetName}
     Log    ${Rowl_count}
     : FOR    ${i}    IN RANGE    1    ${Rowl_count}+1
     \    Log    ${i}
-    \    ${TC1}=    Read Cell Data By Coordinates    ${sSheetName}    0    ${i}
+    \    ${TC1}=    Read Cell Data By Coordinates    ${Account_SheetName}    0    ${i}
     \    Log    ${TC1}
     \    Continue For Loop If    ${TC}!=${TC1}
-    \    ${U1}=    Read Cell Data By Coordinates    ${sSheetName}    1    ${i}
+    \    ${U1}=    Read Cell Data By Coordinates    ${Account_SheetName}    1    ${i}
     \    Set Global Variable    ${U1}
-    \    ${P1}=    Read Cell Data By Coordinates    ${sSheetName}    2    ${i}
+    \    ${P1}=    Read Cell Data By Coordinates    ${Account_SheetName}    2    ${i}
     \    Set Global Variable    ${P1}
-    \    ${AC1}=    Read Cell Data By Coordinates    ${sSheetName}    3    ${i}
+    \    ${AC1}=    Read Cell Data By Coordinates    ${Account_SheetName}    3    ${i}
     \    Set Global Variable    ${AC1}
-    \    ${Bi_St}=    Read Cell Data By Coordinates    ${sSheetName}    4    ${i}
+    \    ${Bi_St}=    Read Cell Data By Coordinates    ${Account_SheetName}    4    ${i}
     \    Set Global Variable    ${Bi_St}
-    \    ${Bi_City}=    Read Cell Data By Coordinates    ${sSheetName}    5    ${i}
+    \    ${Bi_City}=    Read Cell Data By Coordinates    ${Account_SheetName}    5    ${i}
     \    Set Global Variable    ${Bi_City}
-    \    ${Bil_Code}    Read Cell Data By Coordinates    ${sSheetName}    6    ${i}
+    \    ${Bil_Code}    Read Cell Data By Coordinates    ${Account_SheetName}    6    ${i}
     \    Set Global Variable    ${Bil_Code}
     \    @{Variable}=    Create List    ${U1}    ${P1}    ${AC1}
     \    Get Variable Value    @{Variable}
@@ -221,28 +224,28 @@ ADF_REG-03
     ...    *Expected Result*
     ...    Donation record should be created successfully
     Open Excel Current Directory    ${Excel}
-    ${sTestCaseNo}=    Get Column Values    Sheet1    0
+    ${sTestCaseNo}=    Get Column Values    ${Donation_Sheet}    0
     Log    ${sTestCaseNo}
-    ${Rowl_count}=    Get Row Count    Sheet1
+    ${Rowl_count}=    Get Row Count    ${Donation_Sheet}
     Log    ${Rowl_count}
     : FOR    ${i}    IN RANGE    1    ${Rowl_count}+1
     \    Log    ${i}
-    \    ${TC1}=    Read Cell Data By Coordinates    ${sSheetName}    0    ${i}
+    \    ${TC1}=    Read Cell Data By Coordinates    ${Donation_Sheet}    0    ${i}
     \    Log    ${TC1}
     \    Continue For Loop If    ${TC}!=${TC1}
-    \    ${U1}=    Read Cell Data By Coordinates    ${sSheetName}    1    ${i}
+    \    ${U1}=    Read Cell Data By Coordinates    ${Donation_Sheet}    1    ${i}
     \    Set Global Variable    ${U1}
-    \    ${P1}=    Read Cell Data By Coordinates    ${sSheetName}    2    ${i}
+    \    ${P1}=    Read Cell Data By Coordinates    ${Donation_Sheet}    2    ${i}
     \    Set Global Variable    ${P1}
-    \    ${DN1}=    Read Cell Data By Coordinates    ${sSheetName}    8    ${i}
+    \    ${DN1}=    Read Cell Data By Coordinates    ${Donation_Sheet}    3    ${i}
     \    Set Global Variable    ${DN1}
-    \    ${Donor1}=    Read Cell Data By Coordinates    ${sSheetName}    9    ${i}
+    \    ${Donor1}=    Read Cell Data By Coordinates    ${Donation_Sheet}    4    ${i}
     \    Set Global Variable    ${Donor1}
-    \    ${Amt}=    Read Cell Data By Coordinates    ${sSheetName}    10    ${i}
+    \    ${Amt}=    Read Cell Data By Coordinates    ${Donation_Sheet}    5    ${i}
     \    Set Global Variable    ${Amt}
-    \    ${Code}=    Read Cell Data By Coordinates    ${sSheetName}    11    ${i}
+    \    ${Code}=    Read Cell Data By Coordinates    ${Donation_Sheet}    6    ${i}
     \    Set Global Variable    ${Code}
-    \    ${Date}=    Read Cell Data By Coordinates    ${sSheetName}    12    ${i}
+    \    ${Date}=    Read Cell Data By Coordinates    ${Donation_Sheet}    7    ${i}
     \    Set Global Variable    ${Date}
     \    Exit For Loop
     Login to the Salesforce
@@ -269,7 +272,7 @@ ADF_REG-04
     ...
     ...    The "Head Of Household" field should be checked for the household contact
     [Setup]
-    ExcelUtilities    ${sSheetName}
+    ExcelUtilities    ${Account_SheetName}
     Login to the Salesforce
     Wait Until Element Is Visible    ${Contact_Tab}
     Click Element    ${Contact_Tab}
@@ -282,7 +285,9 @@ ADF_REG-04
     Click Button    ${Continue/Save}
     ${Alert}=    Get Text    xpath=.//*[@id='errorDiv_ep']
     Log    ${Alert}
-    Textfield Should Contain    ${HoH_Error_Alert}    ${Alert}
+    Take Screenshot Without Embedding
+    Element Should Not Be Visible    ${Edit_Button}
+    Click Button    ${Cancel}
     Contact_Field verification
     Close Browser
 
@@ -308,7 +313,7 @@ ADF_REG-05
     ...    7.4 Related Email record should be created
     ...    7.5 Email status, Do Not Email, Email Opt Out, and Email Opt Out Date field shoudl be updated on the related email record
     [Template]
-    ExcelUtilities    ${sSheetName}
+    ExcelUtilities    ${Account_SheetName}
     Login to the Salesforce
     Wait Until Element Is Visible    ${Contact_Tab}
     Click Element    ${Contact_Tab}
@@ -349,13 +354,9 @@ ADF_REG-06
     ...
     ...    11.1 Donation contact role record should be created with name of Donor and the amount field should be updates as "Full"
     ...    11.2 New \ soft credit contact role record should \ be created \ from the donor's relaitionship viwer VF page
-    ExcelUtilities    ${sSheetName}
-    Open Browser    https://test.salesforce.com/    Chrome
-    Maximize Browser Window
-    Input Text    ${Username}    ${U1}
-    Input Text    ${Password}    ${P1}
-    Click Button    ${Login_button}
-    Set Selenium Implicit Wait    20s
+    ExcelUtilities    ${Account_SheetName}
+    Login to the Salesforce
+    Wait Until Element Is Visible    ${Contact_Tab}
     Click Element    ${Opportunity_Tab}
     Set Selenium Implicit Wait    10s
     Click Element    xpath=.//*[@id='bodyCell']/div[3]/div[1]/div/div[2]/table/tbody/tr[2]/th/a
@@ -409,7 +410,7 @@ ADF_REG-07
     ...
     ...    10.1 Total amount and Designated amuont should be equal
     ...    10.2 Default Designation should be checked and it is available on center of the VF page
-    ExcelUtilities    ${sSheetName}
+    ExcelUtilities    ${Account_SheetName}
     Login to the Salesforce
     Click Element    ${Opportunity_Tab}
     Set Selenium Implicit Wait    10s
@@ -444,7 +445,7 @@ ADF_REG-07
 ADF_REG-08
     [Documentation]    *Functionality*
     ...    To verify whether the Donation name is updated or not when updating the Donor
-    ExcelUtilities    ${sSheetName}
+    ExcelUtilities    ${Account_SheetName}
     Login to the Salesforce
     Click Element    ${Opportunity_Tab}
     Wait Until Element Is Visible    xpath=.//*[@id='bodyCell']/div[3]/div[1]/div/div[2]/table/tbody/tr[2]/th/a
@@ -475,7 +476,7 @@ ADF_REG-08
 ADF_REG-09
 
 ADF_REG-10
-    ExcelUtilities    ${sSheetName}
+    ExcelUtilities    ${
     Login to the Salesforce
     Wait Until Element Is Visible    ${Contact_Tab}
     Click Element    ${Contact_Tab}
@@ -536,29 +537,29 @@ Household_Contact_Creation
     Click Element    ${Continue/Save}
 
 Contact_Field verification
-    ${contactName}=    Get Text    ${Contact_Name}
+    ${contactName}=    Get Text    ${Contact_Name2}
     Set Global Variable    ${contactName}
-    ${AccountName}=    Get Text    ${Account_Name}
+    ${AccountName}=    Get Text    ${Account_Name2}
     Set Global Variable    ${AccountName}
 
 ExcelUtilities
     [Arguments]    ${sSheetName}
     [Timeout]
     Open Excel Current Directory    ${Excel}
-    ${sTestCaseNo}=    Get Column Values    Sheet1    0
+    ${sTestCaseNo}=    Get Column Values    ${Account_SheetName}    0
     Log    ${sTestCaseNo}
-    ${Rowl_count}=    Get Row Count    Sheet1
+    ${Rowl_count}=    Get Row Count    ${Account_SheetName}
     Log    ${Rowl_count}
-    : FOR    ${i}    IN RANGE    1    ${Rowl_count}
+    : FOR    ${i}    IN RANGE    1    ${Rowl_count}+1
     \    Log    ${i}
-    \    ${TC1}=    Read Cell Data By Coordinates    ${sSheetName}    0    ${i}
+    \    ${TC1}=    Read Cell Data By Coordinates    ${Account_SheetName}    0    ${i}
     \    Log    ${TC1}
-    \    ${U1}=    Run Keyword If    ${TC}!=${TC1}    Read Cell Data By Coordinates    ${sSheetName}    1
-    \    ...    ${i}
+    \    Continue For Loop If    ${TC}!=${TC1}
+    \    ${U1}=    Read Cell Data By Coordinates    ${Account_SheetName}    1    ${i}
     \    Set Global Variable    ${U1}
-    \    ${P1}=    Read Cell Data By Coordinates    ${sSheetName}    2    ${i}
+    \    ${P1}=    Read Cell Data By Coordinates    ${Account_SheetName}    2    ${i}
     \    Set Global Variable    ${P1}
-    \    Exit For Loop If    ${i}>>${Rowl_count}
+    \    Exit For Loop
     [Return]    ${U1}    ${P1}
 
 Test_Keyword
