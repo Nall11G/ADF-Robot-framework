@@ -2,7 +2,7 @@ import xlrd
 #import Test
 from xlrd.sheet import ctype_text
 xl_workbook = xlrd.open_workbook('../TestData/TestInputData.xlsx')
-def read_excel_data ( sheetname, testcase, title):
+def read_excel_data (sheetname, testcase, title):
     cell_value= basestring
     sheet_name = xl_workbook.sheet_names()
     xl_sheet = xl_workbook.sheet_by_name(sheetname)
