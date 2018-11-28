@@ -1,9 +1,9 @@
 *** Settings ***
 Documentation    Suite description
-Documentation    Suite description
 Library     Selenium2Library
-#Library     ../CustomLibrary/DonationLibrary.py
-Resource      ../TestCases/RegressionTestSuite.robot
+Resource   ../TestCases/TestSuiteVariables.robot
+
+
 
 *** Variables ***
 
