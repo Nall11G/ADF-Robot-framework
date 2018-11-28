@@ -2,6 +2,7 @@
 Documentation    Suite description
 Library     Selenium2Library
 
+
 *** Variables ***
 
 ${UsernameElement}      Id=username
@@ -11,16 +12,17 @@ ${URL} =  https://test.salesforce.com
 
 
 *** Keywords ***
-Login With Username And Password(1)
+Log_into_Salesforce
     Open Browser  ${URL}    chrome
     Maximize Browser Window
     Input Text  ${UsernameElement}      nallavan@mstsolutions.com.qarel
-    Input Text  ${PasswordElement}      metasoft@12
+    Input Text  ${PasswordElement}      metasoft@123
     click button  ${Submit}
 
-Close Driver
+Close_Driver
     close browser
 
-Close All Browser window
+Close_All_Browser_window
     close all browsers
+
 
