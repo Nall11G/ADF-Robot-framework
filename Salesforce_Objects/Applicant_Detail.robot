@@ -1,9 +1,7 @@
 *** Settings ***
 Documentation    Suite description
 Documentation    Suite description
-Library     Selenium2Library
-#Library     ../CustomLibrary/DonationLibrary.py
-Resource      ../TestCases/RegressionTestSuite.robot
+Library     SeleniumLibrary
 
 *** Variables ***
 
@@ -36,7 +34,12 @@ ${Ministry_Name_E}      xpath=.//*[@id='00Nq0000001qNbS_ileinner']
 
 *** Keywords ***
 
-Get values from Applicant Detail record
+Getvalues_from_Applicant_Detail_record
+
+    Click Elment
+    Input
+
+    Click Element   ${Applicant_Obj}
     ${Applicant_Name}=      Get Text        ${Applicant_Name_E}
     Set Global Variable  ${Applicant_Name}
     ${Household_Contact}=   Get Text    ${Household_contact_E}
@@ -53,12 +56,6 @@ Get values from Applicant Detail record
     Set Global Variable  ${Duplication_Status}
     ${Primary_Contact}=   Get Text    ${Primary_Contact_E}
     Set Global Variable  ${Primary_Contact}
-
-
-
-
-
-
 
 
 Verify the Applicant Detail
