@@ -6,7 +6,11 @@ Library     Screenshot
 Library           Collections
 Resource   ../TestCases/TestSuiteVariables.robot
 #Library   ../TestCases/Table.robot
+Resource  ../Salesforce_Objects/Account.robot
+Resource  ../Salesforce_Objects/RelatedAddress.robot
+Resource  ../Salesforce_Objects/RelatedEmail.robot
 Library  DateTime
+#Resource  ../Common_Configuration/ExecuteJS.robot
 
 
 *** Variables ***
@@ -20,10 +24,10 @@ ${Continue/Save_E}    name=save
 ${FirstName_Contact_E}    Id=name_firstcon2
 ${LastName_Contact_E}    Id=name_lastcon2
 ${Deceased_Checkbox_E}    Id=00Nf4000009heqK
-${Mailing_City_E}     Id=con19city
-${Mailing_state_E}    Id=con19state
-${Mailing_Zip_E}    Id=con19zip
-${Mailing_Country_E}    Id=con19country
+${Mailing_City_E}     xpath=.//*[@id='con19city']
+${Mailing_state_E}    xpath=.//*[@id='con19state']
+${Mailing_Zip_E}    xpath=.//*[@id='con19zip']
+${Mailing_Country_E}    xpath=.//*[@id='con19country']
 ${Mailing_Address_Type_E}    Id=00Nf4000009her8
 ${Do Not Mail_Checkbox_E}    Id=00Nf4000009hepq
 ${Mail_Opt-Out_E}    Id=00Nf4000009her7
@@ -53,7 +57,12 @@ ${NickName_E}   xpath=.//*[@id='00Nf4000009herL']
 ${Home_Phone_E}  id=con13
 ${WorkPhone_E}    xpath=.//*[@id='00Nf4000009hes3']
 ${WorkPhone_Extension_E}   xpath=.//*[@id='00Nf4000009hes2']
-
+${Record_Type_Change_E}  xpath=.//*[@id='RecordType_ileinner']/a
+${RecordType_Update_List_E}   xpath=.//*[@id='p3']
+${Alert_Message_E}  xpath=.//*[@id='errorDiv_ep']
+${Account_Lookup_E}     xpath=.//*[@id='lookup0011b00000Weqn2con4']
+${ExstingClassification}
+${RecordID}
 
 # Table Iteration
 
@@ -62,7 +71,7 @@ ${account}        xpath=.//*[@id='Account_Tab']/a
 ${Row}            tr
 ${Tabel row}      ${table xpath}/${Row}
 &{Table}
-${Column}         ${table xpath}/${Row}/td
+#${Column}         ${table xpath}/${Row}/td
 
 #Contact_Field_Verification_Webelements
 
@@ -74,16 +83,20 @@ ${Primary_Phone_VE}     xpath=.//*[@id='con10_ileinner']
 ${Emai_VE}      xpath=.//*[@id='con15_ileinner']
 ${Exclude_from_Ministry_VE}     xpath=.//*[@id='00Nf4000009hepy_ileinner']
 ${Contact_Owner_VE}     xpath=.//*[@id='con1_ileinner']
-${ADFMailOptout_VE}     xpath=.//*[@id='00Nf4000009hepQ_chkbox']
-${ADF_Foundation_Mail_OptOut_VE}     xapth=.//*[@id='00Nf400000ALtas_chkbox']
-${Faith&Justice_VE}     xpath=.//*[@id='00Nf4000009heq8_chkbox']
-${Telemarketing_VE}     xpath=.//*[@id='00Nf4000009herm_chkbox']
+${ADFMailOptout_VE}    id=00Nf4000009hepQ
+${ADF_Foundation_Mail_OptOut_VE}    id=00Nf400000ALtas
+${Faith&Justice_VE}     id=00Nf4000009heq8
+${Telemarketing_VE}     id=00Nf4000009herm
 ${Record_Type}      xpath=.//*[@id='RecordType_ileinner']
-${Head of Household_VE}     xpath=.//*[@id='00Nf4000009heqM_chkbox']
+${Head of Household_VE}     id=00Nf4000009heqM
 ${Membership_E}       xpath=//div[@id='00Nf400000AI7g0_ileinner']
-${DonNot_Mail_VE}   xpath=.//*[@id='00Nf4000009hepq_chkbox']
+${DonNot_Mail_VE}   id=00Nf4000009hepq
 ${Greeting_Value_VE}  xpath=.//*[@id='00Nf4000009heqG_ileinner']
 ${Address_Value_VE}     xpath=.//*[@id='00Nf4000009hepX_ileinner']
+${Contact_Name_Choose}  xpath=.//a[contains(.,"${ContactName_Value}")]
+${Click_Here_Button}        xpath=.//input[@name="j_id0:j_id1:j_id28"]
+
+
 
 
 #Relationship_Viewer_VF_Page
@@ -96,8 +109,25 @@ ${Contact_Softcrdeit_Checkbox_E}    xpath=.//*[@id='pg:formid:block1:repeatAccou
 ${i}
 ${New_single_Gift_E}    name=new_single_gift
 
+# Classification Contact
+
+${Classfication_Contact_E}      xpath=.//*[@id='CF00Nf4000009henA']
+${Classification_type_E}        xpath=.//*[@id='CF00Nf4000009hepA']
+${Contact_Hyberlink_E}      xpath=.//div/a[contains(.,"${ContactName_Value}")]
+${Classification_Value}
+${Board_Member}     Board Member
+${Edit_Classification_RelatedList}      xpath=.//*[@id='0031b00000Qrsmz_00Nf4000009henA_body']/table/tbody/tr[2]/td[1]/a[1]
+
+${UsernameElement}      Id=username
+${PasswordElement}      Id=password
+${Submit}       Id=Login
+${URL} =  https://test.salesforce.com
+#${ContactName_Value}    Betsy
+
+
 
 *** Keywords ***
+
 Contact Creation Without Salutation
     Wait Until Element Is Visible    ${Contact_Tab_E}
     Click Element    ${Contact_Tab_E}
@@ -123,7 +153,7 @@ Contact Creation Without Salutation
     Input Text    ${Email_E}    ${Contact_Email_V}
     Set Selenium Implicit Wait  5s
     Input Text      ${BirthDateElement_E}      ${Birth_Date_V}
-    Input Text      ${Preffered_Phone_E}    ${Preffered_Phone_V}
+    #Input Text      ${Preffered_Phone_E}    ${Preffered_Phone_V}
     Input Text      ${Home_Phone_E}     ${HomePhone_V}
     Input Text      ${Mobile_Phone_E}   ${Mobile_V}
     Input Text      ${workphone_e}      ${WorkPhone_V}
@@ -151,7 +181,7 @@ Contact Creation With Salutation
     Input Text    ${Mailing_Country_E}    ${Mail_Country_V}
     Input Text    ${Mailing_state_E}    ${Mail_State_V}
     Input Text    ${Mailing_Zip_E}    ${Mail_Code_V}
-    Click Element    ${Do Not Mail_Checkbox_E}
+    #Click Element    ${Do Not Mail_Checkbox_E}
     Input Text    ${Email_E}    ${Contact_Email_V}
     Input Text      ${Home_Phone_E}     ${HomePhone_V}
     Input Text      ${Mobile_Phone_E}   ${Mobile_V}
@@ -161,13 +191,129 @@ Contact Creation With Salutation
     Input Text      ${BirthDateElement_E}      ${Birth_Date_V}
     Click Element    ${Continue/Save_E}
 
-Get values from Contact record
+
+Contact_Creation_With_HOH_Checked
+
+    Input Text    ${FirstName_Contact_E}   ${FirstName_V}
+    Input Text    ${LastName_Contact_E}   ${LastName_V}
+    Click Element  ${Head_of_Household_E}
+    Click Element  ${Continue/Save_E}
+
+Contact_Creation_With_HOH_Unchecked
+    Input Text    ${FirstName_Contact_E}   ${FirstName_V}
+    Input Text    ${LastName_Contact_E}   ${LastName_V}
+    Click Element  ${Continue/Save_E}
+
+
+Contact Creation With Home Phone
+    Wait Until Element Is Visible    ${Contact_Tab_E}
+    Click Element    ${Contact_Tab_E}
+    Wait Until Element Is Visible    ${New_Button}
+    Click Button    ${New_Button}
+    Set Selenium Implicit Wait    20s
+    Click Element    ${Continue_E}
+    Set Selenium Implicit Wait    10s
+    Set Selenium Speed    .10s
+    Input Text    ${FirstName_Contact_E}   ${FirstName_V}
+    Input Text    ${LastName_Contact_E}   ${LastName_V}
+    Input Text    ${SpouseName_E}     ${SpouseName_V}
+    #@{Salu}=    Get List Items    ${Salutation_E}
+    #Select From List By Value    ${Salutation_E}    @{Salu}[0]
+    Input Text      ${NickName_E}   ${NickName_V}
+    #Click Element    ${Deceased_Checkbox_E}
+    Input Text    ${Mailing_Address_Street_E}    ${Mail_Street_V}
+    Input Text    ${Mailing_City_E}    ${Mail_City_V}
+    Input Text    ${Mailing_Country_E}    ${Mail_Country_V}
+    Input Text    ${Mailing_state_E}    ${Mail_State_V}
+    Input Text    ${Mailing_Zip_E}    ${Mail_Code_V}
+    #Click Element    ${Do Not Mail_Checkbox_E}
+    Input Text    ${Email_E}    ${Contact_Email_V}
+    Set Selenium Implicit Wait  5s
+    Input Text      ${BirthDateElement_E}      ${Birth_Date_V}
+    @{PreferPhone}=    Get List Items    ${Preffered_Phone_E}
+    Select From List By Value    ${Preffered_Phone_E}     @{PreferPhone}[1]
+    #Input Text      ${Preffered_Phone_E}    ${Preffered_Phone_V}
+    Input Text      ${Home_Phone_E}     ${HomePhone_V}
+    Input Text      ${Mobile_Phone_E}   ${Mobile_V}
+    Input Text      ${workphone_e}      ${WorkPhone_V}
+    Input Text      ${WorkPhone_Extension_E}    ${WorkPhone_Extension_V}
+    Click Element    ${Continue/Save_E}
+
+Contact Creation With Mobile
+    Wait Until Element Is Visible    ${Contact_Tab_E}
+    Click Element    ${Contact_Tab_E}
+    Wait Until Element Is Visible    ${New_Button}
+    Click Button    ${New_Button}
+    Set Selenium Implicit Wait    20s
+    Click Element    ${Continue_E}
+    Set Selenium Implicit Wait    10s
+    Set Selenium Speed    .10s
+    Input Text    ${FirstName_Contact_E}   ${FirstName_V}
+    Input Text    ${LastName_Contact_E}   ${LastName_V}
+    Input Text    ${SpouseName_E}     ${SpouseName_V}
+    #@{Salu}=    Get List Items    ${Salutation_E}
+    #Select From List By Value    ${Salutation_E}    @{Salu}[0]
+    Input Text      ${NickName_E}   ${NickName_V}
+    #Click Element    ${Deceased_Checkbox_E}
+    Input Text    ${Mailing_Address_Street_E}    ${Mail_Street_V}
+    Input Text    ${Mailing_City_E}    ${Mail_City_V}
+    Input Text    ${Mailing_Country_E}    ${Mail_Country_V}
+    Input Text    ${Mailing_state_E}    ${Mail_State_V}
+    Input Text    ${Mailing_Zip_E}    ${Mail_Code_V}
+    #Click Element    ${Do Not Mail_Checkbox_E}
+    Input Text    ${Email_E}    ${Contact_Email_V}
+    Set Selenium Implicit Wait  5s
+    Input Text      ${BirthDateElement_E}      ${Birth_Date_V}
+    @{PreferPhone}=    Get List Items    ${Preffered_Phone_E}
+    Select From List By Value    ${Preffered_Phone_E}     @{PreferPhone}[3]
+    #Input Text      ${Preffered_Phone_E}    ${Preffered_Phone_V}
+    Input Text      ${Home_Phone_E}     ${HomePhone_V}
+    Input Text      ${Mobile_Phone_E}   ${Mobile_V}
+    Input Text      ${workphone_e}      ${WorkPhone_V}
+    Input Text      ${WorkPhone_Extension_E}    ${WorkPhone_Extension_V}
+    Click Element    ${Continue/Save_E}
+
+Contact Creation With Work Phone
+    Wait Until Element Is Visible    ${Contact_Tab_E}
+    Click Element    ${Contact_Tab_E}
+    Wait Until Element Is Visible    ${New_Button}
+    Click Button    ${New_Button}
+    Set Selenium Implicit Wait    20s
+    Click Element    ${Continue_E}
+    Set Selenium Implicit Wait    10s
+    Set Selenium Speed    .10s
+    Input Text    ${FirstName_Contact_E}   ${FirstName_V}
+    Input Text    ${LastName_Contact_E}   ${LastName_V}
+    Input Text    ${SpouseName_E}     ${SpouseName_V}
+    #@{Salu}=    Get List Items    ${Salutation_E}
+    #Select From List By Value    ${Salutation_E}    @{Salu}[0]
+    Input Text      ${NickName_E}   ${NickName_V}
+    #Click Element    ${Deceased_Checkbox_E}
+    Input Text    ${Mailing_Address_Street_E}    ${Mail_Street_V}
+    Input Text    ${Mailing_City_E}    ${Mail_City_V}
+    Input Text    ${Mailing_Country_E}    ${Mail_Country_V}
+    Input Text    ${Mailing_state_E}    ${Mail_State_V}
+    Input Text    ${Mailing_Zip_E}    ${Mail_Code_V}
+    #Click Element    ${Do Not Mail_Checkbox_E}
+    Input Text    ${Email_E}    ${Contact_Email_V}
+    Set Selenium Implicit Wait  5s
+    Input Text      ${BirthDateElement_E}      ${Birth_Date_V}
+    @{PreferPhone}=    Get List Items    ${Preffered_Phone_E}
+    Select From List By Value    ${Preffered_Phone_E}     @{PreferPhone}[2]
+    #Input Text      ${Preffered_Phone_E}    ${Preffered_Phone_V}
+    Input Text      ${Home_Phone_E}     ${HomePhone_V}
+    Input Text      ${Mobile_Phone_E}   ${Mobile_V}
+    Input Text      ${workphone_e}      ${WorkPhone_V}
+    Input Text      ${WorkPhone_Extension_E}    ${WorkPhone_Extension_V}
+    Click Element    ${Continue/Save_E}
+
+Get_values_from_Contact_record
     ${contactName}=    Get Text    ${Contact_Name_VE}
     Set Global Variable    ${contactName}
     ${AccountName}=    Get Text    ${Account_Name_VE}
     Set Global Variable    ${AccountName}
-    Should Be Equal  ${AccountName}      ${contactName} Household
-    ${Cont_PreviousEmail}=    Get Text    xpath=.//*[@id='con15_ileinner']
+    #Should Be Equal  ${AccountName}      ${contactName} Household
+    ${Cont_PreviousEmail}=    Get Text    ${Emai_VE}
     Set Global Variable    ${Cont_PreviousEmail}
     ${Primary_Phone}=    Get Value      ${Primary_Phone_VE}
     Set Global Variable  ${Primary_Phone}
@@ -178,6 +324,7 @@ Get values from Contact record
     ${Contact_Email}=   Get Text    ${Emai_VE}
     Set Global Variable  ${Contact_Email}
     ${ContactName}=     Get Text  ${Contact_Name_VE}
+    set global variable  ${ContactName}
 
 Verifying_Greeting_Field_Value
     Wait Until Element Is Visible  ${ADFMailOptout_VE}
@@ -190,12 +337,15 @@ Verifying_Greeting_Field_Value
 
 Verifying_Addresse_Field_Value
 
+    Household/Reliance_Contact_Verification
 
 Verify_Preffered_Phone_Value
     Household/Reliance_Contact_Verification
 
 Houesehold_Contact_Communication_Field_Verification
-    Get values from Contact record
+    Contact.Get_values_from_Contact_record
+    Click Element  ${Edit_Button}
+    Set Selenium Implicit Wait  10s
     ${ADF_Checkbox}=     Get Value   ${ADFMailOptout_VE}
     Set Global Variable  ${ADF_Checkbox}
     ${ADF_Foundation_Checkbox}=     Get Value   ${ADF_Foundation_Mail_OptOut_VE}
@@ -212,9 +362,8 @@ Houesehold_Contact_Communication_Field_Verification
     Should Be Equal   ${Telemarketing}     ${FALSE}
     Should Be Equal  ${DoNotMail}   ${FALSE}
 
-
 Houesehold_Contact_Checkbox_Field_Verification_Primary
-    Get values from Contact record
+    Contact.Get_values_from_Contact_record
     ${ADF_Checkbox}=     Get Value   ${ADFMailOptout_VE}
     Set Global Variable  ${ADF_Checkbox}
     ${ADF_Foundation_Checkbox}=     Get Value   ${ADF_Foundation_Mail_OptOut_VE}
@@ -233,7 +382,7 @@ Houesehold_Contact_Checkbox_Field_Verification_Primary
 
 Contact_Field_Verification
 
-    Get values from Contact record
+    Contact.Get_values_from_Contact_record
     Should Be True  ${ADFMailOptout_VE}
     Should Be True  ${ADF_Foundation_Mail_OptOut_VE}
     Should Be True  ${Faith&Justice_VE}
@@ -242,22 +391,44 @@ Contact_Field_Verification
     #Should Be Equal  ${Contact_Email}       ${MC_PrimaryEmail_V}
     #Should Be Equal  ${ContactName}     ${MinstryName_E}
 
+ODP_Communicatoin_Prefference
+
+    Contact.Get_values_from_Contact_record
+    Click Element  ${Edit_Button}
+    Set Selenium Implicit Wait  10s
+    ${ADF_Checkbox}=     Get Value   ${ADFMailOptout_VE}
+    Set Global Variable  ${ADF_Checkbox}
+    ${ADF_Foundation_Checkbox}=     Get Value   ${ADF_Foundation_Mail_OptOut_VE}
+    Set Global Variable     ${ADF_Foundation_Checkbox}
+    ${FaithJustice_Checkbox}=     Get Value   ${Faith&Justice_VE}
+    Set Global Variable     ${FaithJustice_Checkbox}
+    ${Telemarketing}=       Get Value   ${Telemarketing_VE}
+    Set Global Variable   ${Telemarketing}
+    ${DoNotMail}=   Get Value   ${DonNot_Mail_VE}
+    Set Global Variable  ${DoNotMail}
+    Should Be Equal  ${ADF_Checkbox}     ${False}
+    Should Be Equal  ${ADF_Foundation_Checkbox}     ${False}
+    Should Be Equal  ${FaithJustice_Checkbox}     ${False}
+    Should Be Equal   ${Telemarketing}     ${False}
+    Should Be Equal  ${DoNotMail}   ${False}
+
+
 
 Contact_Table_Iteration
 
-    Sleep    10s
+    wait until element is visible  ${Contact_Tab_E}
+    Click Element  ${Contact_Tab_E}
+    Set Selenium Implicit Wait  10s
     ${Row_Count}=    Get Matching Xpath Count    xpath=.//*[@id='bodyCell']/div[3]/div[1]/div/div[2]/table/tbody/tr
     Log    ${Row_Count}
     : FOR    ${i}    IN RANGE    1    ${Row_Count}+1
     \    Log    ${i}
-    \    ${GetTablevalue}=    Get Text    ${Table_Body}/${Table_Row}[${i}]/th
+    \    ${GetTablevalue}=    Get Text    xpath=.//*[@id='bodyCell']/div[3]/div[1]/div/div[2]/table/tbody/tr[${i}]/th
     \    Log    ${GetTablevalue}
-    \    Run Keyword If    "${GetTablevalue}"=="Test Demo"    Click Element    ${Table_Body}/${Table_Row}[${i}]/th/a
-    \    Exit For Loop If    "${GetTablevalue}"=="Test Demo"
+    \    Run Keyword If    "${GetTablevalue}"=="${ContactName_Value}"    Click Element    xpath=.//*[@id='bodyCell']/div[3]/div[1]/div/div[2]/table/tbody/tr[${i}]/th/a
+    \    Exit For Loop If    "${GetTablevalue}"=="${ContactName_Value}"
     Sleep    10s
-    Wait Until Element Is Visible  ${EditButton_E}
-    Click Element   ${EditButton_E}
-
+    Wait Until Element Is Visible   ${EditButton_E}
 
 ODP_Contact_Verification
 
@@ -276,8 +447,6 @@ ODP_Contact_Verification
     Should Be Equal  ${Membership}      Church Alliance
     Contact_Field_Verification
 
-
-
 Ministry_ODP_Contact_Verification
 
     ${contactName}=    Get Text    ${Contact_Name_VE}
@@ -288,14 +457,13 @@ Ministry_ODP_Contact_Verification
     ${Cont_PreviousEmail}=    Get Text    ${Emai_VE}
     Set Global Variable    ${Cont_PreviousEmail}
 
-
 Household/Reliance_Contact_Verification
 
     ${contactName}=    Get Text    ${Contact_Name_VE}
     Set Global Variable    ${contactName}
     ${AccountName}=    Get Text    ${Account_Name_VE}
     Set Global Variable    ${AccountName}
-    Should Be Equal  ${AccountName}      ${contactName} Household
+    #Should Be Equal  ${AccountName}      ${contactName} Household
     ${Cont_PreviousEmail}=    Get Text    ${Emai_VE}
     Set Global Variable    ${Cont_PreviousEmail}
     ${Greeting_Value}=  Get Text    ${Greeting_Value_VE}
@@ -304,14 +472,16 @@ Household/Reliance_Contact_Verification
     Set Global Variable  ${Address_Value}
     ${Primary_Phone}=   Get Value   ${Primary_Phone_VE}
     Set Global Variable  ${Primary_Phone}
-    ${Greeting_String1}=     Catenate    Mr.     ${Greeting_Value}
+    ${Greeting_String1}=     Catenate    Ms.     ${LastName_V}
     Set Global Variable   ${Greeting_String1}
     ${Gretting_String2}=     catenate    ${FirstName_V}  ${SpouseName_V}
     Set Global Variable   ${Gretting_String2}
-    ${String3}=     Catenate  Mr.   ${ContactName}
+    ${String3}=     Catenate  Ms.   ${ContactName}
     Set Global Variable  ${String3}
-    ${WorkPhone}=   Catenate    SEPARATOR= X     ${WorkPhone_V}  ${WorkPhone_Extension_V}
+    ${WorkPhone}=   Catenate    SEPARATOR= X         ${WorkPhone_V}  ${WorkPhone_Extension_V}
     Set Global Variable  ${WorkPhone}
+    ${Addresse_Verfied_Value}=  Catenate    Ms.     ${LastName_V}
+    Set Global Variable   ${Addresse_Verfied_Value}
 
 Church_Household_Contact_Verification
 
@@ -333,68 +503,79 @@ Ambassdor_Household Contact Verification
     ${Cont_PreviousEmail}=    Get Text    ${Emai_VE}
     Set Global Variable    ${Cont_PreviousEmail}
 
-Test
-
-  Sleep    10s
-    ${Row_Count}=    Get Matching Xpath Count    xpath=.//*[@id='bodyCell']/div[3]/div[1]/div/div[2]/table/tbody/tr
-    Log    ${Row_Count}
-    : FOR    ${i}    IN RANGE    1    ${Row_Count}+1
-    \    Log    ${i}
-    \    ${GetTablevalue}=    Get Text    ${Table_Body}/${Table_Row}[${i}]/th
-    \    Run Keyword   "${GetTablevalue}"=="${Value}"   Click Link   ${Table_Body}/${Table_Row}[${i}]/th/a
-    \    Exit For Loop If    "${GetTablevalue}"=="${Value}"
-    Wait Until Element Is Visible  ${EditButton_E}
-    Click Element   ${EditButton_E}
-
-
-
 Related Addres_Related List_From_Contact
-    ${RA_Relate list}=    Get Matching Xpath Count    xpath=.//*[@id='0031b00000RyUIX_00Nf400000AI7r3_body']/table/tbody/tr
+    Wait Until Element Is Visible  xpath=.//h3[contains(.,'Related Addresses')]/following::input[@value='New Related Address']
+    Set Selenium Implicit Wait  10s
+    ${RA_Relate list}=    Get Matching Xpath Count    xpath=.//*[@id='${RecordID}_00Nf4000009henG_body']/table/tbody/tr
     Log    ${RA_Relate list}
-    ${RA-Col_Count}=    Get Matching Xpath Count    xpath=.//*[@id='0031b00000RyUIX_00Nf400000AI7r3_body']/table/tbody/tr[1]/th
+    ${RA-Col_Count}=    Get Matching Xpath Count    xpath=.//*[@id='${RecordID}_00Nf4000009henG_body']/table/tbody/tr[1]/th
     Log    ${RA-Col_Count}
-    : FOR    ${k}    IN RANGE    1    ${RA_Relate list}+1
-    \    Log    ${k}
-    \    Run Keyword If    ${k}!=2    Continue For Loop
-    : FOR    ${J}    IN RANGE    2    ${RA-Col_Count}+1
-    \    Log    ${J}
-    \    ${GetTablevalue}=    Get Text    xpath=.//*[@id='0031b00000RyUIX_00Nf400000AI7r3_body']/table/tbody/tr[${k}]/td[${J}]
-    \    Log    ${GetTablevalue}
-    \    Click Element    xpath=.//*[@id='0031b00000RyUIX_00Nf400000AI7r3_body']/table/tbody/tr[${k}]/td[${J}]/a
-    \    Exit For Loop
+    Click Element    xpath=.//*[@id='${RecordID}_00Nf4000009henG_body']/table/tbody/tr[${RA_Relate list}]/td[2]/a
 
 Related Email_RelatedList_From_Contact
-    ${RE_Relate list}=    Get Matching Xpath Count    xpath=..//*[@id='0031b00000RyUIX_00Nf4000009henH_body']/table/tbody/tr
+    Wait Until Element Is Visible    xpath=.//h3[contains(.,'Related Email')]/following::input[@value='New Related Email']
+    Set Selenium Implicit Wait  10s
+    ${RE_Relate list}=    Get Matching Xpath Count    xpath=.//*[@id='${RecordID}_00Nf4000009henH_body']/table/tbody/tr
     Log    ${RE_Relate list}
-    ${RE-Col_Count}=    Get Matching Xpath Count    xpath=.//*[@id='0031b00000RyUIX_00Nf4000009henH_body']/table/tbody/tr[1]/th
+    ${RE-Col_Count}=    Get Matching Xpath Count    xpath=.//*[@id='${RecordID}_00Nf4000009henH_body']/table/tbody/tr[1]/th
     Log    ${RE-Col_Count}
-    : FOR    ${k}    IN RANGE    1    ${RE_Relate list}+1
-    \    Log    ${k}
-    \    Run Keyword If    ${k}!=${RE_Relate list}    Continue For Loop
-    \    ${GetTablevalue}=    Get Text    xpath=.//*[@id='0031b00000RyUIX_00Nf4000009henH_body']/table/tbody/tr[${k}]/th
-    \    Log    ${GetTablevalue}
-    \    Click Element    xpath=.//*[@id='0031b00000RyUIX_00Nf4000009henH_body']/table/tbody/tr[${k}]/th/a
-    \    Exit For Loop If    ${k}!=${RE_Relate list}
+    Click Element    xpath=.//*[@id='${RecordID}_00Nf4000009henH_body']/table/tbody/tr[${RE_Relate list}]/th/a
 
 Related_Email_Verification
 
-    Houesehold_Contact_Checkbox_Field_Verification_Primary
-    Wait Until Element Is Visible    xpath=.//*[@id='Name_ileinner']
-    ${RE_Email}=    Get Text    xpath=.//*[@id='Name_ileinner']
-    Log    ${RE_Email}
-    Should Be Equal    ${RE_Email}  ${Cont_PreviousEmail}
-    Close Browser
+    Get_Values_From_RelatedEmail
+    Wait Until Element Is Visible    ${Edit_Button}
+
+Contact_Mailing_Address
+
+    Wait Until Element Is Visible  ${Contact_Name_VE}
+    Click Element  ${Edit_Button}
+    Set Selenium Implicit Wait  10s
+    ${Mailing_Street_Value}=    Get Text    ${Mailing_Address_Street_E}
+    Set Global Variable    ${Mailing_Street_Value}
+    ${Mailing_City_Value}=    Get Value   ${Mailing_City_E}
+    Set Global Variable   ${Mailing_City_Value}
+    ${Mailing_State_Value}=      Get Value  ${Mailing_state_E}
+    Set Global Variable  ${Mailing_State_Value}
+    ${Mailing_Country_Value}=    Get Value  ${Mailing_Country_E}
+    Set Global Variable  ${Mailing_Country_Value}
+    ${Mailing_ZipCode_Value}=   Get Value  ${Mailing_Zip_E}
+    Set Global Variable  ${Mailing_ZipCode_Value}
+
+Updating_The_Mailing_Address
+
+    Clear Element Text  ${Mailing_Address_Street_E}
+    Input Text  ${Mailing_Address_Street_E}  TestRelatedAddress4
+    Click Element  ${Continue/Save_E}
+
+Updating_The_Eamil
+    Click Element  ${Edit_Button}
+    Clear Element Text  ${Email_E}
+    Input Text  ${Email_E}      ${Contact_Email_V}
+    Click Element  ${Continue/Save_E}
+
+
+Comparision_BW_Mailing_Billing_Address
+    Contact_Mailing_Address
+    Click Element  ${Cancel}
+    Wait Until Element Is Visible  ${Edit_Button}
+    Click Element  xpath=.//h3[contains(.,'Contact Information')]/following::a[contains(text(),'${ContactName_Value}')]
+    Sleep  20s
+    Account.Account_Billing_Address
+    Click Element  ${Cancel}
+    Should Be Equal  ${Mailing_Street_Value}    ${Biling_Street_Value}
+    Should Be Equal  ${Mailing_City_Value}  ${Billing_City_Value}
+    Should Be Equal  ${Mailing_State_Value}     ${Billing_State_Value}
+    Should Be Equal  ${Mailing_Country_Value}   ${Billing_Country_Value}
+    Should Be Equal  ${Mailing_ZipCode_Value}   ${Billing_Zip_Value}
 
 Contact_Exsting_Address
-
     ${RA_PreviousStreet}=    Get Text    ${Mailing_Address_Street_E}
-    Set Global Variable  ${RA_PreviousStreet}
-    Input Text    ${Mail_Street_V}
+    Set Global Variable    ${RA_PreviousStreet}
 
 Uncheck_Head_Of_Household_Flag
 
-    Click Button    ${Edit_Button}
-    Wait Until Element Is Enabled    xpath=.//*[@id='00Nf4000009heqM']
+    Set Selenium Implicit Wait  10s
     Unselect Checkbox    xpath=.//*[@id='00Nf4000009heqM']
     Click Button    ${Continue/Save_E}
     ${Alert}=    Get Text    xpath=.//*[@id='errorDiv_ep']
@@ -404,12 +585,36 @@ Uncheck_Head_Of_Household_Flag
     Click Button    ${Cancel}
 
 Head_Of_Household_Verifcation_For_SecondContact
-    ${HOH}=     Get Value   ${Head of Household_VE}
+
+    Wait Until Element Is Visible  ${Edit_Button}
+    Click Element  ${Edit_Button}
+    Set Selenium Implicit Wait  10s
+    ${HOH}=     Run Keyword And Return Status  Checkbox Should Be Selected   ${Head of Household_VE}
     Set Global Variable  ${HOH}
     Should Be Equal  ${HOH}     ${False}
 
+Head_Of_Household_Verifcation_For_HOH_Enabled_SecondContact
+
+    Wait Until Element Is Visible  ${Edit_Button}
+    Click Element  ${Edit_Button}
+    Set Selenium Implicit Wait  10s
+    ${HOH}=     Run Keyword And Return Status  checkbox should be selected  ${Head of Household_VE}
+    Set Global Variable  ${HOH}
+    Should Be Equal  ${HOH}     ${True}
 
 
+
+
+Classifcation_Record_Creation_From_Contact
+
+    Click Element  xpath=.//h3[contains(.,'Classification Type Contacts')]/following::input[@value='New Classification Type Contact']
+    Wait Until Element Is Visible  ${Classfication_Contact_E}
+    Input Text  ${Classification_type_E}    ${Classification_Value}
+    Click Element  ${Continue/Save_E}
+    #Navigates to Contact Record
+    Set Selenium Implicit Wait  10s
+    Wait Until Element Is Visible  xpath=.//div/a[contains(.,"${ContactName_Value}")]
+    Click Element  xpath=.//div/a[contains(.,"${ContactName_Value}")]
 
 Contact_Relationship_Viewer
 
@@ -431,10 +636,276 @@ Get_Value_From_Table
 
     ${ContactRelValue}=    Get Value    xpath=.//*[@id='pg:formid:block1:repeatAccount:${i}:account']/td[1]/a[3]
 
-Donation_Creation_From_Contact
+#Donation_Creation_From_Contact
     Wait Until Element Is Visible    ${Contact_Tab_E}
     Click Element    ${Contact_Tab_E}
     Sleep    10s
     Click Element   xpath=.//*[@id='bodyCell']/div[3]/div[1]/div/div[2]/table/tbody/tr[2]/th/a
     Wait Until Element Is Visible    name=edit
     Click Element  ${New_single_Gift_E}
+
+Updating_the_Contact_Recordtype
+    Click Element  ${Record_Type_Change_E}
+    @{RecordType}=  Get List Items      ${RecordType_Update_List_E}
+    Select From List    ${RecordType_Update_List_E}    @{RecordType}[1]
+    Capture Page Screenshot
+    Click Element  ${continue_e}
+    Wait Until Element Is Visible  ${Continue/Save_E}
+    Capture Page Screenshot
+    Click Element  ${Continue/Save_E}
+    ${Alert}=    Get Text    ${Alert_Message_E}
+    Log    ${Alert}
+    Take Screenshot Without Embedding
+    Element Should Not Be Visible    ${Edit_Button}
+    Click Button    ${Cancel}
+
+Get_Donation_Records_Details_From_Contact_RelatedList
+
+    Wait Until Element Is Visible   xpath=.//h3[contains(.,'Donations')]
+    Set Selenium Implicit Wait  10s
+    ${Donations}=   create list
+    Set Global Variable  ${Donations}
+    ${Donation list}=    Get Matching Xpath Count    xpath=.//*[@id='${RecordID}_RelatedOpportunityList_body']/table/tbody/tr
+    Log     ${Donation list}
+    ${Donation-Col_Count}=    Get Matching Xpath Count    xpath=.//*[@id='${RecordID}_RelatedOpportunityList_body']/table/tbody/tr[1]/th
+    Log   ${Donation-Col_Count}
+    : FOR    ${i}    IN RANGE    1    ${Donation list}+1
+    \    Log    ${i}
+    \    ${GetTablevalue}=    Get Text    xpath=.//*[@id='${RecordID}_RelatedOpportunityList_body']/table/tbody/tr[${i}]/th
+    \    Log    ${GetTablevalue}
+    \    ${Donation_Stage}=     Get Text    xpath=.//*[@id='${RecordID}_RelatedOpportunityList_body']/table/tbody/tr[${i}]/td[5]
+    \    Log    ${Donation_Stage}
+    \    Run Keyword If  "${Donation_Stage}"=="Received"    Non_BoardMember_Donation_RecordType
+    \    Run Keyword If  "${Donation_Stage}"=="Not Received"    Non_BoardMember_Donation_RecordType
+    \    Exit For Loop If  ${1}>>${Donation list}
+
+Verfiying_Donations_Recordtype_After_Classifcation_Record_Creation
+
+    Wait Until Element Is Visible   xpath=.//h3[contains(.,'Donations')]
+    Set Selenium Implicit Wait  10s
+    ${Donations_New}=   create list
+    Set Global Variable  ${Donations_New}
+    Set Global Variable  ${RecordID}
+    ${Donation list}=    Get Matching Xpath Count    xpath=.//*[@id='${RecordID}_RelatedOpportunityList_body']/table/tbody/tr
+    Log     ${Donation list}
+    ${Donation-Col_Count}=    Get Matching Xpath Count    xpath=.//*[@id='${RecordID}_RelatedOpportunityList_body']/table/tbody/tr[1]/th
+    Log   ${Donation-Col_Count}
+    : FOR    ${i}    IN RANGE    2    ${Donation list}+1
+    \    Set Global Variable    ${i}
+    \    ${GetTablevalue}=    Get Text    xpath=.//*[@id='${RecordID}_RelatedOpportunityList_body']/table/tbody/tr[${i}]/th/a
+    \    Log    ${GetTablevalue}
+    \    ${Donation_Stage}=     Get Text    xpath=.//*[@id='${RecordID}_RelatedOpportunityList_body']/table/tbody/tr[${i}]/td[5]
+    \    Log    ${Donation_Stage}
+    \    #Run Keyword If  "${Donation_Stage}"=="Received"    Append To List  ${Donations_New}
+    \    Run Keyword If  "${Donation_Stage}"=="Received"    Get_Value_Donation_RecordType_For_NonBoardmember
+    \    Exit For Loop If  ${1}>>${Donation list}
+
+Get_Value_Donation_RecordType
+    ${Donation_Record_Type}=    Get Text    xpath=.//*[@id='${RecordID}_RelatedOpportunityList_body']/table/tbody/tr[${i}]/td[4]
+    Log     ${Donation_Record_Type}
+    Should Be True    ${Donation_Record_Type}     ${Board_Member}
+    Capture Page Screenshot
+
+Get_Value_Donation_RecordType_For_NonBoardmember
+    ${Donation_Record_Type}=    Get Text    xpath=.//*[@id='${RecordID}_RelatedOpportunityList_body']/table/tbody/tr[${i}]/td[4]
+    Log     ${Donation_Record_Type}
+    Should Not Be Equal    ${Donation_Record_Type}     ${Board_Member}
+    Capture Page Screenshot
+
+Verifying_the_International_Account
+    Click Element  ${Edit_Button}
+    ${Account_Value}=    Get Text  ${Account_Name_VE}
+    Log  ${Account_Value}
+    Should Be Equal  ${Account_Value}   ${AccountName_Value}
+
+
+Classifcation_Record_update_From_Contact
+
+    Wait Until Element Is Visible  xpath=.//h3[contains(.,'Classification Type Contacts')]/following::input[@value='New Classification Type Contact']
+    #Wait Until Element Is Visible  ${Classfication_Contact_E}
+    Click Element       xpath=.//a[contains(@title,"Edit - Record 1 - ${ExstingClassification}")]
+    Clear Element Text  ${Classification_type_E}
+    Input Text  ${Classification_type_E}    ${Classification_Value}
+    Click Element  ${Continue/Save_E}
+    #Navigates to Contact Record
+    Set Selenium Implicit Wait  10s
+    Wait Until Element Is Visible  ${Contact_Hyberlink_E}
+    Click Element  ${Contact_Hyberlink_E}
+
+Verfiying_Donations_Recordtype_Other_Classifcation_Record_Creation
+
+    Wait Until Element Is Visible   xpath=.//h3[contains(.,'Donations')]
+    Set Selenium Implicit Wait  10s
+    ${Donations_New}=   create list
+    Set Global Variable  ${Donations_New}
+    ${Donation list}=    Get Matching Xpath Count    xpath=.//*[@id='${RecordID}_RelatedOpportunityList_body']/table/tbody/tr
+    Log     ${Donation list}
+    ${Donation-Col_Count}=    Get Matching Xpath Count    xpath=.//*[@id='${RecordID}_RelatedOpportunityList_body']/table/tbody/tr[1]/th
+    Log   ${Donation-Col_Count}
+    : FOR    ${i}    IN RANGE    2    ${Donation list}+1
+    \    Set Global Variable    ${i}
+    \    ${GetTablevalue}=    Get Text    xpath=.//*[@id='${RecordID}_RelatedOpportunityList_body']/table/tbody/tr[${i}]/th
+    \    Log    ${GetTablevalue}
+    \    ${Donation_Stage}=     Get Text    xpath=.//*[@id='${RecordID}_RelatedOpportunityList_body']/table/tbody/tr[${i}]/td[5]
+    \    Log    ${Donation_Stage}
+    \    #Run Keyword If  "${Donation_Stage}"=="Received"    Append To List  ${Donations_New}
+    \    Run Keyword If  "${Donation_Stage}"=="Received"    Non_BoardMember_Donation_RecordType
+    \    Exit For Loop If  ${1}>>${Donation list}
+
+Non_BoardMember_Donation_RecordType
+
+    ${Donation_Record_Type}=    Get Text    xpath=.//*[@id='${RecordID}_RelatedOpportunityList_body']/table/tbody/tr[${i}]/td[4]
+    Log     ${Donation_Record_Type}
+    Should Not Be Equal     ${Donation_Record_Type}     ${Board_Member}
+    Capture Page Screenshot
+
+MakePrimary_Address_From_Relatesd_Address_Record
+
+    Wait Until Element Is Visible    xpath=.//h3[contains(.,'Related Address')]/following::input[@value='New Related Address']
+    Set Selenium Implicit Wait  10s
+    ${RE_Relate list}=    Get Matching Xpath Count    xpath=.//*[@id='${RecordID}_00Nf4000009henG_body']/table/tbody/tr
+    Log    ${RE_Relate list}
+    Set Global Variable  ${RE_Relate list}
+    ${RE-Col_Count}=    Get Matching Xpath Count    xpath=.//*[@id='${RecordID}_00Nf4000009henG_body']/table/tbody/tr[1]/th
+    Log    ${RE-Col_Count}
+    Click Element    xpath=.//*[@id='${RecordID}_00Nf4000009henG_body']/table/tbody/tr[${RE_Relate list}]/td[2]/a
+    Set Selenium Implicit Wait  10s
+
+
+Contact_Choose
+   Wait Until Element Is Visible    ${Contact_Tab_E}
+   Click Element  ${Contact_Tab_E}
+   Set Selenium Implicit Wait  5s
+   Click Element  xpath=.//th/a[contains(.,"${ContactName_Value}")]
+
+Test_Tites
+    Open Browser  ${URL}    chrome
+    Maximize Browser Window
+    Input Text  ${UsernameElement}      nallavan@mstsolutions.com.qarel
+    Input Text  ${PasswordElement}      metasoft@123
+    click button  ${Submit}
+    Contact_Table_Iteration
+    #${HOH}=     Get   xpath=.//*[@id='00Nf4000009heqM_chkbox']
+    #Set Global Variable  ${HOH}
+    #Checkbox Should Be Selected  xpath=.//*[@id='00Nf4000009heqM_chkbox']
+    ${HoH_Flag}=    Run Keyword And Return Status   Get Value  xpath=.//span[contains(.,'Head of Household')]/following::img[@alt="Checked"][1]
+    Log  ${HoH_Flag}
+    ${HoH_Flag1}=    Get Value  xpath=.//*[@id='00Nf4000009heqM_chkbox']
+    Log  ${HoH_Flag1}
+    ${HoH_Flag2}=    Get Value  xpath=.//span[contains(.,'Head of Household')]/following::img[@alt="Checked"][1]
+    Log  ${HoH_Flag2}
+    ${True1}=   Wait Until Page Contains Element  xpath=.//span[contains(.,'Head of Household')]/following::img[@alt="Checked"][1]
+    Run Keyword If  ${True1}=='Pass'    Log To Console  True
+    ${HoH_Flag3}=    Run Keyword And Return Status   Get Text  xpath=.//span[contains(.,'Head of Household')]/following::img[@alt="Checked"][1]
+    Log  ${HoH_Flag3}
+    #${HoH_Flag4}=    Run Keyword And Return Status   Get Value  xpath=.//*[@id='00Nf4000009heqM_chkbox']
+    #Log  ${HoH_Flag4}
+    ${HOH3}=    Get Title
+    Log  ${HOH3}
+
+Verifyng_FindDuplicates_VF_Page
+
+    Select Frame  id=0661b0000004fmE
+    Click Element  xpath=.//input[contains(@value, 'Find Duplicates')]
+    ${Duplcate_Contact}=    Get Text    xpath=.//*[@id='contdup:formid:block1:repeatContact:0:linkShowHide']
+    Log  ${Duplcate_Contact}
+    Capture Page Screenshot
+    unselect frame
+    Should Be Equal  ${Duplcate_Contact}    ${Primary_contact_V}
+
+Get_The_Values_From_Contact_FindDuplcates_Verifiation
+
+    ${Contact_Email_V}=     Get Text    ${Emai_VE}
+    Set Global Variable  ${Contact_Email_V}
+    Duplicate_Contact_Creation
+
+Duplicate_Contact_Creation
+
+    Wait Until Element Is Visible    ${Contact_Tab_E}
+    Click Element    ${Contact_Tab_E}
+    Wait Until Element Is Visible    ${New_Button}
+    Click Button    ${New_Button}
+    Set Selenium Implicit Wait    20s
+    Click Element    ${Continue_E}
+    Set Selenium Implicit Wait    10s
+    Set Selenium Speed    .10s
+    Input Text    ${FirstName_Contact_E}   ${FirstName_V}
+    Input Text    ${LastName_Contact_E}   ${LastName_V}
+    Input Text    ${Email_E}    ${Contact_Email_V}
+    Input Text      ${Home_Phone_E}     ${HomePhone_V}
+    Input Text      ${Mobile_Phone_E}   ${Mobile_V}
+    Set Selenium Implicit Wait  5s
+    Click Element    ${Continue/Save_E}
+
+
+Verifying_the_Contact_Record_Deletion
+
+   Click Element  name=del
+   Alert Should Be Present
+   Click Element    ${Click_Here_Button}
+
+Verifying_the_ODPContact_Record_Deletion
+
+   Click Element  name=del
+   Alert Should Be Present
+   Click Element    ${Click_Here_Button}
+
+Verifying_the_ContactAddress_and_RelatedAddress_PrimaryAddress
+
+    Wait Until Element Is Visible  ${Edit_Button}
+    #Click Element  ${Edit_Button}
+    Get_Related_Address_Values
+    Get_Related_Address_Checkbox_Values
+    Set Selenium Implicit Wait  10s
+    Make_Primary_Address
+    Contact_Mailing_Address
+    Click Element  ${Cancel}
+    Should Be Equal  ${Mailing_Street_Value}    ${RA_Street}
+    Should Be Equal  ${Mailing_City_Value}  ${RA_City}
+    Should Be Equal  ${Mailing_State_Value}     ${RA_State}
+    Should Be Equal  ${Mailing_Country_Value}   ${RA_Country}
+    Should Be Equal  ${Mailing_ZipCode_Value}   ${RA_Code}
+
+#Verifying_the_ContactAddress_and_RelatedAddress_PrimaryAddress
+
+    #Wait Until Element Is Visible  ${Edit_Button}
+    #Click Element  ${Edit_Button}
+    #Get_Related_Address_Values
+    #Get_Related_Address_Checkbox_Values
+    #Make_Primary_Address
+
+Exsiting_Soluntion_Make_Primary
+
+     Wait Until Element Is Visible    xpath=.//h3[contains(.,'Related Address')]/following::input[@value='New Related Address']
+    Set Selenium Implicit Wait  10s
+    ${RE_Relate list}=    Get Matching Xpath Count    xpath=.//*[@id='${RecordID}_00Nf4000009henH_body']/table/tbody/tr
+    Log    ${RE_Relate list}
+    ${RE-Col_Count}=    Get Matching Xpath Count    xpath=.//*[@id='${RecordID}_00Nf4000009henH_body']/table/tbody/tr[1]/th
+    Log    ${RE-Col_Count}
+    : FOR    ${k}    IN RANGE    1    ${RE_Relate list}+1
+    \    Log    ${k}
+    \    Run Keyword If    ${k}!=${RE_Relate list}    Continue For Loop
+    \    ${GetTablevalue}=    Get Text    xpath=.//*[@id='${RecordID}_00Nf4000009henH_body']/table/tbody/tr[${k}]/th
+    \    Log    ${GetTablevalue}
+    \    Click Element    xpath=.//*[@id='${RecordID}_00Nf4000009henH_body']/table/tbody/tr[${k}]/th/a
+    \    Exit For Loop If    ${k}!=${RE_Relate list}
+   # .//*[@id='0031b00000RT6F9_00Nf4000009henG_body']/table/tbody/tr[2]/td[2]/a
+
+   #.//*[@id='0031b00000RT6F9_00Nf4000009henG_body']/table/tbody/tr[3]/td[1]/a[1]
+
+Exsting_Related Addres_Related List_From_Contact (OLD)
+    Wait Until Element Is Visible  xpath=.//h3[contains(.,'Related Addresses')]/following::input[@value='New Related Address']
+    Set Selenium Implicit Wait  10s
+    ${RA_Relate list}=    Get Matching Xpath Count    xpath=.//*[@id='${RecordID}_00Nf400000AI7r3_body']/table/tbody/tr
+    Log    ${RA_Relate list}
+    ${RA-Col_Count}=    Get Matching Xpath Count    xpath=.//*[@id='${RecordID}_00Nf400000AI7r3_body']/table/tbody/tr[1]/th
+    Log    ${RA-Col_Count}
+    : FOR    ${k}    IN RANGE    1    ${RA_Relate list}+1
+    \    Log    ${k}
+    \    Run Keyword If    ${k}!=2    Continue For Loop
+    : FOR    ${J}    IN RANGE    2    ${RA-Col_Count}+1
+    \    Log    ${J}
+    \    ${GetTablevalue}=    Get Text    xpath=.//*[@id='${RecordID}_00Nf400000AI7r3_body']/table/tbody/tr[${k}]/td[${J}]
+    \    Log    ${GetTablevalue}
+    \    Click Element    xpath=.//*[@id='${RecordID}_00Nf400000AI7r3_body']/table/tbody/tr[${k}]/td[${J}]/a
+    \    Exit For Loop
