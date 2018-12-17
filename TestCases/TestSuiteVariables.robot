@@ -20,6 +20,11 @@ ${WorkPhone_V}=
 ${WorkPhone_Extension_V}=
 ${Home_Phone_V}=
 ${Preffered_Phone_V}=
+${ContactName_Value}=
+${Classification_Value}=
+${ExstingClassification}=
+${RecordID}=
+${Primary_contact_V}=
 
 #Account Variables
 ${Acc_Name_V}=
@@ -28,6 +33,7 @@ ${Bill_City_V}=
 ${Bill_State_V}=
 ${Bill_Code_V}=
 ${Bill_Country_V}=
+${AccountName_Value}=
 
 #Donation Variables
 ${Don_Name_V}=
@@ -35,6 +41,10 @@ ${Don_Amt_V}=
 ${Don_Sourcecode_V}=
 ${Don_Donor_V}=
 ${Don_Date_V}=
+${DonationValue_V}=
+${DonationName_V}=
+${New_Contact_Role_V}=
+${Contact_Role_Amount_V}=
 
 # Church Allinace signup form Variables
 ${ChurchName_V}
@@ -106,3 +116,19 @@ ${Ministry_Title_V}
 ${Ministry_PCEmail_V}
 ${Ministry_PCPhone_V}
 ${Ministry_Promocode_V}
+
+#Relatoinship Type Detail
+
+${FirstContact_V}=
+${SecondContact_V}=
+${FirstAccount_V}=
+${SecondAccount_V}=
+${First_Relationship_V}=
+${Second_Relationship_V}=
+${Start_Date_V}=
+
+#Campaign Segment
+${Campaign_Segment_Name_V}=
+${Campaign_V}=
+${DesignationName_V}=
+${ObjectName}=

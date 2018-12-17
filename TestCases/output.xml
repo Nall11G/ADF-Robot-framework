@@ -1,265 +1,335 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generated="20180817 13:41:13.447" generator="Robot 3.0.4 (Python 2.7.10 on win32)">
-<suite source="C:\Users\Mstemp120\Downloads\Salesforce_Automation-Demo\TestCases\RegressionTestSuite.robot" id="s1" name="RegressionTestSuite">
-<test id="s1-t1" name="TC1">
-<kw type="setup" name="Login With Username And Password(1)" library="Common_Configure">
-<kw name="Open Browser" library="Selenium2Library">
-<doc>Opens a new browser instance to given URL.</doc>
-<arguments>
-<arg>${URL}</arg>
-<arg>chrome</arg>
-</arguments>
-<msg timestamp="20180817 13:41:13.734" level="INFO">Opening browser 'chrome' to base url 'https://test.salesforce.com'</msg>
-<status status="PASS" endtime="20180817 13:41:21.256" starttime="20180817 13:41:13.734"></status>
-</kw>
-<kw name="Maximize Browser Window" library="Selenium2Library">
-<doc>Maximizes current browser window.</doc>
-<status status="PASS" endtime="20180817 13:41:22.385" starttime="20180817 13:41:21.256"></status>
-</kw>
-<kw name="Input Text" library="Selenium2Library">
-<doc>Types the given `text` into text field identified by `locator`.</doc>
-<arguments>
-<arg>${UsernameElement}</arg>
-<arg>nallavan@mstsolutions.com.qarel</arg>
-</arguments>
-<msg timestamp="20180817 13:41:22.385" level="INFO">Typing text 'nallavan@mstsolutions.com.qarel' into text field 'Id=username'</msg>
-<status status="PASS" endtime="20180817 13:41:22.837" starttime="20180817 13:41:22.385"></status>
-</kw>
-<kw name="Input Text" library="Selenium2Library">
-<doc>Types the given `text` into text field identified by `locator`.</doc>
-<arguments>
-<arg>${PasswordElement}</arg>
-<arg>metasoft@12</arg>
-</arguments>
-<msg timestamp="20180817 13:41:22.838" level="INFO">Typing text 'metasoft@12' into text field 'Id=password'</msg>
-<status status="PASS" endtime="20180817 13:41:23.123" starttime="20180817 13:41:22.837"></status>
-</kw>
-<kw name="Click Button" library="Selenium2Library">
-<doc>Clicks a button identified by `locator`.</doc>
-<arguments>
-<arg>${Submit}</arg>
-</arguments>
-<msg timestamp="20180817 13:41:23.124" level="INFO">Clicking button 'Id=Login'.</msg>
-<status status="PASS" endtime="20180817 13:41:29.023" starttime="20180817 13:41:23.124"></status>
-</kw>
-<status status="PASS" endtime="20180817 13:41:29.023" starttime="20180817 13:41:13.733"></status>
-</kw>
+<robot rpa="false" generated="20181217 16:44:33.731" generator="Robot 3.1rc1 (Python 2.7.10 on win32)">
+<suite source="E:\Robot_Framework\Salesforce_Automation-Demo\TestCases\Reliance_Regression_TestSuite.robot" id="s1" name="Reliance Regression TestSuite">
+<test id="s1-t1" name="ADF_REL-01">
 <kw name="Read Excel Data" library="ExcelUtilities">
 <arguments>
 <arg>Contact</arg>
-<arg>TC1</arg>
+<arg>ADF_REL-01</arg>
 <arg>FirstName</arg>
 </arguments>
 <assign>
-<var>${FirstName_V1}</var>
+<var>${FirstName_V}</var>
 </assign>
-<msg timestamp="20180817 13:41:29.025" level="INFO">${FirstName_V1} = Test Contact6</msg>
-<status status="PASS" endtime="20180817 13:41:29.025" starttime="20180817 13:41:29.024"></status>
+<msg timestamp="20181217 16:44:34.535" level="INFO">${FirstName_V} = Test Automation8</msg>
+<status status="PASS" endtime="20181217 16:44:34.535" starttime="20181217 16:44:34.534"></status>
 </kw>
 <kw name="Set Global Variable" library="BuiltIn">
 <doc>Makes a variable available globally in all tests and suites.</doc>
 <arguments>
-<arg>${FirstName_V1}</arg>
+<arg>${FirstName_V}</arg>
 </arguments>
-<msg timestamp="20180817 13:41:29.026" level="INFO">${FirstName_V1} = Test Contact6</msg>
-<status status="PASS" endtime="20180817 13:41:29.026" starttime="20180817 13:41:29.026"></status>
+<msg timestamp="20181217 16:44:34.536" level="INFO">${FirstName_V} = Test Automation8</msg>
+<status status="PASS" endtime="20181217 16:44:34.536" starttime="20181217 16:44:34.536"></status>
 </kw>
 <kw name="Read Excel Data" library="ExcelUtilities">
 <arguments>
 <arg>Contact</arg>
-<arg>TC1</arg>
+<arg>ADF_REL-01</arg>
 <arg>LastName</arg>
 </arguments>
 <assign>
-<var>${LastName_V1}</var>
+<var>${LastName_V}</var>
 </assign>
-<msg timestamp="20180817 13:41:29.027" level="INFO">${LastName_V1} = QA6</msg>
-<status status="PASS" endtime="20180817 13:41:29.027" starttime="20180817 13:41:29.027"></status>
+<msg timestamp="20181217 16:44:34.537" level="INFO">${LastName_V} = QA7</msg>
+<status status="PASS" endtime="20181217 16:44:34.537" starttime="20181217 16:44:34.537"></status>
 </kw>
 <kw name="Set Global Variable" library="BuiltIn">
 <doc>Makes a variable available globally in all tests and suites.</doc>
 <arguments>
-<arg>${LastName_V1}</arg>
+<arg>${LastName_V}</arg>
 </arguments>
-<msg timestamp="20180817 13:41:29.029" level="INFO">${LastName_V1} = QA6</msg>
-<status status="PASS" endtime="20180817 13:41:29.029" starttime="20180817 13:41:29.028"></status>
+<msg timestamp="20181217 16:44:34.538" level="INFO">${LastName_V} = QA7</msg>
+<status status="PASS" endtime="20181217 16:44:34.538" starttime="20181217 16:44:34.538"></status>
 </kw>
 <kw name="Read Excel Data" library="ExcelUtilities">
 <arguments>
 <arg>Contact</arg>
-<arg>TC1</arg>
+<arg>ADF_REL-01</arg>
+<arg>Salutation</arg>
+</arguments>
+<assign>
+<var>${Salutation_V}</var>
+</assign>
+<msg timestamp="20181217 16:44:34.539" level="INFO">${Salutation_V} = Mr.</msg>
+<status status="PASS" endtime="20181217 16:44:34.539" starttime="20181217 16:44:34.538"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${Salutation_V}</arg>
+</arguments>
+<msg timestamp="20181217 16:44:34.540" level="INFO">${Salutation_V} = Mr.</msg>
+<status status="PASS" endtime="20181217 16:44:34.540" starttime="20181217 16:44:34.539"></status>
+</kw>
+<kw name="Read Excel Data" library="ExcelUtilities">
+<arguments>
+<arg>Contact</arg>
+<arg>ADF_REL-01</arg>
+<arg>NickName</arg>
+</arguments>
+<assign>
+<var>${NickName_V}</var>
+</assign>
+<msg timestamp="20181217 16:44:34.541" level="INFO">${NickName_V} = </msg>
+<status status="PASS" endtime="20181217 16:44:34.541" starttime="20181217 16:44:34.540"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${NickName_V}</arg>
+</arguments>
+<msg timestamp="20181217 16:44:34.541" level="INFO">${NickName_V} = </msg>
+<status status="PASS" endtime="20181217 16:44:34.541" starttime="20181217 16:44:34.541"></status>
+</kw>
+<kw name="Read Excel Data" library="ExcelUtilities">
+<arguments>
+<arg>Contact</arg>
+<arg>ADF_REL-01</arg>
 <arg>SpouseName</arg>
 </arguments>
 <assign>
 <var>${SpouseName_V1}</var>
 </assign>
-<msg timestamp="20180817 13:41:29.030" level="INFO">${SpouseName_V1} = Test1</msg>
-<status status="PASS" endtime="20180817 13:41:29.030" starttime="20180817 13:41:29.029"></status>
+<msg timestamp="20181217 16:44:34.542" level="INFO">${SpouseName_V1} = Spouse1</msg>
+<status status="PASS" endtime="20181217 16:44:34.542" starttime="20181217 16:44:34.542"></status>
 </kw>
 <kw name="Set Global Variable" library="BuiltIn">
 <doc>Makes a variable available globally in all tests and suites.</doc>
 <arguments>
 <arg>${SpouseName_V1}</arg>
 </arguments>
-<msg timestamp="20180817 13:41:29.032" level="INFO">${SpouseName_V1} = Test1</msg>
-<status status="PASS" endtime="20180817 13:41:29.033" starttime="20180817 13:41:29.031"></status>
+<msg timestamp="20181217 16:44:34.543" level="INFO">${SpouseName_V1} = Spouse1</msg>
+<status status="PASS" endtime="20181217 16:44:34.543" starttime="20181217 16:44:34.543"></status>
 </kw>
 <kw name="Read Excel Data" library="ExcelUtilities">
 <arguments>
 <arg>Contact</arg>
-<arg>TC1</arg>
+<arg>ADF_REL-01</arg>
 <arg>MailingStreet</arg>
 </arguments>
 <assign>
 <var>${Mail_Street_V}</var>
 </assign>
-<msg timestamp="20180817 13:41:29.034" level="INFO">${Mail_Street_V} = Test Mailing Street 11</msg>
-<status status="PASS" endtime="20180817 13:41:29.035" starttime="20180817 13:41:29.034"></status>
+<msg timestamp="20181217 16:44:34.544" level="INFO">${Mail_Street_V} = Test Mailing Street 1</msg>
+<status status="PASS" endtime="20181217 16:44:34.544" starttime="20181217 16:44:34.544"></status>
 </kw>
 <kw name="Set Global Variable" library="BuiltIn">
 <doc>Makes a variable available globally in all tests and suites.</doc>
 <arguments>
 <arg>${Mail_Street_V}</arg>
 </arguments>
-<msg timestamp="20180817 13:41:29.036" level="INFO">${Mail_Street_V} = Test Mailing Street 11</msg>
-<status status="PASS" endtime="20180817 13:41:29.037" starttime="20180817 13:41:29.035"></status>
+<msg timestamp="20181217 16:44:34.545" level="INFO">${Mail_Street_V} = Test Mailing Street 1</msg>
+<status status="PASS" endtime="20181217 16:44:34.545" starttime="20181217 16:44:34.545"></status>
 </kw>
 <kw name="Read Excel Data" library="ExcelUtilities">
 <arguments>
 <arg>Contact</arg>
-<arg>TC1</arg>
+<arg>ADF_REL-01</arg>
 <arg>MailingCity</arg>
 </arguments>
 <assign>
 <var>${Mail_City_V}</var>
 </assign>
-<msg timestamp="20180817 13:41:29.042" level="INFO">${Mail_City_V} = Test Mailing City1</msg>
-<status status="PASS" endtime="20180817 13:41:29.042" starttime="20180817 13:41:29.041"></status>
+<msg timestamp="20181217 16:44:34.546" level="INFO">${Mail_City_V} = Test Mailing City1</msg>
+<status status="PASS" endtime="20181217 16:44:34.546" starttime="20181217 16:44:34.546"></status>
 </kw>
 <kw name="Set Global Variable" library="BuiltIn">
 <doc>Makes a variable available globally in all tests and suites.</doc>
 <arguments>
 <arg>${Mail_City_V}</arg>
 </arguments>
-<msg timestamp="20180817 13:41:29.043" level="INFO">${Mail_City_V} = Test Mailing City1</msg>
-<status status="PASS" endtime="20180817 13:41:29.043" starttime="20180817 13:41:29.042"></status>
+<msg timestamp="20181217 16:44:34.547" level="INFO">${Mail_City_V} = Test Mailing City1</msg>
+<status status="PASS" endtime="20181217 16:44:34.547" starttime="20181217 16:44:34.547"></status>
 </kw>
 <kw name="Read Excel Data" library="ExcelUtilities">
 <arguments>
 <arg>Contact</arg>
-<arg>TC1</arg>
+<arg>ADF_REL-01</arg>
 <arg>MailingState</arg>
 </arguments>
 <assign>
 <var>${Mail_State_V}</var>
 </assign>
-<msg timestamp="20180817 13:41:29.045" level="INFO">${Mail_State_V} = Test State 1</msg>
-<status status="PASS" endtime="20180817 13:41:29.045" starttime="20180817 13:41:29.044"></status>
+<msg timestamp="20181217 16:44:34.548" level="INFO">${Mail_State_V} = Test State 1</msg>
+<status status="PASS" endtime="20181217 16:44:34.548" starttime="20181217 16:44:34.547"></status>
 </kw>
 <kw name="Set Global Variable" library="BuiltIn">
 <doc>Makes a variable available globally in all tests and suites.</doc>
 <arguments>
 <arg>${Mail_State_V}</arg>
 </arguments>
-<msg timestamp="20180817 13:41:29.046" level="INFO">${Mail_State_V} = Test State 1</msg>
-<status status="PASS" endtime="20180817 13:41:29.046" starttime="20180817 13:41:29.045"></status>
+<msg timestamp="20181217 16:44:34.549" level="INFO">${Mail_State_V} = Test State 1</msg>
+<status status="PASS" endtime="20181217 16:44:34.549" starttime="20181217 16:44:34.548"></status>
 </kw>
 <kw name="Read Excel Data" library="ExcelUtilities">
 <arguments>
 <arg>Contact</arg>
-<arg>TC1</arg>
+<arg>ADF_REL-01</arg>
 <arg>MailingZipCode</arg>
 </arguments>
 <assign>
 <var>${Mail_Code_V}</var>
 </assign>
-<msg timestamp="20180817 13:41:29.047" level="INFO">${Mail_Code_V} = 77422</msg>
-<status status="PASS" endtime="20180817 13:41:29.047" starttime="20180817 13:41:29.047"></status>
+<msg timestamp="20181217 16:44:34.550" level="INFO">${Mail_Code_V} = 77426</msg>
+<status status="PASS" endtime="20181217 16:44:34.550" starttime="20181217 16:44:34.549"></status>
 </kw>
 <kw name="Set Global Variable" library="BuiltIn">
 <doc>Makes a variable available globally in all tests and suites.</doc>
 <arguments>
 <arg>${Mail_Code_V}</arg>
 </arguments>
-<msg timestamp="20180817 13:41:29.049" level="INFO">${Mail_Code_V} = 77422</msg>
-<status status="PASS" endtime="20180817 13:41:29.049" starttime="20180817 13:41:29.048"></status>
+<msg timestamp="20181217 16:44:34.551" level="INFO">${Mail_Code_V} = 77426</msg>
+<status status="PASS" endtime="20181217 16:44:34.551" starttime="20181217 16:44:34.550"></status>
 </kw>
 <kw name="Read Excel Data" library="ExcelUtilities">
 <arguments>
 <arg>Contact</arg>
-<arg>TC1</arg>
+<arg>ADF_REL-01</arg>
 <arg>MailingCountry</arg>
 </arguments>
 <assign>
 <var>${Mail_Country_V}</var>
 </assign>
-<msg timestamp="20180817 13:41:29.050" level="INFO">${Mail_Country_V} = Test Country</msg>
-<status status="PASS" endtime="20180817 13:41:29.050" starttime="20180817 13:41:29.049"></status>
+<msg timestamp="20181217 16:44:34.552" level="INFO">${Mail_Country_V} = Test Country</msg>
+<status status="PASS" endtime="20181217 16:44:34.552" starttime="20181217 16:44:34.551"></status>
 </kw>
 <kw name="Set Global Variable" library="BuiltIn">
 <doc>Makes a variable available globally in all tests and suites.</doc>
 <arguments>
 <arg>${Mail_Country_V}</arg>
 </arguments>
-<msg timestamp="20180817 13:41:29.051" level="INFO">${Mail_Country_V} = Test Country</msg>
-<status status="PASS" endtime="20180817 13:41:29.051" starttime="20180817 13:41:29.050"></status>
+<msg timestamp="20181217 16:44:34.552" level="INFO">${Mail_Country_V} = Test Country</msg>
+<status status="PASS" endtime="20181217 16:44:34.553" starttime="20181217 16:44:34.552"></status>
 </kw>
 <kw name="Read Excel Data" library="ExcelUtilities">
 <arguments>
 <arg>Contact</arg>
-<arg>TC1</arg>
+<arg>ADF_REL-01</arg>
 <arg>Email</arg>
 </arguments>
 <assign>
 <var>${Contact_Email_V}</var>
 </assign>
-<msg timestamp="20180817 13:41:29.053" level="INFO">${Contact_Email_V} = nallavan24@yopmail.com</msg>
-<status status="PASS" endtime="20180817 13:41:29.053" starttime="20180817 13:41:29.052"></status>
+<msg timestamp="20181217 16:44:34.553" level="INFO">${Contact_Email_V} = testauto1@yopmail.com</msg>
+<status status="PASS" endtime="20181217 16:44:34.554" starttime="20181217 16:44:34.553"></status>
 </kw>
 <kw name="Set Global Variable" library="BuiltIn">
 <doc>Makes a variable available globally in all tests and suites.</doc>
 <arguments>
 <arg>${Contact_Email_V}</arg>
 </arguments>
-<msg timestamp="20180817 13:41:29.053" level="INFO">${Contact_Email_V} = nallavan24@yopmail.com</msg>
-<status status="PASS" endtime="20180817 13:41:29.054" starttime="20180817 13:41:29.053"></status>
+<msg timestamp="20181217 16:44:34.555" level="INFO">${Contact_Email_V} = testauto1@yopmail.com</msg>
+<status status="PASS" endtime="20181217 16:44:34.555" starttime="20181217 16:44:34.554"></status>
 </kw>
-<kw type="teardown" name="Close Browser" library="Selenium2Library">
-<doc>Closes the current browser.</doc>
-<status status="PASS" endtime="20180817 13:41:32.405" starttime="20180817 13:41:29.054"></status>
+<kw name="Set Selenium Implicit Wait" library="Selenium2Library">
+<doc>Sets Selenium 2's default implicit wait in seconds and
+sets the implicit wait for all open browsers.</doc>
+<arguments>
+<arg>15s</arg>
+</arguments>
+<status status="PASS" endtime="20181217 16:44:34.555" starttime="20181217 16:44:34.555"></status>
 </kw>
 <doc>*Functionality*
-To verify whether the household account record is created or not when creating a household contact
-*Steps*
-1. Open the new instance sandbox "test.salesforce.com"
-2. Enter the username and password
-3. Click login button
-4. Click new button and then choose the recortype
-5. Click continue button
-6. Enter the firstname, last name and other details
-7. Click save buttom
-8. Verif the expected result
+To Verify the household contact creation
+
+*Test Steps*
+
+1. Open the sandbox "test.salesforce.com"
+2. Enter the valid username and password
+3. Click ""Submit"" button
+4. Navigates to "Donation" object
+5. Click new button and then choose the record type
+6. Click continue button
+7. Choose the donor and account name and then enter the donation record details
+8.Click save button
+9. Scroll down to donation contact role VF page section
+10. Click Edit contact roles button on VF page
+11. Verfiy the expected result"
+
 *Expected Result*
-Household account record should be created with name of contact name and the household name should append to the contact name</doc>
+
+11.1 Donation contact role record should be created with name of Donor and the amount field should be updates as "Full"
+11.2 New  soft credit contact role record should  be created  from the donor's relaitionship viwer VF page</doc>
 <tags>
-<tag>Demo5</tag>
+<tag>TestDemo1</tag>
 </tags>
-<status status="PASS" endtime="20180817 13:41:32.406" critical="yes" starttime="20180817 13:41:13.732"></status>
+<status status="PASS" endtime="20181217 16:44:34.556" critical="yes" starttime="20181217 16:44:34.533"></status>
 </test>
-<test id="s1-t2" name="TC3">
-<kw type="setup" name="Login With Username And Password(1)" library="Common_Configure">
+<test id="s1-t2" name="ADF_REL-31">
+<kw name="Read Excel Data" library="ExcelUtilities">
+<arguments>
+<arg>Donation</arg>
+<arg>ADF_REL-31</arg>
+<arg>ContactRole Amount</arg>
+</arguments>
+<assign>
+<var>${Contact_Role_Amount_V}</var>
+</assign>
+<msg timestamp="20181217 16:44:34.561" level="INFO">${Contact_Role_Amount_V} = &lt;type 'object'&gt;</msg>
+<status status="PASS" endtime="20181217 16:44:34.561" starttime="20181217 16:44:34.560"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${Contact_Role_Amount_V}</arg>
+</arguments>
+<msg timestamp="20181217 16:44:34.562" level="INFO">${Contact_Role_Amount_V} = &lt;type 'object'&gt;</msg>
+<status status="PASS" endtime="20181217 16:44:34.562" starttime="20181217 16:44:34.561"></status>
+</kw>
+<kw name="Read Excel Data" library="ExcelUtilities">
+<arguments>
+<arg>Donation</arg>
+<arg>ADF_REL-31</arg>
+<arg>ContactRole Value</arg>
+</arguments>
+<assign>
+<var>${New_Contact_Role_V}</var>
+</assign>
+<msg timestamp="20181217 16:44:34.563" level="INFO">${New_Contact_Role_V} = &lt;type 'object'&gt;</msg>
+<status status="PASS" endtime="20181217 16:44:34.563" starttime="20181217 16:44:34.562"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${New_Contact_Role_V}</arg>
+</arguments>
+<msg timestamp="20181217 16:44:34.563" level="INFO">${New_Contact_Role_V} = &lt;type 'object'&gt;</msg>
+<status status="PASS" endtime="20181217 16:44:34.563" starttime="20181217 16:44:34.563"></status>
+</kw>
+<kw name="Read Excel Data" library="ExcelUtilities">
+<arguments>
+<arg>Donation</arg>
+<arg>ADF_REL-31</arg>
+<arg>Donation Select</arg>
+</arguments>
+<assign>
+<var>${DonationName_V}</var>
+</assign>
+<msg timestamp="20181217 16:44:34.565" level="INFO">${DonationName_V} = &lt;type 'object'&gt;</msg>
+<status status="PASS" endtime="20181217 16:44:34.565" starttime="20181217 16:44:34.564"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${DonationName_V}</arg>
+</arguments>
+<msg timestamp="20181217 16:44:34.567" level="INFO">${DonationName_V} = &lt;type 'object'&gt;</msg>
+<status status="PASS" endtime="20181217 16:44:34.567" starttime="20181217 16:44:34.566"></status>
+</kw>
+<kw name="Log_into_Salesforce" library="Common_Configure">
 <kw name="Open Browser" library="Selenium2Library">
 <doc>Opens a new browser instance to given URL.</doc>
 <arguments>
 <arg>${URL}</arg>
 <arg>chrome</arg>
 </arguments>
-<msg timestamp="20180817 13:41:32.414" level="INFO">Opening browser 'chrome' to base url 'https://test.salesforce.com'</msg>
-<status status="PASS" endtime="20180817 13:41:39.681" starttime="20180817 13:41:32.414"></status>
+<msg timestamp="20181217 16:44:34.569" level="INFO">Opening browser 'chrome' to base url 'https://test.salesforce.com'</msg>
+<status status="PASS" endtime="20181217 16:44:45.274" starttime="20181217 16:44:34.569"></status>
 </kw>
 <kw name="Maximize Browser Window" library="Selenium2Library">
 <doc>Maximizes current browser window.</doc>
-<status status="PASS" endtime="20180817 13:41:40.806" starttime="20180817 13:41:39.681"></status>
+<status status="PASS" endtime="20181217 16:44:46.417" starttime="20181217 16:44:45.275"></status>
 </kw>
 <kw name="Input Text" library="Selenium2Library">
 <doc>Types the given `text` into text field identified by `locator`.</doc>
@@ -267,662 +337,111 @@ Household account record should be created with name of contact name and the hou
 <arg>${UsernameElement}</arg>
 <arg>nallavan@mstsolutions.com.qarel</arg>
 </arguments>
-<msg timestamp="20180817 13:41:40.807" level="INFO">Typing text 'nallavan@mstsolutions.com.qarel' into text field 'Id=username'</msg>
-<status status="PASS" endtime="20180817 13:41:41.603" starttime="20180817 13:41:40.806"></status>
+<msg timestamp="20181217 16:44:46.418" level="INFO">Typing text 'nallavan@mstsolutions.com.qarel' into text field 'Id=username'</msg>
+<status status="PASS" endtime="20181217 16:44:46.800" starttime="20181217 16:44:46.418"></status>
 </kw>
 <kw name="Input Text" library="Selenium2Library">
 <doc>Types the given `text` into text field identified by `locator`.</doc>
 <arguments>
 <arg>${PasswordElement}</arg>
-<arg>metasoft@12</arg>
+<arg>metasoft@123</arg>
 </arguments>
-<msg timestamp="20180817 13:41:41.604" level="INFO">Typing text 'metasoft@12' into text field 'Id=password'</msg>
-<status status="PASS" endtime="20180817 13:41:41.826" starttime="20180817 13:41:41.604"></status>
+<msg timestamp="20181217 16:44:46.801" level="INFO">Typing text 'metasoft@123' into text field 'Id=password'</msg>
+<status status="PASS" endtime="20181217 16:44:46.927" starttime="20181217 16:44:46.801"></status>
 </kw>
 <kw name="Click Button" library="Selenium2Library">
 <doc>Clicks a button identified by `locator`.</doc>
 <arguments>
 <arg>${Submit}</arg>
 </arguments>
-<msg timestamp="20180817 13:41:41.827" level="INFO">Clicking button 'Id=Login'.</msg>
-<status status="PASS" endtime="20180817 13:41:46.771" starttime="20180817 13:41:41.827"></status>
+<msg timestamp="20181217 16:44:46.928" level="INFO">Clicking button 'Id=Login'.</msg>
+<status status="PASS" endtime="20181217 16:44:52.373" starttime="20181217 16:44:46.927"></status>
 </kw>
-<status status="PASS" endtime="20180817 13:41:46.771" starttime="20180817 13:41:32.413"></status>
+<status status="PASS" endtime="20181217 16:44:52.373" starttime="20181217 16:44:34.568"></status>
 </kw>
-<kw name="Read Excel Data" library="ExcelUtilities">
-<arguments>
-<arg>Contact</arg>
-<arg>TC3</arg>
-<arg>FirstName</arg>
-</arguments>
-<assign>
-<var>${FirstName_V}</var>
-</assign>
-<msg timestamp="20180817 13:41:46.773" level="INFO">${FirstName_V} = Test Contact8</msg>
-<status status="PASS" endtime="20180817 13:41:46.773" starttime="20180817 13:41:46.772"></status>
-</kw>
-<kw name="Set Global Variable" library="BuiltIn">
-<doc>Makes a variable available globally in all tests and suites.</doc>
-<arguments>
-<arg>${FirstName_V}</arg>
-</arguments>
-<msg timestamp="20180817 13:41:46.774" level="INFO">${FirstName_V} = Test Contact8</msg>
-<status status="PASS" endtime="20180817 13:41:46.774" starttime="20180817 13:41:46.774"></status>
-</kw>
-<kw name="Read Excel Data" library="ExcelUtilities">
-<arguments>
-<arg>Contact</arg>
-<arg>TC2</arg>
-<arg>LastName</arg>
-</arguments>
-<assign>
-<var>${LastName_V}</var>
-</assign>
-<msg timestamp="20180817 13:41:46.775" level="INFO">${LastName_V} = QA7</msg>
-<status status="PASS" endtime="20180817 13:41:46.775" starttime="20180817 13:41:46.775"></status>
-</kw>
-<kw name="Set Global Variable" library="BuiltIn">
-<doc>Makes a variable available globally in all tests and suites.</doc>
-<arguments>
-<arg>${LastName_V}</arg>
-</arguments>
-<msg timestamp="20180817 13:41:46.776" level="INFO">${LastName_V} = QA7</msg>
-<status status="PASS" endtime="20180817 13:41:46.777" starttime="20180817 13:41:46.776"></status>
-</kw>
-<kw name="Read Excel Data" library="ExcelUtilities">
-<arguments>
-<arg>Contact</arg>
-<arg>TC3</arg>
-<arg>SpouseName</arg>
-</arguments>
-<assign>
-<var>${SpouseName_V}</var>
-</assign>
-<msg timestamp="20180817 13:41:46.778" level="INFO">${SpouseName_V} = Test3</msg>
-<status status="PASS" endtime="20180817 13:41:46.778" starttime="20180817 13:41:46.777"></status>
-</kw>
-<kw name="Set Global Variable" library="BuiltIn">
-<doc>Makes a variable available globally in all tests and suites.</doc>
-<arguments>
-<arg>${SpouseName_V}</arg>
-</arguments>
-<msg timestamp="20180817 13:41:46.779" level="INFO">${SpouseName_V} = Test3</msg>
-<status status="PASS" endtime="20180817 13:41:46.779" starttime="20180817 13:41:46.779"></status>
-</kw>
-<kw name="Read Excel Data" library="ExcelUtilities">
-<arguments>
-<arg>Contact</arg>
-<arg>TC3</arg>
-<arg>MailingStreet</arg>
-</arguments>
-<assign>
-<var>${Mail_Street_V}</var>
-</assign>
-<msg timestamp="20180817 13:41:46.780" level="INFO">${Mail_Street_V} = Test Mailing Street 22</msg>
-<status status="PASS" endtime="20180817 13:41:46.780" starttime="20180817 13:41:46.780"></status>
-</kw>
-<kw name="Set Global Variable" library="BuiltIn">
-<doc>Makes a variable available globally in all tests and suites.</doc>
-<arguments>
-<arg>${Mail_Street_V}</arg>
-</arguments>
-<msg timestamp="20180817 13:41:46.782" level="INFO">${Mail_Street_V} = Test Mailing Street 22</msg>
-<status status="PASS" endtime="20180817 13:41:46.782" starttime="20180817 13:41:46.781"></status>
-</kw>
-<kw name="Read Excel Data" library="ExcelUtilities">
-<arguments>
-<arg>Contact</arg>
-<arg>TC3</arg>
-<arg>MailingCity</arg>
-</arguments>
-<assign>
-<var>${Mail_City_V}</var>
-</assign>
-<msg timestamp="20180817 13:41:46.783" level="INFO">${Mail_City_V} = Test Mailing City3</msg>
-<status status="PASS" endtime="20180817 13:41:46.784" starttime="20180817 13:41:46.783"></status>
-</kw>
-<kw name="Set Global Variable" library="BuiltIn">
-<doc>Makes a variable available globally in all tests and suites.</doc>
-<arguments>
-<arg>${Mail_City_V}</arg>
-</arguments>
-<msg timestamp="20180817 13:41:46.785" level="INFO">${Mail_City_V} = Test Mailing City3</msg>
-<status status="PASS" endtime="20180817 13:41:46.785" starttime="20180817 13:41:46.784"></status>
-</kw>
-<kw name="Read Excel Data" library="ExcelUtilities">
-<arguments>
-<arg>Contact</arg>
-<arg>TC3</arg>
-<arg>MailingState</arg>
-</arguments>
-<assign>
-<var>${Mail_State_V}</var>
-</assign>
-<msg timestamp="20180817 13:41:46.786" level="INFO">${Mail_State_V} = Test State 3</msg>
-<status status="PASS" endtime="20180817 13:41:46.786" starttime="20180817 13:41:46.785"></status>
-</kw>
-<kw name="Set Global Variable" library="BuiltIn">
-<doc>Makes a variable available globally in all tests and suites.</doc>
-<arguments>
-<arg>${Mail_State_V}</arg>
-</arguments>
-<msg timestamp="20180817 13:41:46.786" level="INFO">${Mail_State_V} = Test State 3</msg>
-<status status="PASS" endtime="20180817 13:41:46.787" starttime="20180817 13:41:46.786"></status>
-</kw>
-<kw name="Read Excel Data" library="ExcelUtilities">
-<arguments>
-<arg>Contact</arg>
-<arg>TC3</arg>
-<arg>MailingZipCode</arg>
-</arguments>
-<assign>
-<var>${Mail_Code_V}</var>
-</assign>
-<msg timestamp="20180817 13:41:46.787" level="INFO">${Mail_Code_V} = 79235</msg>
-<status status="PASS" endtime="20180817 13:41:46.787" starttime="20180817 13:41:46.787"></status>
-</kw>
-<kw name="Set Global Variable" library="BuiltIn">
-<doc>Makes a variable available globally in all tests and suites.</doc>
-<arguments>
-<arg>${Mail_Code_V}</arg>
-</arguments>
-<msg timestamp="20180817 13:41:46.788" level="INFO">${Mail_Code_V} = 79235</msg>
-<status status="PASS" endtime="20180817 13:41:46.788" starttime="20180817 13:41:46.788"></status>
-</kw>
-<kw name="Read Excel Data" library="ExcelUtilities">
-<arguments>
-<arg>Contact</arg>
-<arg>TC3</arg>
-<arg>MailingCountry</arg>
-</arguments>
-<assign>
-<var>${Mail_Country_V}</var>
-</assign>
-<msg timestamp="20180817 13:41:46.790" level="INFO">${Mail_Country_V} = Test Country</msg>
-<status status="PASS" endtime="20180817 13:41:46.790" starttime="20180817 13:41:46.789"></status>
-</kw>
-<kw name="Set Global Variable" library="BuiltIn">
-<doc>Makes a variable available globally in all tests and suites.</doc>
-<arguments>
-<arg>${Mail_Country_V}</arg>
-</arguments>
-<msg timestamp="20180817 13:41:46.791" level="INFO">${Mail_Country_V} = Test Country</msg>
-<status status="PASS" endtime="20180817 13:41:46.791" starttime="20180817 13:41:46.790"></status>
-</kw>
-<kw name="Read Excel Data" library="ExcelUtilities">
-<arguments>
-<arg>Contact</arg>
-<arg>TC3</arg>
-<arg>Email</arg>
-</arguments>
-<assign>
-<var>${Contact_Email_V}</var>
-</assign>
-<msg timestamp="20180817 13:41:46.792" level="INFO">${Contact_Email_V} = nallavan26@yopmail.com</msg>
-<status status="PASS" endtime="20180817 13:41:46.792" starttime="20180817 13:41:46.792"></status>
-</kw>
-<kw name="Set Global Variable" library="BuiltIn">
-<doc>Makes a variable available globally in all tests and suites.</doc>
-<arguments>
-<arg>${Contact_Email_V}</arg>
-</arguments>
-<msg timestamp="20180817 13:41:46.793" level="INFO">${Contact_Email_V} = nallavan26@yopmail.com</msg>
-<status status="PASS" endtime="20180817 13:41:46.793" starttime="20180817 13:41:46.792"></status>
-</kw>
-<kw name="Read Excel Data" library="ExcelUtilities">
-<arguments>
-<arg>Contact</arg>
-<arg>TC3</arg>
-<arg>BirthDate</arg>
-</arguments>
-<assign>
-<var>${Birth_Date_V}</var>
-</assign>
-<msg timestamp="20180817 13:41:46.793" level="INFO">${Birth_Date_V} = 11/7/1992</msg>
-<status status="PASS" endtime="20180817 13:41:46.793" starttime="20180817 13:41:46.793"></status>
-</kw>
-<kw name="Set Global Variable" library="BuiltIn">
-<doc>Makes a variable available globally in all tests and suites.</doc>
-<arguments>
-<arg>${Birth_Date_V}</arg>
-</arguments>
-<msg timestamp="20180817 13:41:46.794" level="INFO">${Birth_Date_V} = 11/7/1992</msg>
-<status status="PASS" endtime="20180817 13:41:46.794" starttime="20180817 13:41:46.794"></status>
-</kw>
-<kw name="Contact Creation" library="Contact">
+<kw name="Updating_the_Contact_Role_Amount" library="Donation">
+<kw name="Donation_Choose" library="Donation">
 <kw name="Wait Until Element Is Visible" library="Selenium2Library">
 <doc>Waits until element specified with `locator` is visible.</doc>
 <arguments>
-<arg>${Contact_Tab_E}</arg>
+<arg>${Opportunity_Tab_E}</arg>
 </arguments>
-<status status="PASS" endtime="20180817 13:41:54.920" starttime="20180817 13:41:46.795"></status>
+<status status="PASS" endtime="20181217 16:45:03.344" starttime="20181217 16:44:52.375"></status>
 </kw>
 <kw name="Click Element" library="Selenium2Library">
 <doc>Click element identified by `locator`.</doc>
 <arguments>
-<arg>${Contact_Tab_E}</arg>
+<arg>${Opportunity_Tab_E}</arg>
 </arguments>
-<msg timestamp="20180817 13:41:54.921" level="INFO">Clicking element 'Id=Contact_Tab'.</msg>
-<status status="PASS" endtime="20180817 13:41:56.433" starttime="20180817 13:41:54.921"></status>
-</kw>
-<kw name="Wait Until Element Is Visible" library="Selenium2Library">
-<doc>Waits until element specified with `locator` is visible.</doc>
-<arguments>
-<arg>${New_Button}</arg>
-</arguments>
-<status status="PASS" endtime="20180817 13:41:56.479" starttime="20180817 13:41:56.433"></status>
-</kw>
-<kw name="Click Button" library="Selenium2Library">
-<doc>Clicks a button identified by `locator`.</doc>
-<arguments>
-<arg>${New_Button}</arg>
-</arguments>
-<msg timestamp="20180817 13:41:56.479" level="INFO">Clicking button 'name=new'.</msg>
-<status status="PASS" endtime="20180817 13:41:57.321" starttime="20180817 13:41:56.479"></status>
+<msg timestamp="20181217 16:45:03.345" level="INFO">Clicking element 'xpath=.//*[@id='Opportunity_Tab']/a'.</msg>
+<status status="PASS" endtime="20181217 16:45:04.804" starttime="20181217 16:45:03.344"></status>
 </kw>
 <kw name="Set Selenium Implicit Wait" library="Selenium2Library">
-<doc>Sets Selenium 2's default implicit wait in seconds and</doc>
-<arguments>
-<arg>20s</arg>
-</arguments>
-<status status="PASS" endtime="20180817 13:41:57.324" starttime="20180817 13:41:57.322"></status>
-</kw>
-<kw name="Click Element" library="Selenium2Library">
-<doc>Click element identified by `locator`.</doc>
-<arguments>
-<arg>${Continue_E}</arg>
-</arguments>
-<msg timestamp="20180817 13:41:57.325" level="INFO">Clicking element 'xpath=.//*[@id='bottomButtonRow']/input[1]'.</msg>
-<status status="PASS" endtime="20180817 13:41:58.158" starttime="20180817 13:41:57.325"></status>
-</kw>
-<kw name="Set Selenium Implicit Wait" library="Selenium2Library">
-<doc>Sets Selenium 2's default implicit wait in seconds and</doc>
-<arguments>
-<arg>10s</arg>
-</arguments>
-<status status="PASS" endtime="20180817 13:41:58.160" starttime="20180817 13:41:58.159"></status>
-</kw>
-<kw name="Set Selenium Speed" library="Selenium2Library">
-<doc>Sets the delay in seconds that is waited after each Selenium command.</doc>
-<arguments>
-<arg>.10s</arg>
-</arguments>
-<status status="PASS" endtime="20180817 13:41:58.160" starttime="20180817 13:41:58.160"></status>
-</kw>
-<kw name="Input Text" library="Selenium2Library">
-<doc>Types the given `text` into text field identified by `locator`.</doc>
-<arguments>
-<arg>${FirstName_Contact_E}</arg>
-<arg>${FirstName_V}</arg>
-</arguments>
-<msg timestamp="20180817 13:41:58.161" level="INFO">Typing text 'Test Contact8' into text field 'Id=name_firstcon2'</msg>
-<status status="PASS" endtime="20180817 13:41:59.882" starttime="20180817 13:41:58.161"></status>
-</kw>
-<kw name="Input Text" library="Selenium2Library">
-<doc>Types the given `text` into text field identified by `locator`.</doc>
-<arguments>
-<arg>${LastName_Contact_E}</arg>
-<arg>${LastName_V}</arg>
-</arguments>
-<msg timestamp="20180817 13:41:59.884" level="INFO">Typing text 'QA7' into text field 'Id=name_lastcon2'</msg>
-<status status="PASS" endtime="20180817 13:42:00.499" starttime="20180817 13:41:59.882"></status>
-</kw>
-<kw name="Input Text" library="Selenium2Library">
-<doc>Types the given `text` into text field identified by `locator`.</doc>
-<arguments>
-<arg>${SpouseName_E}</arg>
-<arg>${SpouseName_V}</arg>
-</arguments>
-<msg timestamp="20180817 13:42:00.500" level="INFO">Typing text 'Test3' into text field 'Id=00Nf4000009here'</msg>
-<status status="PASS" endtime="20180817 13:42:01.098" starttime="20180817 13:42:00.499"></status>
-</kw>
-<kw name="Click Element" library="Selenium2Library">
-<doc>Click element identified by `locator`.</doc>
-<arguments>
-<arg>${Deceased_Checkbox_E}</arg>
-</arguments>
-<msg timestamp="20180817 13:42:01.098" level="INFO">Clicking element 'Id=00Nf4000009heqK'.</msg>
-<status status="PASS" endtime="20180817 13:42:01.413" starttime="20180817 13:42:01.098"></status>
-</kw>
-<kw name="Input Text" library="Selenium2Library">
-<doc>Types the given `text` into text field identified by `locator`.</doc>
-<arguments>
-<arg>${Mailing_Address_Street_E}</arg>
-<arg>${Mail_Street_V}</arg>
-</arguments>
-<msg timestamp="20180817 13:42:01.413" level="INFO">Typing text 'Test Mailing Street 22' into text field 'Id=con19street'</msg>
-<status status="PASS" endtime="20180817 13:42:01.943" starttime="20180817 13:42:01.413"></status>
-</kw>
-<kw name="Input Text" library="Selenium2Library">
-<doc>Types the given `text` into text field identified by `locator`.</doc>
-<arguments>
-<arg>${Mailing_City_E}</arg>
-<arg>${Mail_City_V}</arg>
-</arguments>
-<msg timestamp="20180817 13:42:01.944" level="INFO">Typing text 'Test Mailing City3' into text field 'Id=con19city'</msg>
-<status status="PASS" endtime="20180817 13:42:02.599" starttime="20180817 13:42:01.943"></status>
-</kw>
-<kw name="Input Text" library="Selenium2Library">
-<doc>Types the given `text` into text field identified by `locator`.</doc>
-<arguments>
-<arg>${Mailing_Country_E}</arg>
-<arg>${Mail_Country_V}</arg>
-</arguments>
-<msg timestamp="20180817 13:42:02.599" level="INFO">Typing text 'Test Country' into text field 'Id=con19country'</msg>
-<status status="PASS" endtime="20180817 13:42:03.211" starttime="20180817 13:42:02.599"></status>
-</kw>
-<kw name="Input Text" library="Selenium2Library">
-<doc>Types the given `text` into text field identified by `locator`.</doc>
-<arguments>
-<arg>${Mailing_state_E}</arg>
-<arg>${Mail_State_V}</arg>
-</arguments>
-<msg timestamp="20180817 13:42:03.213" level="INFO">Typing text 'Test State 3' into text field 'Id=con19state'</msg>
-<status status="PASS" endtime="20180817 13:42:03.845" starttime="20180817 13:42:03.212"></status>
-</kw>
-<kw name="Input Text" library="Selenium2Library">
-<doc>Types the given `text` into text field identified by `locator`.</doc>
-<arguments>
-<arg>${Mailing_Zip_E}</arg>
-<arg>${Mail_Code_V}</arg>
-</arguments>
-<msg timestamp="20180817 13:42:03.847" level="INFO">Typing text '79235' into text field 'Id=con19zip'</msg>
-<status status="PASS" endtime="20180817 13:42:04.343" starttime="20180817 13:42:03.845"></status>
-</kw>
-<kw name="Click Element" library="Selenium2Library">
-<doc>Click element identified by `locator`.</doc>
-<arguments>
-<arg>${Do Not Mail_Checkbox_E}</arg>
-</arguments>
-<msg timestamp="20180817 13:42:04.344" level="INFO">Clicking element 'Id=00Nf4000009hepq'.</msg>
-<status status="PASS" endtime="20180817 13:42:04.676" starttime="20180817 13:42:04.343"></status>
-</kw>
-<kw name="Input Text" library="Selenium2Library">
-<doc>Types the given `text` into text field identified by `locator`.</doc>
-<arguments>
-<arg>${Email_E}</arg>
-<arg>${Contact_Email_V}</arg>
-</arguments>
-<msg timestamp="20180817 13:42:04.678" level="INFO">Typing text 'nallavan26@yopmail.com' into text field 'Id=con15'</msg>
-<status status="PASS" endtime="20180817 13:42:05.456" starttime="20180817 13:42:04.676"></status>
-</kw>
-<kw name="Set Selenium Implicit Wait" library="Selenium2Library">
-<doc>Sets Selenium 2's default implicit wait in seconds and</doc>
+<doc>Sets Selenium 2's default implicit wait in seconds and
+sets the implicit wait for all open browsers.</doc>
 <arguments>
 <arg>5s</arg>
 </arguments>
-<status status="PASS" endtime="20180817 13:42:05.561" starttime="20180817 13:42:05.457"></status>
-</kw>
-<kw name="Input Text" library="Selenium2Library">
-<doc>Types the given `text` into text field identified by `locator`.</doc>
-<arguments>
-<arg>${BirthDateElement_E}</arg>
-<arg>${Birth_Date_V}</arg>
-</arguments>
-<msg timestamp="20180817 13:42:05.562" level="INFO">Typing text '11/7/1992' into text field 'xpath=.//*[@id='con7']'</msg>
-<status status="PASS" endtime="20180817 13:42:06.145" starttime="20180817 13:42:05.561"></status>
+<status status="PASS" endtime="20181217 16:45:04.806" starttime="20181217 16:45:04.804"></status>
 </kw>
 <kw name="Click Element" library="Selenium2Library">
 <doc>Click element identified by `locator`.</doc>
 <arguments>
-<arg>${Continue/Save_E}</arg>
+<arg>xpath=.//th/a[contains(.,"${DonationName_V}")]</arg>
 </arguments>
-<msg timestamp="20180817 13:42:06.147" level="INFO">Clicking element 'name=save'.</msg>
-<status status="PASS" endtime="20180817 13:42:09.499" starttime="20180817 13:42:06.146"></status>
+<msg timestamp="20181217 16:45:04.808" level="INFO">Clicking element 'xpath=.//th/a[contains(.,"&lt;type 'object'&gt;")]'.</msg>
+<kw name="Capture Page Screenshot" library="Selenium2Library">
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<msg timestamp="20181217 16:45:10.205" html="yes" level="INFO">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-1.png"&gt;&lt;img src="selenium-screenshot-1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" endtime="20181217 16:45:10.206" starttime="20181217 16:45:09.857"></status>
 </kw>
-<status status="PASS" endtime="20180817 13:42:09.499" starttime="20180817 13:41:46.794"></status>
+<msg timestamp="20181217 16:45:10.207" level="FAIL">ValueError: Element locator 'xpath=.//th/a[contains(.,"&lt;type 'object'&gt;")]' did not match any elements.</msg>
+<status status="FAIL" endtime="20181217 16:45:10.207" starttime="20181217 16:45:04.807"></status>
 </kw>
-<kw type="teardown" name="Close Browser" library="Selenium2Library">
-<doc>Closes the current browser.</doc>
-<status status="PASS" endtime="20180817 13:42:12.786" starttime="20180817 13:42:09.500"></status>
+<status status="FAIL" endtime="20181217 16:45:10.207" starttime="20181217 16:44:52.374"></status>
+</kw>
+<status status="FAIL" endtime="20181217 16:45:10.208" starttime="20181217 16:44:52.373"></status>
 </kw>
 <doc>*Functionality*
-To verify whether the household account record is created or not when creating a household contact
-*Steps*
-1. Open the new instance sandbox "test.salesforce.com"
-2. Enter the username and password
-3. Click login button
-4. Click new button and then choose the recortype
-5. Click continue button
-6. Enter the firstname, last name and other details
-7. Click save buttom
-8. Verif the expected result
+To verify whether the donation contact role amount, when updating the amount value partial to full
+*Test Steps*
+
+1. Open the sandbox "test.salesforce.com"
+2. Enter the valid username and password
+3. Click ""Submit"" button
+4. Navigates to "Donation" object
+5. Click new button and then choose the record type
+6. Click continue button
+7. Choose the donor and account name and then enter the donation record details
+8.Click save button
+9. Scroll down to donation contact role VF page section
+10. Click Edit contact roles button on VF page
+11. Verfiy the expected result"
+
 *Expected Result*
-Household account record should be created with name of contact name and the household name should append to the contact name</doc>
+
+11.1 Donation contact role record should be created with name of Donor and the amount field should be updates as "Full"
+11.2 New soft credit contact role record should  be created  from the donor's relaitionship viwer VF page</doc>
 <tags>
-<tag>DemoTest</tag>
+<tag>TestDemo1</tag>
 </tags>
-<status status="PASS" endtime="20180817 13:42:12.787" critical="yes" starttime="20180817 13:41:32.411"></status>
+<status status="FAIL" endtime="20181217 16:45:10.208" critical="yes" starttime="20181217 16:44:34.558">ValueError: Element locator 'xpath=.//th/a[contains(.,"&lt;type 'object'&gt;")]' did not match any elements.</status>
 </test>
-<test id="s1-t3" name="TC5">
-<kw type="setup" name="Login With Username And Password(1)" library="Common_Configure">
-<kw name="Open Browser" library="Selenium2Library">
-<doc>Opens a new browser instance to given URL.</doc>
-<arguments>
-<arg>${URL}</arg>
-<arg>chrome</arg>
-</arguments>
-<msg timestamp="20180817 13:42:12.795" level="INFO">Opening browser 'chrome' to base url 'https://test.salesforce.com'</msg>
-<status status="PASS" endtime="20180817 13:42:20.502" starttime="20180817 13:42:12.794"></status>
-</kw>
-<kw name="Maximize Browser Window" library="Selenium2Library">
-<doc>Maximizes current browser window.</doc>
-<status status="PASS" endtime="20180817 13:42:21.733" starttime="20180817 13:42:20.502"></status>
-</kw>
-<kw name="Input Text" library="Selenium2Library">
-<doc>Types the given `text` into text field identified by `locator`.</doc>
-<arguments>
-<arg>${UsernameElement}</arg>
-<arg>nallavan@mstsolutions.com.qarel</arg>
-</arguments>
-<msg timestamp="20180817 13:42:21.733" level="INFO">Typing text 'nallavan@mstsolutions.com.qarel' into text field 'Id=username'</msg>
-<status status="PASS" endtime="20180817 13:42:22.596" starttime="20180817 13:42:21.733"></status>
-</kw>
-<kw name="Input Text" library="Selenium2Library">
-<doc>Types the given `text` into text field identified by `locator`.</doc>
-<arguments>
-<arg>${PasswordElement}</arg>
-<arg>metasoft@12</arg>
-</arguments>
-<msg timestamp="20180817 13:42:22.597" level="INFO">Typing text 'metasoft@12' into text field 'Id=password'</msg>
-<status status="PASS" endtime="20180817 13:42:23.038" starttime="20180817 13:42:22.596"></status>
-</kw>
-<kw name="Click Button" library="Selenium2Library">
-<doc>Clicks a button identified by `locator`.</doc>
-<arguments>
-<arg>${Submit}</arg>
-</arguments>
-<msg timestamp="20180817 13:42:23.039" level="INFO">Clicking button 'Id=Login'.</msg>
-<status status="PASS" endtime="20180817 13:42:29.323" starttime="20180817 13:42:23.038"></status>
-</kw>
-<status status="PASS" endtime="20180817 13:42:29.323" starttime="20180817 13:42:12.793"></status>
-</kw>
-<kw name="Read Excel Data" library="ExcelUtilities">
-<arguments>
-<arg>Account</arg>
-<arg>TC5</arg>
-<arg>AccountName</arg>
-</arguments>
-<assign>
-<var>${Acc_Name_V}</var>
-</assign>
-<msg timestamp="20180817 13:42:29.324" level="INFO">${Acc_Name_V} = TestOrgAccount-Jun2</msg>
-<status status="PASS" endtime="20180817 13:42:29.324" starttime="20180817 13:42:29.324"></status>
-</kw>
-<kw name="Set Global Variable" library="BuiltIn">
-<doc>Makes a variable available globally in all tests and suites.</doc>
-<arguments>
-<arg>${Acc_Name_V}</arg>
-</arguments>
-<msg timestamp="20180817 13:42:29.325" level="INFO">${Acc_Name_V} = TestOrgAccount-Jun2</msg>
-<status status="PASS" endtime="20180817 13:42:29.325" starttime="20180817 13:42:29.325"></status>
-</kw>
-<kw name="Read Excel Data" library="ExcelUtilities">
-<arguments>
-<arg>Account</arg>
-<arg>TC5</arg>
-<arg>BillingStreet</arg>
-</arguments>
-<assign>
-<var>${Bill_St_V}</var>
-</assign>
-<msg timestamp="20180817 13:42:29.326" level="INFO">${Bill_St_V} = Test Billing Street 2</msg>
-<status status="PASS" endtime="20180817 13:42:29.326" starttime="20180817 13:42:29.325"></status>
-</kw>
-<kw name="Set Global Variable" library="BuiltIn">
-<doc>Makes a variable available globally in all tests and suites.</doc>
-<arguments>
-<arg>${Bill_St_V}</arg>
-</arguments>
-<msg timestamp="20180817 13:42:29.327" level="INFO">${Bill_St_V} = Test Billing Street 2</msg>
-<status status="PASS" endtime="20180817 13:42:29.327" starttime="20180817 13:42:29.326"></status>
-</kw>
-<kw name="Read Excel Data" library="ExcelUtilities">
-<arguments>
-<arg>Account</arg>
-<arg>TC5</arg>
-<arg>BillingCity</arg>
-</arguments>
-<assign>
-<var>${Bill_City_V}</var>
-</assign>
-<msg timestamp="20180817 13:42:29.327" level="INFO">${Bill_City_V} = Test Billing City 2</msg>
-<status status="PASS" endtime="20180817 13:42:29.328" starttime="20180817 13:42:29.327"></status>
-</kw>
-<kw name="Set Global Variable" library="BuiltIn">
-<doc>Makes a variable available globally in all tests and suites.</doc>
-<arguments>
-<arg>${Bill_City_V}</arg>
-</arguments>
-<msg timestamp="20180817 13:42:29.328" level="INFO">${Bill_City_V} = Test Billing City 2</msg>
-<status status="PASS" endtime="20180817 13:42:29.328" starttime="20180817 13:42:29.328"></status>
-</kw>
-<kw name="Read Excel Data" library="ExcelUtilities">
-<arguments>
-<arg>Account</arg>
-<arg>TC5</arg>
-<arg>BillingZipCode</arg>
-</arguments>
-<assign>
-<var>${Bill_Code_V}</var>
-</assign>
-<msg timestamp="20180817 13:42:29.329" level="INFO">${Bill_Code_V} = 82355</msg>
-<status status="PASS" endtime="20180817 13:42:29.329" starttime="20180817 13:42:29.329"></status>
-</kw>
-<kw name="Set Global Variable" library="BuiltIn">
-<doc>Makes a variable available globally in all tests and suites.</doc>
-<arguments>
-<arg>${Bill_Code_V}</arg>
-</arguments>
-<msg timestamp="20180817 13:42:29.330" level="INFO">${Bill_Code_V} = 82355</msg>
-<status status="PASS" endtime="20180817 13:42:29.330" starttime="20180817 13:42:29.329"></status>
-</kw>
-<kw name="Read Excel Data" library="ExcelUtilities">
-<arguments>
-<arg>Account</arg>
-<arg>TC5</arg>
-<arg>BillingState</arg>
-</arguments>
-<assign>
-<var>${Bill_State_V}</var>
-</assign>
-<msg timestamp="20180817 13:42:29.331" level="INFO">${Bill_State_V} = Test Billing State 2</msg>
-<status status="PASS" endtime="20180817 13:42:29.331" starttime="20180817 13:42:29.330"></status>
-</kw>
-<kw name="Set Global Variable" library="BuiltIn">
-<doc>Makes a variable available globally in all tests and suites.</doc>
-<arguments>
-<arg>${Bill_State_V}</arg>
-</arguments>
-<msg timestamp="20180817 13:42:29.331" level="INFO">${Bill_State_V} = Test Billing State 2</msg>
-<status status="PASS" endtime="20180817 13:42:29.331" starttime="20180817 13:42:29.331"></status>
-</kw>
-<kw name="Read Excel Data" library="ExcelUtilities">
-<arguments>
-<arg>Account</arg>
-<arg>TC5</arg>
-<arg>BillingCountry</arg>
-</arguments>
-<assign>
-<var>${Bill_Country_V}</var>
-</assign>
-<msg timestamp="20180817 13:42:29.332" level="INFO">${Bill_Country_V} = Test Billing Country 2</msg>
-<status status="PASS" endtime="20180817 13:42:29.332" starttime="20180817 13:42:29.332"></status>
-</kw>
-<kw name="Set Global Variable" library="BuiltIn">
-<doc>Makes a variable available globally in all tests and suites.</doc>
-<arguments>
-<arg>${Bill_Country_V}</arg>
-</arguments>
-<msg timestamp="20180817 13:42:29.333" level="INFO">${Bill_Country_V} = Test Billing Country 2</msg>
-<status status="PASS" endtime="20180817 13:42:29.333" starttime="20180817 13:42:29.332"></status>
-</kw>
-<kw type="teardown" name="Close Browser" library="Selenium2Library">
-<doc>Closes the current browser.</doc>
-<status status="PASS" endtime="20180817 13:42:32.599" starttime="20180817 13:42:29.333"></status>
-</kw>
-<doc>*Functionality*
-To verify whether the organization donor proxy contact record is created or not when creating a organization account
-*Steps*
-1. Open the new instance sandbox "test.salesforce.com"
-2. Enter the username and password
-3. Click login button and then navigates to account object
-4. Click new button and then choose the recortype
-5. Click continue button
-6. Enter the account name and other details
-7. Click save buttom
-8. Verif the expected result
-*Expected Result*
-Organization donor proxy contact record should be created with name of the Account name</doc>
-<tags>
-<tag>Demo</tag>
-</tags>
-<status status="PASS" endtime="20180817 13:42:32.600" critical="yes" starttime="20180817 13:42:12.791"></status>
-</test>
-<test id="s1-t4" name="TC_6">
-<kw name="Ministry_Signup_form">
-<msg timestamp="20180817 13:42:32.630" level="FAIL">No keyword with name 'Ministry_Signup_form' found.</msg>
-<status status="FAIL" endtime="20180817 13:42:32.630" starttime="20180817 13:42:32.630"></status>
-</kw>
-<kw type="teardown" name="Close Browser" library="Selenium2Library">
-<doc>Closes the current browser.</doc>
-<status status="PASS" endtime="20180817 13:42:32.632" starttime="20180817 13:42:32.632"></status>
-</kw>
-<doc>*Functionality*
-To verify whether the organization donor proxy contact record is created or not when creating a organization account
-*Steps*
-1. Open the new instance sandbox "test.salesforce.com"
-2. Enter the username and password
-3. Click login button and then navigates to account object
-4. Click new button and then choose the recortype
-5. Click continue button
-6. Enter the account name and other details
-7. Click save buttom
-8. Verif the expected result
-*Expected Result*
-Organization donor proxy contact record should be created with name of the Account name</doc>
-<status status="FAIL" endtime="20180817 13:42:32.633" critical="yes" starttime="20180817 13:42:32.604">No keyword with name 'Ministry_Signup_form' found.</status>
-</test>
-<doc>Suite description</doc>
-<status status="FAIL" endtime="20180817 13:42:32.639" starttime="20180817 13:41:13.452"></status>
+<doc>ADF Project Reliance Features Regresstion Test Suite</doc>
+<status status="FAIL" endtime="20181217 16:45:10.211" starttime="20181217 16:44:33.736"></status>
 </suite>
 <statistics>
 <total>
-<stat fail="1" pass="3">Critical Tests</stat>
-<stat fail="1" pass="3">All Tests</stat>
+<stat fail="1" pass="1">Critical Tests</stat>
+<stat fail="1" pass="1">All Tests</stat>
 </total>
 <tag>
-<stat fail="0" pass="1">Demo</stat>
-<stat fail="0" pass="1">Demo5</stat>
-<stat fail="0" pass="1">DemoTest</stat>
+<stat fail="1" pass="1">TestDemo1</stat>
 </tag>
 <suite>
-<stat fail="1" id="s1" name="RegressionTestSuite" pass="3">RegressionTestSuite</stat>
+<stat fail="1" id="s1" name="Reliance Regression TestSuite" pass="1">Reliance Regression TestSuite</stat>
 </suite>
 </statistics>
 <errors>
-<msg timestamp="20180817 13:41:13.683" level="ERROR">Error in file 'C:\Users\Mstemp120\Downloads\Salesforce_Automation-Demo\Salesforce_Objects\Contact.robot': Setting variable 'Contact Field Verification Webelements' failed: Invalid variable name 'Contact Field Verification Webelements'.</msg>
-<msg timestamp="20180817 13:41:13.699" level="ERROR">Error in file 'C:\Users\Mstemp120\Downloads\Salesforce_Automation-Demo\Salesforce_Objects\Account.robot': Resource file 'C:\Users\Mstemp120\Downloads\Salesforce_Automation-Demo\TestCases\RegressionTestSuite.robot' contains a test case table which is not allowed.</msg>
-<msg timestamp="20180817 13:41:13.703" level="ERROR">Error in file 'C:\Users\Mstemp120\Downloads\Salesforce_Automation-Demo\TestCases\RegressionTestSuite.robot': Resource file 'C:\Users\Mstemp120\Downloads\Salesforce_Automation-Demo\Salesforce_Objects\Signup.robot' contains a test case table which is not allowed.</msg>
 </errors>
 </robot>
