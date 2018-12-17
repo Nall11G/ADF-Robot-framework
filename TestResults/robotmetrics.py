@@ -20,7 +20,7 @@ msg = MIMEMultipart()
 msg['Subject'] = 'ADFProject Automation Status'
 
 sender = 'nallavan.qa@gmail.com'
-recipients = ['nallavan.qa@gmail.com']
+recipients = ['nallavan.qa@gmail.com', 'nallavan@mstsolutions.com']
 ccrecipients = ['nall1sf@gmail.com', 'user4@yahoo.com']
 
 msg['From'] = sender
@@ -320,7 +320,7 @@ icons_txt= """
 							</a>
                         </li>
 						<li class="nav-item">
-                            <a style="color:blue;" class="tablink nav-link" target="_blank" href="https://mstadfm.atlassian.net/browse/ADFM-1104">
+                            <a style="color:blue;" class="tablink nav-link" target="_blank" href="https://mstadfm.atlassian.net/browse/ADFM-1459">
 							  <i class="fa fa-external-link"></i> JIRA
 							</a>
                         </li>
