@@ -1,7 +1,7 @@
 import xlrd
 #import Test
 from xlrd.sheet import ctype_text
-xl_workbook = xlrd.open_workbook('../TestData/TestInputData.xlsx')
+xl_workbook = xlrd.open_workbook('ADF-Robot-framework/TestData/TestInputData.xlsx')
 def read_excel_data (sheetname, testcase, title):
     cell_value= object
     sheet_name = xl_workbook.sheet_names()
