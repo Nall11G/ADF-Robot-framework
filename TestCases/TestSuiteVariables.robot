@@ -65,6 +65,7 @@ ${Lead_LastName_V}
 ${Lead_Title_V}
 ${Lead_Email_V}
 ${Lead_Phone_V}
+${Household}
 
 # Primary Contact Information for both CA and Ministry
 ${Primary_FirstName_V}

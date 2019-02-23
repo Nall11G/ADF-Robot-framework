@@ -36,7 +36,7 @@ ${Cancel}         name=cancel
 
 *** Test Cases ***
 ADF_REL-01
-    [Tags]  TestDemo1
+    [Tags]  ADF_Demo
     [Documentation]    *Functionality*
     ...    To Verify the household contact creation
     ...
@@ -82,15 +82,15 @@ ADF_REL-01
     set global variable  ${Mail_Country_V}
     ${Contact_Email_V}=   read_excel_data  Contact     ADF_REL-01     Email
     set global variable  ${Contact_Email_V}
-    #Log_into_Salesforce
-    #Contact Creation With Salutation
+    Log_into_Salesforce
+    Contact Creation With Salutation
     Set Selenium Implicit Wait  15s
-    #Verifying_Greeting_Field_Value
-    #Should Be Equal  ${Greeting_Value}  ${FirstName_V}
-    #Close Browser
+    Verifying_Greeting_Field_Value
+    Should Be Equal  ${Greeting_Value}  ${FirstName_V}
+    Close Browser
 
 ADF_REL-02
-    [Tags]  Pass
+    [Tags]  Passed
     [Documentation]    *Functionality*
     ...    To check whether the "Greeting" field value is updated or not,  when a user creating the
     ...    household contact record with "Salutation"   field value
@@ -146,7 +146,7 @@ ADF_REL-02
 
 ADF_REL-03
 
-    [Tags]  Pass
+    [Tags]  Passed
     [Documentation]    *Functionality*
     ...    To check whether the "Greeting" field value is updated or not,  when a user creating the household contact record
     ...
@@ -202,7 +202,7 @@ ADF_REL-03
 
 ADF_REL-04
 
-    [Tags]  Pass
+    [Tags]  Passed
     [Documentation]    *Functionality*
     ...    To check whether the "Greeting" field value, when a user creating the household contact record with "Nickname" field value.
     ...
@@ -258,7 +258,7 @@ ADF_REL-04
 
 ADF_REL-05
 
-    [Tags]  Pass
+    [Tags]  Passed
     [Documentation]    *Functionality*
     ...    To check whether the "Phone" field value is updated or not based on the selection of "Preferred Phone" type, while creating a new contact record.
     ...
@@ -307,7 +307,7 @@ ADF_REL-05
     set global variable  ${Birth_Date_V}
     ${Home_Phone_V}=    read_excel_data  Contact     ADF_REL-05    Home Phone
     set global variable  ${Home_Phone_V}
-    ${Mobile_V}=   read_excel_data      Contact     ADF_REL-05     Mobile
+    ${Mobile_V}=   read_excel_data      Contact     ADF_REL-05     MobilePhone
     set global variable  ${Mobile_V}
     ${WorkPhone_V}   read excel data     Contact     ADF_REL-05     Work Phone
     set global variable  ${WorkPhone_V}
@@ -323,7 +323,7 @@ ADF_REL-05
 
 ADF_REL-06
 
-    [Tags]
+    [Tags]  Passed
     [Documentation]    *Functionality*
     ...    To check whether the "Phone" field value is updated or not based on the selection of "Preferred Phone" type, while creating a new contact record.
     ...
@@ -372,7 +372,7 @@ ADF_REL-06
     set global variable  ${Birth_Date_V}
     ${Home_Phone_V}=    read_excel_data  Contact     ADF_REL-06    Home Phone
     set global variable  ${Home_Phone_V}
-    ${Mobile_V}=   read_excel_data  Contact     ADF_REL-06     Mobile
+    ${Mobile_V}=   read_excel_data      Contact     ADF_REL-06     MobilePhone
     set global variable  ${Mobile_V}
     ${WorkPhone_V}   read excel data     Contact     ADF_REL-06     Work Phone
     set global variable  ${WorkPhone_V}
@@ -390,7 +390,7 @@ ADF_REL-06
 
 ADF_REL-07
 
-    [Tags]
+    [Tags]  Passed
     [Documentation]    *Functionality*
     ...    To check whether the "Phone" field value is updated or not based on the selection of "Preferred Phone" type, while creating a new contact record.
     ...
@@ -438,7 +438,7 @@ ADF_REL-07
     set global variable  ${Birth_Date_V}
     ${Home_Phone_V}=    read_excel_data  Contact     ADF_REL-07    Home Phone
     set global variable  ${Home_Phone_V}
-    ${Mobile_V}=   read_excel_data  Contact     ADF_REL-07      Mobile
+    ${Mobile_V}=   read_excel_data  Contact     ADF_REL-07      MobilePhone
     set global variable  ${Mobile_V}
     ${WorkPhone_V}=   read excel data     Contact     ADF_REL-07     Work Phone
     set global variable  ${WorkPhone_V}
@@ -454,7 +454,7 @@ ADF_REL-07
     Close Browser
 
 ADF_REL-08
-    [Tags]
+    [Tags]  Passed
     [Documentation]    *Functionality*
     ...    To Verify the Communication preffernce field in Household contact
     ...
@@ -502,7 +502,7 @@ ADF_REL-08
     Close Browser
 
 ADF_REL-09
-    [Tags]  Passed
+    [Tags]  TestDemo1
       [Documentation]    To verify whether the related address and email record is created or not, when updating the contact's mailing address and email field
     ...
     ...    *Test Steps*
@@ -544,7 +544,7 @@ ADF_REL-09
     Close Browser
 
 ADF_REG-10
-    [Tags]  Passed
+    [Tags]  TestDemo1
     [Documentation]    To verify whether the related address and email record is created or not, when updating the contact's mailing address and email field
     ...    *Test Steps*
     ...
@@ -590,7 +590,7 @@ ADF_REG-10
     Close Browser
 
 ADF_REL-11
-    [Tags]
+    [Tags]  Passed
     [Documentation]    *Functionality*
     ...    To verify whether the Organization Donor Proxy Contact record is created or not, when creating a Organization Account
     ...
@@ -629,7 +629,7 @@ ADF_REL-11
 
 ADF_REL-12
 
-    [Tags]  Passed
+    [Tags]  ADF_Demo
     [Documentation]    *Functionality*
     ...    To verify whether the new contact record is created or not under the household account by clicking "New" button
     ...
@@ -722,7 +722,7 @@ ADF_REL-13
     set global variable  ${Mail_Code_V}
     ${Mail_Country_V}=    read_excel_data  Contact     ADF_REL-08    MailingCountry
     set global variable  ${Mail_Country_V}
-    ${AccountName_Value}=   read excel data  Contact_Selection    ADF_REL-12  Account Select
+    ${AccountName_Value}=   read excel data  Contact_Selection    ADF_REL-13  Account Select
     Set Global Variable     ${AccountName_Value}
     Log_into_Salesforce
     Account_Choose
@@ -732,7 +732,7 @@ ADF_REL-13
 
 ADF_REL-14
 
-    [Tags]  Pass
+    [Tags]  Passed
     [Documentation]    *Functionality*
     ...    To verify whether the donation record is created or not
     ...
@@ -769,7 +769,7 @@ ADF_REL-14
 
 ADF_REG-15
 
-    [Tags]  Pass
+    [Tags]  Passed
     [Documentation]    *Functionality*
     ...    To verify whether the donation contact role record is created or not
     ...
@@ -798,17 +798,20 @@ ADF_REG-15
     Close Browser
 
 ADF_REL-16
-    [Tags]  Pass
+    [Tags]  Passed
     [Documentation]   *Functionality*
     ...    To verify whether the Donation name is updated or not when updating the Donor
 
-    #TestCase
+    ${DonationName_V}=   read excel data     Donation    ADF_REL-16     Donation Select
+    Set Global Variable  ${DonationName_V}
+    ${Donor_update_Value}=  read excel data     Donation    ADF_REL-16     Donor
+    Set Global Variable  ${Donor_update_Value}
     Common_Configure.Log_into_Salesforce
     Donation.Updating_the_Donor_Value
     Close Browser
 
 ADF_REG-17
-    [Tags]  Pass
+    [Tags]  Passed
     [Documentation]    *Functionality*
     ...
     ...    To verify the Desigation VF page after creating the Donation record
@@ -837,7 +840,7 @@ ADF_REG-17
     Close Browser
 
 ADF_REG-18
-    [Tags]  Pass
+    [Tags]  ADF_Demo
     [Documentation]    *Functionality*
     ...
     ...    To check whether the Contact record is updated or not when updating the "Head Of Household " is true to false
@@ -858,7 +861,7 @@ ADF_REG-18
 
     [Setup]
 
-    ${ContactName_Value}=        read excel data  Donation   ADF_REL-18    Contact Select
+    ${ContactName_Value}=   read excel data  Contact_Selection   ADF_REL-18    Contact Select
     Set Global Variable   ${ContactName_Value}
     Common_Configure.Log_into_Salesforce
     Contact.Contact_Choose
@@ -897,13 +900,15 @@ ADF_REG-19
     Set Global Variable    ${DonationName_V}
     ${New_Contact_Role_V}=      read excel data  Donation   ADF_REL-19    ContactRole Value
     Set Global Variable    ${New_Contact_Role_V}
+    ${Contact_Role_Amount_V}=      read excel data  Donation   ADF_REL-19    ContactRole Amount
+    Set Global Variable    ${Contact_Role_Amount_V}
     Log_into_Salesforce
     Donation.Add_New_Single_Contact_Role
     Close Browser
 
 ADF_REG-20
 
-    [Tags]  TestDemo
+    [Tags]  Passed
     [Documentation]    *Functionality*
     ...    To verify whether the donation contact role record is created or not
     ...
@@ -929,6 +934,8 @@ ADF_REG-20
     #TestCase
     ${DonationName_V}=        read excel data  Donation   ADF_REL-20    Donation Select
     Set Global Variable    ${DonationName_V}
+    ${Contact_Role_Amount_V}=      read excel data  Donation   ADF_REL-20    ContactRole Amount
+    Set Global Variable    ${Contact_Role_Amount_V}
     Common_Configure.Log_into_Salesforce
     Donation.Donation_Choose
     Donation.Add_New_Multiple_Contact_Role
@@ -936,11 +943,13 @@ ADF_REG-20
 
 ADF_REG-21
 
-    [Tags]  Pass
+    [Tags]   Passed
     [Documentation]    *Functionality*
     ...    To verify whether the donation record is created or not from contact
     ...
 
+    ${ContactName_Value}=        read excel data  Contact   ADF_REL-21    Contact Value
+    Set Global Variable   ${ContactName_Value}
     Common_Configure.Log_into_Salesforce
     Donation.Donation_Creation_From_Contact
 
@@ -948,7 +957,20 @@ ADF_REG-22
 
     [Tags]  Passed
     [Documentation]    *Functionality*
-    ...    To verify whether the donation record is created or not from contact
+    ...    To verify whether the donation contact role record is created or not when creating a donation frmo contact
+
+    ...
+    ...    *Test Steps*
+    ...
+    ...    1. Open the sandbox "test.salesforce.com"
+    ...    2. Enter the valid username and password
+    ...    3. Click ""Submit"" button
+    ...    4. Navigates to "Contact" object
+    ...    5. Choose the Contact and Click new button on Donation relatedlist
+    ...    6. Enter the donation record details and then click save
+    ...    9. Scroll down to donation contact role VF page section
+    ...    10. Click Edit contact roles button on VF page
+    ...    11. Verfiy the expected result"
 
     ${ContactName_Value}=        read excel data  Donation   ADF_REL-22    Contact Select
     Set Global Variable   ${ContactName_Value}
@@ -957,19 +979,21 @@ ADF_REG-22
 
 ADF_REG-23
 
-    [Tags]  Pass
+    [Tags]  Passed
     [Documentation]    *Functionality*
     ...    To verify whether the donation record is created or not from contact
 
     ${DonationName_V}=        read excel data  Donation   ADF_REL-23    Donation Select
     Set Global Variable    ${DonationName_V}
+    ${Donor_update_Value}=  read excel data  Donation   ADF_REL-23    Donor
+    Set Global Variable    ${Donor_update_Value}
     Common_Configure.Log_into_Salesforce
     Updating_the_Donor_For_ReceivedDonaton
 
 
 ADF_REG-24
 
-    [Tags]  Pass
+    [Tags]  Passed
     [Documentation]    *Functionality*
     ...    To verify whether the donation record is created or not from contact
 
@@ -982,7 +1006,7 @@ ADF_REG-24
 
 ADF-REG-25
 
-    [Tags]  Pass
+    [Tags]  Passed
     [Documentation]    *Functionality*
     ...    To verify whether the CampaignSegment, Sourcecode
 
@@ -994,7 +1018,7 @@ ADF-REG-25
 
 ADF_REG-26
 
-    [Tags]  Pass
+    [Tags]  Passed
     [Documentation]    *Functionality*
     ...    To verify whether the CampaignSegment, Sourcecode
 
@@ -1006,7 +1030,7 @@ ADF_REG-26
 
 ADF-REG-27
 
-    [Tags]  Pass
+    [Tags]  Passed
     [Documentation]    *Functionality*
     ...    To verify whether the Contact Record Type (Household To International) Change
 
@@ -1019,11 +1043,11 @@ ADF-REG-27
 
 ADF_REG-28
 
-    [Tags]  Pass
+    [Tags]  Passed
     [Documentation]    *Functionality*
     ...    To verify whether the Contact Record Type (ODP To Household) Change
 
-    ${ContactName_Value}=     read excel data     Contact     ADF_REG-28   Contact Value
+    ${ContactName_Value}=     read excel data     Contact_Selection   ADF_REL-28    Contact Select
     Set Global Variable  ${ContactName_Value}
     Common_Configure.Log_into_Salesforce
     #Contact_Table_Iteration
@@ -1048,7 +1072,7 @@ ADF_REG-30
     [Tags]  Passed
     [Documentation]    *Functionality*
     ...    To verify whether the Contact Billing address is updated or not
-    ${AccountName_Value}=     read excel data     Contact_Selection    ADF_REL-30     Contact Select
+    ${AccountName_Value}=     read excel data     Contact_Selection    ADF_REL-30     Account Select
     Set Global Variable  ${AccountName_Value}
     Common_Configure.Log_into_Salesforce
     Account_Choose
@@ -1057,7 +1081,7 @@ ADF_REG-30
 
 ADF_REL-31
 
-    [Tags]  TestDemo1
+    [Tags]  Demotestt
     [Documentation]    *Functionality*
     ...    To verify whether the donation contact role amount, when updating the amount value partial to full
     ...    *Test Steps*
@@ -1092,7 +1116,7 @@ ADF_REL-31
 
 ADF_REG-32
 
-    [Tags]  Pass
+    [Tags]  Passed
     [Documentation]    *Functionality*
     ...    To verify whether the donation record is created with default designation or not
     ...
@@ -1113,7 +1137,7 @@ ADF_REG-32
 
 ADF_REG-33
 
-    [Tags]  Pass
+    [Tags]  Passed
     [Documentation]    *Functionality*
     ...    To verify whether the donation record is created with priamry campaign associated designation or not
     ...
@@ -1136,7 +1160,7 @@ ADF_REG-33
 
 ADF_REG-34
 
-    [Tags]  Pass
+    [Tags]  Passed
     [Documentation]    *Functionality*
     ...    To verify whether the donation name after updating the Donor Value
     ...
@@ -1147,13 +1171,15 @@ ADF_REG-34
 
     ${DonationName_V}=        read excel data  Donation   ADF_REL-34    Donation Select
     Set Global Variable    ${DonationName_V}
-    #Log_into_Salesforce
+    ${Donor_update_Value}=        read excel data  Donation   ADF_REL-34    Donor
+    Set Global Variable    ${Donor_update_Value}
+    Log_into_Salesforce
     Donation_Choose
     Verifying_the_Donation_Name
 
 ADF_REG-35
 
-    [Tags]  Pass
+    [Tags]  Passed
     [Documentation]    *Functionality*
     ...    To verify whether the contact's associated Donation's  record types are updated as "Board Member" or not, while creating a classification record
     ...     Note: Classification record's 'Board Member Classification' = True
@@ -1170,12 +1196,12 @@ ADF_REG-35
     #Contact_Table_Iteration
     #Get_Donation_Records_Details_From_Contact_RelatedList
     Contact_Choose
-    #Classifcation_Record_Creation_From_Contact
+    Classifcation_Record_Creation_From_Contact
     Verfiying_Donations_Recordtype_After_Classifcation_Record_Creation
 
 ADF_REG-36
 
-    [Tags]  Pass
+    [Tags]  Passed
     [Documentation]    *Functionality*
     ...    To verify whether the contact's associated Donation's  record types are updated as "Board Member" or not, while updating a classification record
     ...     Note: Classification record's 'Board Member Classification' = True
@@ -1190,14 +1216,14 @@ ADF_REG-36
     Set Global Variable  ${ExstingClassification}
     ${RecordID}=     read excel data     Contact_Selection    ADF_REL-36     Contact_Record Id
     Set Global Variable   ${RecordID}
-    #Log_into_Salesforce
+    Log_into_Salesforce
     Contact_Choose
     #Get_Donation_Records_Details_From_Contact_RelatedList
     Classifcation_Record_update_From_Contact
     Verfiying_Donations_Recordtype_After_Classifcation_Record_Creation
 
 ADF_REG-37
-    [Tags]  Pass
+    [Tags]  Passed
     [Documentation]    *Functionality*
     ...    To verify whether the contact's associated Donation's  record types are updated as "Board Member" or not, while updating a classification record
     ...     Note: Classification record's 'Board Member Classification' = True
@@ -1220,7 +1246,7 @@ ADF_REG-37
 
 ADF_REG-38
 
-     [Tags]  TestDemo
+     [Tags]  Passed
      [Documentation]  *Functionality*
     ...    To Verify the Communication preffernce field in ODP contact
     ...
@@ -1253,11 +1279,11 @@ ADF_REG-38
     set global variable  ${Bill_Country_V}
     ${ContactName_Value}=     read excel data     Account     ADF_REL-38    AccountName
     Set Global Variable  ${ContactName_Value}
-    #Log_into_Salesforce
+    Log_into_Salesforce
     Organization_Account_Creation
-    Contact_Choose
-    Set Selenium Implicit Wait  15s
-    ODP_Communicatoin_Prefference
+    ODP_Contact_Choose
+    #Set Selenium Implicit Wait  15s
+    ODP_Communicationn_Prefference
     Close Browser
 
 ADF_REG-39
@@ -1306,14 +1332,14 @@ ADF_REG-39
 
 ADF_REG-40
 
-    [Tags]  Passed
+    [Tags]  Demotest
     [Documentation]  *Functionality*
     ...    TTo verify whether the campaign segment record is created or not
     ...
 
-    ${Campaign_Segment_Name_V}=        read excel data  Campaign Segment       ADF_REG-40      Campaign Segment Name
+    ${Campaign_Segment_Name_V}=        read excel data  Campaign_Segment       ADF_REG-40      Campaign Segment Name
     Set Global Variable   ${Campaign_Segment_Name_V}
-    ${Campaign_V}=        read excel data  Campaign Segment       ADF_REG-40      Campaign
+    ${Campaign_V}=        read excel data  Campaign_Segment       ADF_REG-40      Campaign
     Set Global Variable  ${Campaign_V}
     Log_into_Salesforce
     Campaign_Segment_Record_Creation
@@ -1359,11 +1385,13 @@ ADF_REG-41
 
 ADF_REG-42
 
-    [Tags]  Pass
+    [Tags]  Passed
     [Documentation]  *Funcationality*
 
     ...     International Advocacy contact creation from International Account by clicking the New button
 
+    ${AccountName_Value}=        read excel data  Contact_Selection   ADF_REL-42    Account Select
+    Set Global Variable    ${AccountName_Value}
     Log_into_Salesforce
     Account_Choose
     International_Contact_Creation_From_Account
@@ -1410,7 +1438,7 @@ ADF_REG-43
 
 ADF_REG-44
 
-    [Tags]  Pass
+    [Tags]  Passed
      [Documentation]  *Funcationality*
 
      ...        To verify the Relationship type detail record is created or not
@@ -1433,7 +1461,7 @@ ADF_REG-44
 
 ADF_REG-45
 
-    [Tags]  Pass
+    [Tags]  Passed
      [Documentation]  *Funcationality*
 
       ...      To verify whether the Duplicate relationship record is created or not
@@ -1449,10 +1477,13 @@ ADF_REG-45
     Log_into_Salesforce
     Obejct_Selection
     Account-Contact_Relationship_Type_Detail_Record_Creation
+    Capture Page Screenshot
+    Cancelling_the_Edit_Mode
+    Close Browser
 
 ADF_REG-46
 
-    [Tags]  Pass
+    [Tags]  Passed
      [Documentation]  *Funcationality*
 
       ...      To verify whether the relationship record is created or not, when creating a record with first account record as household account
@@ -1523,6 +1554,8 @@ ADF_REG-49
 
     ...    *Test Steps*
 
+    ${ContactName_Value}=     read excel data     Contact_Selection    ADF_REL-49     Contact Select
+    Set Global Variable  ${ContactName_Value}
     Log_into_Salesforce
     Contact_Choose
     Verifying_the_Contact_Record_Deletion
@@ -1532,40 +1565,44 @@ ADF_REG-49
 
 ADF_REG-50
 
-    [Tags]  TestDemo
+    [Tags]  Passed
     [Documentation]    *Functionality*
     ...    To verify whether the Household Account record is delelted or not, when last household contact record is deleted
     ...
 
     ...    *Test Steps*
-
+    ${ContactName_Value}=     read excel data     Contact_Selection    ADF_REL-50     Contact Select
+    Set Global Variable  ${ContactName_Value}
     Log_into_Salesforce
     Contact_Choose
     Verifying_the_Contact_Record_Deletion
 
 ADF_REG-51
 
-    [Tags]  Pass
+    [Tags]  Passed
     [Documentation]    *Functionality*
     ...    To verify whether the ODP contact record deletion or not
     ...
 
     ...    *Test Steps*
 
-
+    ${ContactName_Value}=     read excel data     Contact_Selection    ADF_REL-51     Contact Select
+    Set Global Variable  ${ContactName_Value}
     Contact_Choose
     Verifying_the_ODPContact_Record_Deletion
 
 
 ADF_REG-52
 
-      [Tags]  Pass
+      [Tags]  Passed
     [Documentation]    *Functionality*
     ...    To verify whether the Donatoin's reffered CampaignSement and Received donation records are delelted or not
     ...
     ...    *Test Steps*
 
     #Log_into_Salesforce
+    ${DonationName_V}=     read excel data     Donation    ADF_REL-51     Donation Select
+    Set Global Variable  ${DonationName_V}
     Donation_Choose
     Verifying_the_CampaignSegment_Record_Deletion_From_Donation
     Verifying_the_Received_Donation_Record_Deletion
@@ -1573,13 +1610,12 @@ ADF_REG-52
 
 ADF_REG-53
 
-      [Tags]  Pass
+      [Tags]  Passed
     [Documentation]    *Functionality*
     ...    To verify whether the Donation's reffered Desgination records are delelted or not
     ...
 
     ...    *Test Steps*
-
 
 
     #Log_into_Salesforce
