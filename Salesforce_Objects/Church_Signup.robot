@@ -9,7 +9,7 @@ Resource   ../TestCases/TestSuiteVariables.robot
 
 # Church Information
 
-${Church_Signup_URL}    https://qarel-adflegalv2.cs25.force.com/payment/CA_MembershipJoin_VF
+${Church_Signup_URL}    https://qarel-adflegalv2.cs92.force.com/payment/CA_MembershipJoin_VF
 ${ChurchName_E}    xpath=.//*[@id='join:signupfrm:cname']
 ${Church_Address_E}    xpath=.//*[@id='join:signupfrm:caddress1']
 ${Church_Address2_E}    xpath=.//*[@id='join:signupfrm:caddress2']
@@ -70,6 +70,12 @@ ${Payer_State_E}        xpath=.//*[@id='join:signupfrm:paystate']
 ${Payer_Zipcode_E}      xpath=.//*[@id='join:signupfrm:payzip']
 ${Payer_Address_E}      xpath=.//*[@id='join:signupfrm:payaddress1']
 ${Payer_Address2_E}     xpath=//input[@name="join:signupfrm:payaddress2"]
+${Payment_Method_E}     xpath=.//*[@id='join:signupfrm:payType']
+${Bank_Name_E}      xpath=.//*[@id='join:signupfrm:bankname']
+${Payment_Account_Type_E}       xpath=.//*[@id='join:signupfrm:accountType']
+${Bank_RoutingNumber_E}     xpath=.//*[@id='join:signupfrm:bankRoutingNumber']
+${Bank_AccountNumber_E}     xpath=.//*[@id='join:signupfrm:bankAccountNumber']
+
 
 # Credit Card Information
 
@@ -83,11 +89,11 @@ ${Test}  xpath=.//*[@id='bottomButtonRow']/input[1]
 ${Signup_button_E}      xpath=.//*[@id='join:signupfrm']/div[1]/div/div/input
 ${Thankyou_E}       xpath=.//*[@id='join:signupfrm']/div[5]/fieldset/legend
 ${Submit_button_E}      xpath=.//*[@id='join:signupfrm:auth']
-
+${Submit_button_eCheck_E}   xpath=.//*[@id='join:signupfrm:authecheck']
 
 
 *** Keywords ***
-Church_Alliance_Signup_Primary
+Church_Alliance_Signup_PrimaryInfo_With_CreditCard
     Open Browser  ${Church_Signup_URL}  chrome
     Click Element   ${Signup_button_E}
     Maximize Browser Window
@@ -132,7 +138,9 @@ Church_Alliance_Signup_Primary
     #Click Element  ${Payment_Date_E}
     Wait Until Element Is Visible  xpath=.//*[@id='join:signupfrm:plansubmit']
     Click Element  xpath=.//*[@id='join:signupfrm:plansubmit']
-    wait until element is visible  ${Payer_FN_E}
+    Wait Until Element Is Visible  ${Payment_Method_E}
+    Select From List By Value   ${Payment_Method_E}     Credit Card
+    wait until element is visible  ${Church_CardNo_E}
     Input Text    ${Payer_FN_E}    ${Payer_FN_V}
     Input Text    ${Payer_LN_E}    ${Payer_LN_V}
     Input Text    ${Payer_Address_E}    ${Payer_Address_V}

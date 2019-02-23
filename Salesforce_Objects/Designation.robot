@@ -46,7 +46,7 @@ Verifying_the_Desingation_Record_Deletion
 Designation_Record_Choose
     Wait Until Element Is Visible  ${New_button_E}
     Set Selenium Implicit Wait  5s
-    Click Element  xpath=.//th/a[contains(.,"${DesignationName_V}")]
+    Click Element  xpath=.//th/a[contains(.,"Designation1}")]
 
 Obejct_Selection
 

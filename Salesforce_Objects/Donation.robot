@@ -32,12 +32,12 @@ ${Donor_VE}     xpath=.//*[@id='CF00Nf4000009heuH_ileinner']
 ${Account_VE}       xpath=.//*[@id='opp4_ileinner']
 ${Source_Code_VE}       xpath=.//*[@id='00Nf4000009hevN_ileinner']
 ${DonorContactRole}    Donor
-${Donor_update_Value}   LawrenceWilkins_Church
+${Donor_update_Value}
 ${CampiagnSegment_VE}     xpath=.//*[@id='CF00Nf4000009heu2_ileinner']
 ${Campaign_VE}      xpath=.//*[@id='00Nf4000009heu1_ileinner']
 ${PrimaryCampaign_VE}       xpath=.//*[@id='opp17_ileinner']
 ${Source_update_Value}  10000889
-${CampaignSegment_update_Value}    Test Segment
+${CampaignSegment_update_Value}    Test Segment 2
 
 #Transaction record webelements
 ${Tracnsaction_Related_List_E}      xpath=.//*[@id='006q000000FFNJI_00Nf400000AHy7G']/div[1]/div
@@ -53,6 +53,7 @@ ${Contact_Role_Frame_E}     id=066f4000001HGzX
 ${ContactVF_Table_Row_E}       xpath=.//*[@id='thePage:theForm:thePageBlock:j_id9:tb']
 ${ContactVF_Table_Coln_E}   xpath=.//*[@id='thePage:theForm:thePageBlock:j_id9']/thead/tr[2]/th
 ${Edit_ContactRole_Button_E}    css=[value='Edit Contact Roles']
+#${Edit_ContactRole_Button_E}    xpath=.//*[@id='thePage:theForm:thePageBlock:editButton']
 ${Save_Button_E}    xpath=.//*[@id='thePage:theForm:thePageBlock:pageBlockButtons:j_id28']
 ${Cancel_Button_E}  css=[value='Cancel']
 ${Edit_Role_VFPage_Frame}   id=thePage:theForm
@@ -112,7 +113,8 @@ Donation_Creation
 
 Updating_the_Donor_Value
 
-    Donation_Table_Iteration
+    #Donation_Table_Iteration
+    Donation_Choose
     Wait Until Element Is Visible    ${Edit_Button}
     ${DonationNameBefore}=    Get Text    ${Donation_Name_VE}
     Click Element    ${Edit_Button}
@@ -216,7 +218,7 @@ Add_New_Single_Contact_Role
     Log    ${DonorValue}
     ${DonationAccountValue}=    Get Text    xpath=.//*[@id='opp4_ileinner']
     Log    ${DonationAccountValue}
-    ${DonorAmount}=     Get Value  xpath=.//*[@id='opp7_ileinner']
+    ${DonorAmount}=     Get Text  xpath=.//*[@id='opp7_ileinner']
     Set Global Variable  ${DonorAmount}
     Select Frame    ${Contact_Role_Frame_E}
     Click Button  ${Edit_ContactRole_Button_E}
@@ -358,13 +360,13 @@ Updating_the_Contact_Role_Amount
     \    Set Global Variable  ${i}
     \    ${ContactRoleValue}=   Get Value   xpath=.//*[@id='thePage:theForm:thePageBlock:theTable:${i}:contactInput']
     \    Log    ${ContactRoleValue}
-    \    Run Keyword If  "${ContactRoleValue}"!=="${DonorValue}"  Entering_Amount_contact_Role
+    \    Run Keyword If  "${ContactRoleValue}"!="${DonorValue}"  Entering_Amount_contact_Role
     \    ${ContactRoleValue1}=   Get Value   xpath=.//*[@id='thePage:theForm:thePageBlock:theTable:${i}:contactInput']
     \    Log    ${ContactRoleValue1}
     \    Sleep  10s
     \    Run Keyword If    "${ContactRoleValue1}"=="${New_Contact_Role_V}"    Exit For Loop
     Set Selenium Implicit Wait  15s
-    Click Element  ${Save_Button_E}
+    #Click Element  ${Save_Button_E}
     Set Selenium Implicit Wait  10s
     Select Frame    ${Contact_Role_Frame_E}
     ${Table}=    Get Value    xpath=.//*[@id='thePage:theForm:thePageBlock:j_id9']
@@ -420,6 +422,7 @@ Entering_Amount_contact_Role
 
     Click Element  xpath=.//*[@id='thePage:theForm:thePageBlock:theTable:${i}:pagAmountFields']/input[2]
     Input Text  xpath=.//*[@id='thePage:theForm:thePageBlock:theTable:${i}:pagAmountFields']/input[2]     ${Contact_Role_Amount_V}
+    Click Element  ${Save_Button_E}
 
 Insert_New_Contact
     Input Text  xpath=.//*[@id='thePage:theForm:thePageBlock:theTable:${i}:contactInput']   ${New_Contact_Role_V}
@@ -624,9 +627,10 @@ Verify_RelationshipViewer_Page
 
 
 Donation_Creation_From_Contact
-    Donation_Choose
+    #Donation_Choose
+    Contact_Choose
     Wait Until Element Is Visible    name=edit
-    Contact_Relationship_Viewer
+    #Contact_Relationship_Viewer
     Sleep   20s
     #Scroll_To_Page  0   5500
     #Focus  xpath=.//*[@id='0031b00000RyUIX_RelatedOpportunityList']/div[1]/div
@@ -777,7 +781,8 @@ Verifying_Donation's_Desgination(Default)
     Log    ${UnDegAmount}
     Should Be Equal    ${TotalAmount}    ${DesignatedAmt}
     Screenshot.Take Screenshot Without Embedding
-    Screenshot.Set Screenshot Directory    E:\\Desktop\\Screenshot
+    Capture Page Screenshot
+    #Screenshot.Set Screenshot Directory    E:\\Desktop\\Screenshot
     unselect frame
 Verifying_Donation's_Desgination(Primary_Campaign)
 
@@ -860,7 +865,7 @@ QA_Test
 Verifying_the_CampaignSegment_Record_Deletion_From_Donation
 
    Wait Until Element Is Visible  ${Donation_Name_VE}
-   Click Element  xpath=.//a[contains(text(),'Test Segment')]
+   Click Element  xpath=.//a[contains(text(),'Test Segment 1')]
    Set Selenium Implicit Wait  10s
    ${Parent}=   Get Window Titles
    Log  ${Parent}

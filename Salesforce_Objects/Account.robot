@@ -31,7 +31,7 @@ ${Account_Owner_VE}     xpath=.//*[@id='acc1_ileinner']
 ${Denomination_E}       xpath=.//*[@id='00Nf400000AI7eb_ileinner']
 ${Account_Type_E}       xpath=.//*[@id='acc6_ileinner']
 ${Billing_Address_Table_E}      xpath=.//*[@id='acc17_ileinner']/table/tbody/tr[1]/td
-${ODP_Contact_E}    xpath=.//*[@id='0011b00000YQWiy_RelatedContactList_body']/table/tbody/tr[2]/th/a
+${ODP_Contact_E}    xpath=.//h3[contains(.,'Contacts')]/following::a[contains(text(),'${Acc_Name_V}')]
 ${AccountName}  IdaMyers_Church
 
 ${UsernameElement}      Id=username
@@ -59,6 +59,19 @@ Organization_Account_Creation
     #Select From List By Value    ${Acc_Type_E}    @{Type1}[3]
     Click Element    ${Save}
     Capture Page Screenshot
+
+ODP_Contact_Choose
+
+    Click Element  xpath=.//h3[contains(.,'Contacts')]/following::a[contains(text(),'${Acc_Name_V}')]
+    Wait Until Element Is Visible  ${Edit_Button}
+
+Organization_Account_Selection
+    Click Element  ${Account_Obj_E}
+    Wait Until Element Is Visible  ${New_Button_E}
+    Click Element  name=go
+    Set Selenium Implicit Wait  10s
+    Click Element  xpath=.//a[Contains(.,"${Acc_Name_V}")]
+    Wait Until Element Is Visible  ${Edit_Button}
 
 Get_values_from_Contact_record
     ${Account_Owner}=   Get Text    ${Account_Owner_VE}
@@ -112,7 +125,7 @@ Household_Contact_Creation_From_Account
 
 International_Contact_Creation_From_Account
     Wait Until Element Is Visible  ${Edit_Button}
-    Click Element  xpath=.//h3[contains(.,'Contact')]/following::input[@name='new']
+    Click Element  xpath=.//h3[contains(.,'Contact')]/following::input[@name='new_advocacy_contact']
     Wait Until Element Is Visible   ${save}
 
 

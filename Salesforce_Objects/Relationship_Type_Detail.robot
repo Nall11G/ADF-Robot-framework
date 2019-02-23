@@ -46,8 +46,8 @@ Contact-Contact_Relationship_Type_Detail_Record_Creation
     Wait Until Element Is Visible  ${New_Button_E}
     Click Element  ${New_Button_E}
     Click Element  ${Contniue/Save_E}
-    Input Text  ${First_Contact_E}      ${Fir
-    Input Text  ${Second_Contact_E}     Jerome Benson
+    Input Text  ${First_Contact_E}      Kelly Hunter
+    Input Text  ${Second_Contact_E}     QA8-Salutation
     Input Text  ${First_Relationship_Type_E}    Church Alliance Relationship
     Input Text  ${Second_Relationship_Type_E}   Church Alliance Relationship
     Input Text  ${Start_Date_E}     12/9/2018
@@ -82,8 +82,8 @@ Account-Contact_Relationship_Type_Detail_Record_Creation
     @{RecordType}=      Get List Items      ${RecordType_E}
     Select From List By Value   ${RecordType_E}      @{RecordType}[2]
     Click Element  ${Contniue/Save_E}
-    Input Text   ${First_Account_E}     Brandon Reeves
-    Input Text  ${Second_Contact_E}    Jerome Benson
+    Input Text   ${First_Account_E}     ${FirstAccount_V}
+    Input Text  ${Second_Contact_E}    ${SecondContact_V}
     Input Text  ${First_Relationship_Type_E}    Church Alliance Relationship
     Input Text  ${Second_Relationship_Type_E}   Church Alliance Relationship
     Input Text  ${Start_Date_E}     ${Start_Date_V}

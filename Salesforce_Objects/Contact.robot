@@ -83,8 +83,8 @@ ${Primary_Phone_VE}     xpath=.//*[@id='con10_ileinner']
 ${Emai_VE}      xpath=.//*[@id='con15_ileinner']
 ${Exclude_from_Ministry_VE}     xpath=.//*[@id='00Nf4000009hepy_ileinner']
 ${Contact_Owner_VE}     xpath=.//*[@id='con1_ileinner']
-${ADFMailOptout_VE}    id=00Nf4000009hepQ
-${ADF_Foundation_Mail_OptOut_VE}    id=00Nf400000ALtas
+${ADFMailOptout_VE}    id=00Nf4000009hepR
+${ADF_Foundation_Mail_OptOut_VE}    id=00Nf4000009hepQ
 ${Faith&Justice_VE}     id=00Nf4000009heq8
 ${Telemarketing_VE}     id=00Nf4000009herm
 ${Record_Type}      xpath=.//*[@id='RecordType_ileinner']
@@ -191,7 +191,6 @@ Contact Creation With Salutation
     Input Text      ${BirthDateElement_E}      ${Birth_Date_V}
     Click Element    ${Continue/Save_E}
 
-
 Contact_Creation_With_HOH_Checked
 
     Input Text    ${FirstName_Contact_E}   ${FirstName_V}
@@ -203,7 +202,6 @@ Contact_Creation_With_HOH_Unchecked
     Input Text    ${FirstName_Contact_E}   ${FirstName_V}
     Input Text    ${LastName_Contact_E}   ${LastName_V}
     Click Element  ${Continue/Save_E}
-
 
 Contact Creation With Home Phone
     Wait Until Element Is Visible    ${Contact_Tab_E}
@@ -327,7 +325,7 @@ Get_values_from_Contact_record
     set global variable  ${ContactName}
 
 Verifying_Greeting_Field_Value
-    Wait Until Element Is Visible  ${ADFMailOptout_VE}
+    Wait Until Element Is Visible  ${Edit_Button}
     #Should Not Be True  ${ADFMailOptout_VE}
     #Should Not Be True  ${ADF_Foundation_Mail_OptOut_VE}
     #Should Not Be True  ${Faith&Justice_VE}
@@ -346,15 +344,15 @@ Houesehold_Contact_Communication_Field_Verification
     Contact.Get_values_from_Contact_record
     Click Element  ${Edit_Button}
     Set Selenium Implicit Wait  10s
-    ${ADF_Checkbox}=     Get Value   ${ADFMailOptout_VE}
+    ${ADF_Checkbox}=     Run Keyword And Return Status  checkbox should be selected  ${ADFMailOptout_VE}
     Set Global Variable  ${ADF_Checkbox}
-    ${ADF_Foundation_Checkbox}=     Get Value   ${ADF_Foundation_Mail_OptOut_VE}
+    ${ADF_Foundation_Checkbox}=     Run Keyword And Return Status  checkbox should be selected   ${ADF_Foundation_Mail_OptOut_VE}
     Set Global Variable     ${ADF_Foundation_Checkbox}
-    ${FaithJustice_Checkbox}=     Get Value   ${Faith&Justice_VE}
+    ${FaithJustice_Checkbox}=     Run Keyword And Return Status  checkbox should be selected   ${Faith&Justice_VE}
     Set Global Variable     ${FaithJustice_Checkbox}
-    ${Telemarketing}=       Get Value   ${Telemarketing_VE}
+    ${Telemarketing}=       Run Keyword And Return Status  checkbox should be selected   ${Telemarketing_VE}
     Set Global Variable   ${Telemarketing}
-    ${DoNotMail}=   Get Value   ${DonNot_Mail_VE}
+    ${DoNotMail}=   Run Keyword And Return Status  checkbox should be selected   ${DonNot_Mail_VE}
     Set Global Variable  ${DoNotMail}
     Should Be Equal  ${ADF_Checkbox}     ${FALSE}
     Should Be Equal  ${ADF_Foundation_Checkbox}     ${FALSE}
@@ -362,90 +360,27 @@ Houesehold_Contact_Communication_Field_Verification
     Should Be Equal   ${Telemarketing}     ${FALSE}
     Should Be Equal  ${DoNotMail}   ${FALSE}
 
-Houesehold_Contact_Checkbox_Field_Verification_Primary
-    Contact.Get_values_from_Contact_record
-    ${ADF_Checkbox}=     Get Value   ${ADFMailOptout_VE}
-    Set Global Variable  ${ADF_Checkbox}
-    ${ADF_Foundation_Checkbox}=     Get Value   ${ADF_Foundation_Mail_OptOut_VE}
-    Set Global Variable     ${ADF_Foundation_Checkbox}
-    ${FaithJustice_Checkbox}=     Get Value   ${Faith&Justice_VE}
-    Set Global Variable     ${FaithJustice_Checkbox}
-    ${Telemarketing}=       Get Value   ${Telemarketing_VE}
-    Set Global Variable   ${Telemarketing}
-    ${DoNotMail}=   Get Value   ${DonNot_Mail_VE}
-    Set Global Variable  ${DoNotMail}
-    Should Be Equal  ${ADF_Checkbox}     ${True}
-    Should Be Equal  ${ADF_Foundation_Checkbox}     ${True}
-    Should Be Equal  ${FaithJustice_Checkbox}     ${True}
-    Should Be Equal   ${Telemarketing}     ${True}
-    Should Be Equal  ${DoNotMail}   ${True}
 
-Contact_Field_Verification
-
-    Contact.Get_values_from_Contact_record
-    Should Be True  ${ADFMailOptout_VE}
-    Should Be True  ${ADF_Foundation_Mail_OptOut_VE}
-    Should Be True  ${Faith&Justice_VE}
-    Should Be True  ${Telemarketing_VE}
-    #Should Be Equal  ${Primary_Phone_E}     ${MC_PrimaryPhone_V}
-    #Should Be Equal  ${Contact_Email}       ${MC_PrimaryEmail_V}
-    #Should Be Equal  ${ContactName}     ${MinstryName_E}
-
-ODP_Communicatoin_Prefference
+ODP_Communicationn_Prefference
 
     Contact.Get_values_from_Contact_record
     Click Element  ${Edit_Button}
     Set Selenium Implicit Wait  10s
-    ${ADF_Checkbox}=     Get Value   ${ADFMailOptout_VE}
+    ${ADF_Checkbox}=     Run Keyword And Return Status  checkbox should be selected   ${ADFMailOptout_VE}
     Set Global Variable  ${ADF_Checkbox}
-    ${ADF_Foundation_Checkbox}=     Get Value   ${ADF_Foundation_Mail_OptOut_VE}
+    ${ADF_Foundation_Checkbox}=     Run Keyword And Return Status  checkbox should be selected   ${ADF_Foundation_Mail_OptOut_VE}
     Set Global Variable     ${ADF_Foundation_Checkbox}
-    ${FaithJustice_Checkbox}=     Get Value   ${Faith&Justice_VE}
+    ${FaithJustice_Checkbox}=     Run Keyword And Return Status  checkbox should be selected   ${Faith&Justice_VE}
     Set Global Variable     ${FaithJustice_Checkbox}
-    ${Telemarketing}=       Get Value   ${Telemarketing_VE}
+    ${Telemarketing}=       Run Keyword And Return Status  checkbox should be selected   ${Telemarketing_VE}
     Set Global Variable   ${Telemarketing}
-    ${DoNotMail}=   Get Value   ${DonNot_Mail_VE}
+    ${DoNotMail}=   Run Keyword And Return Status  checkbox should be selected   ${DonNot_Mail_VE}
     Set Global Variable  ${DoNotMail}
     Should Be Equal  ${ADF_Checkbox}     ${False}
     Should Be Equal  ${ADF_Foundation_Checkbox}     ${False}
     Should Be Equal  ${FaithJustice_Checkbox}     ${False}
     Should Be Equal   ${Telemarketing}     ${False}
     Should Be Equal  ${DoNotMail}   ${False}
-
-
-
-Contact_Table_Iteration
-
-    wait until element is visible  ${Contact_Tab_E}
-    Click Element  ${Contact_Tab_E}
-    Set Selenium Implicit Wait  10s
-    ${Row_Count}=    Get Matching Xpath Count    xpath=.//*[@id='bodyCell']/div[3]/div[1]/div/div[2]/table/tbody/tr
-    Log    ${Row_Count}
-    : FOR    ${i}    IN RANGE    1    ${Row_Count}+1
-    \    Log    ${i}
-    \    ${GetTablevalue}=    Get Text    xpath=.//*[@id='bodyCell']/div[3]/div[1]/div/div[2]/table/tbody/tr[${i}]/th
-    \    Log    ${GetTablevalue}
-    \    Run Keyword If    "${GetTablevalue}"=="${ContactName_Value}"    Click Element    xpath=.//*[@id='bodyCell']/div[3]/div[1]/div/div[2]/table/tbody/tr[${i}]/th/a
-    \    Exit For Loop If    "${GetTablevalue}"=="${ContactName_Value}"
-    Sleep    10s
-    Wait Until Element Is Visible   ${EditButton_E}
-
-ODP_Contact_Verification
-
-    Wait Until Element Is Visible    ${Contact_Tab_E}
-    Click Element    ${Contact_Tab_E}
-    Sleep    10s
-    Click Element   xpath=.//*[@id='bodyCell']/div[3]/div[1]/div/div[2]/table/tbody/tr[2]/th/a
-    Wait Until Element Is Visible    name=edit
-    ${contactName}=    Get Text    ${Contact_Name_VE}
-    Set Global Variable    ${contactName}
-    Should Be Equal  ${contactName}     ${ChurchName_V}
-    ${AccountName}=    Get Text    ${Account_Name_VE}
-    Set Global Variable    ${AccountName}
-    Should Be Equal  ${AccountName}     ${ChurchName_V}
-    ${Membership}=    Get Text    ${Membership_E}
-    Should Be Equal  ${Membership}      Church Alliance
-    Contact_Field_Verification
 
 Ministry_ODP_Contact_Verification
 
@@ -470,7 +405,7 @@ Household/Reliance_Contact_Verification
     Set Global Variable  ${Greeting_Value}
     ${Address_Value}=   Get Text    ${Address_Value_VE}
     Set Global Variable  ${Address_Value}
-    ${Primary_Phone}=   Get Value   ${Primary_Phone_VE}
+    ${Primary_Phone}=   Get Text   ${Primary_Phone_VE}
     Set Global Variable  ${Primary_Phone}
     ${Greeting_String1}=     Catenate    Ms.     ${LastName_V}
     Set Global Variable   ${Greeting_String1}
@@ -478,20 +413,10 @@ Household/Reliance_Contact_Verification
     Set Global Variable   ${Gretting_String2}
     ${String3}=     Catenate  Ms.   ${ContactName}
     Set Global Variable  ${String3}
-    ${WorkPhone}=   Catenate    SEPARATOR= X         ${WorkPhone_V}  ${WorkPhone_Extension_V}
+    ${WorkPhone}=   Catenate    SEPARATOR == X         ${WorkPhone_V}  ${WorkPhone_Extension_V}
     Set Global Variable  ${WorkPhone}
     ${Addresse_Verfied_Value}=  Catenate    Ms.     ${LastName_V}
     Set Global Variable   ${Addresse_Verfied_Value}
-
-Church_Household_Contact_Verification
-
-    ${contactName}=    Get Text    ${Contact_Name_VE}
-    Set Global Variable    ${contactName}
-    ${AccountName}=    Get Text    ${Account_Name_VE}
-    Set Global Variable    ${AccountName}
-    Should Be Equal  ${AccountName}      ${contactName} Household
-    ${Cont_PreviousEmail}=    Get Text    ${Emai_VE}
-    Set Global Variable    ${Cont_PreviousEmail}
 
 Ambassdor_Household Contact Verification
 
@@ -545,7 +470,7 @@ Contact_Mailing_Address
 Updating_The_Mailing_Address
 
     Clear Element Text  ${Mailing_Address_Street_E}
-    Input Text  ${Mailing_Address_Street_E}  TestRelatedAddress4
+    Input Text  ${Mailing_Address_Street_E}  TestRelatedAddress11
     Click Element  ${Continue/Save_E}
 
 Updating_The_Eamil
@@ -553,7 +478,6 @@ Updating_The_Eamil
     Clear Element Text  ${Email_E}
     Input Text  ${Email_E}      ${Contact_Email_V}
     Click Element  ${Continue/Save_E}
-
 
 Comparision_BW_Mailing_Billing_Address
     Contact_Mailing_Address
@@ -574,7 +498,7 @@ Contact_Exsting_Address
     Set Global Variable    ${RA_PreviousStreet}
 
 Uncheck_Head_Of_Household_Flag
-
+    Click Element  ${Edit_Button}
     Set Selenium Implicit Wait  10s
     Unselect Checkbox    xpath=.//*[@id='00Nf4000009heqM']
     Click Button    ${Continue/Save_E}
@@ -601,9 +525,6 @@ Head_Of_Household_Verifcation_For_HOH_Enabled_SecondContact
     ${HOH}=     Run Keyword And Return Status  checkbox should be selected  ${Head of Household_VE}
     Set Global Variable  ${HOH}
     Should Be Equal  ${HOH}     ${True}
-
-
-
 
 Classifcation_Record_Creation_From_Contact
 
@@ -697,13 +618,13 @@ Verfiying_Donations_Recordtype_After_Classifcation_Record_Creation
     \    ${Donation_Stage}=     Get Text    xpath=.//*[@id='${RecordID}_RelatedOpportunityList_body']/table/tbody/tr[${i}]/td[5]
     \    Log    ${Donation_Stage}
     \    #Run Keyword If  "${Donation_Stage}"=="Received"    Append To List  ${Donations_New}
-    \    Run Keyword If  "${Donation_Stage}"=="Received"    Get_Value_Donation_RecordType_For_NonBoardmember
+    \    Run Keyword If  "${Donation_Stage}"=="Received"    Get_Value_Donation_RecordType
     \    Exit For Loop If  ${1}>>${Donation list}
 
 Get_Value_Donation_RecordType
     ${Donation_Record_Type}=    Get Text    xpath=.//*[@id='${RecordID}_RelatedOpportunityList_body']/table/tbody/tr[${i}]/td[4]
     Log     ${Donation_Record_Type}
-    Should Be True    ${Donation_Record_Type}     ${Board_Member}
+    Should Be Equal    ${Donation_Record_Type}     ${Board_Member}
     Capture Page Screenshot
 
 Get_Value_Donation_RecordType_For_NonBoardmember
@@ -718,7 +639,6 @@ Verifying_the_International_Account
     Log  ${Account_Value}
     Should Be Equal  ${Account_Value}   ${AccountName_Value}
 
-
 Classifcation_Record_update_From_Contact
 
     Wait Until Element Is Visible  xpath=.//h3[contains(.,'Classification Type Contacts')]/following::input[@value='New Classification Type Contact']
@@ -729,8 +649,8 @@ Classifcation_Record_update_From_Contact
     Click Element  ${Continue/Save_E}
     #Navigates to Contact Record
     Set Selenium Implicit Wait  10s
-    Wait Until Element Is Visible  ${Contact_Hyberlink_E}
-    Click Element  ${Contact_Hyberlink_E}
+    Wait Until Element Is Visible  xpath=.//div/a[contains(.,"${ContactName_Value}")]
+    Click Element  xpath=.//div/a[contains(.,"${ContactName_Value}")]
 
 Verfiying_Donations_Recordtype_Other_Classifcation_Record_Creation
 
@@ -771,37 +691,11 @@ MakePrimary_Address_From_Relatesd_Address_Record
     Click Element    xpath=.//*[@id='${RecordID}_00Nf4000009henG_body']/table/tbody/tr[${RE_Relate list}]/td[2]/a
     Set Selenium Implicit Wait  10s
 
-
 Contact_Choose
    Wait Until Element Is Visible    ${Contact_Tab_E}
    Click Element  ${Contact_Tab_E}
    Set Selenium Implicit Wait  5s
    Click Element  xpath=.//th/a[contains(.,"${ContactName_Value}")]
-
-Test_Tites
-    Open Browser  ${URL}    chrome
-    Maximize Browser Window
-    Input Text  ${UsernameElement}      nallavan@mstsolutions.com.qarel
-    Input Text  ${PasswordElement}      metasoft@123
-    click button  ${Submit}
-    Contact_Table_Iteration
-    #${HOH}=     Get   xpath=.//*[@id='00Nf4000009heqM_chkbox']
-    #Set Global Variable  ${HOH}
-    #Checkbox Should Be Selected  xpath=.//*[@id='00Nf4000009heqM_chkbox']
-    ${HoH_Flag}=    Run Keyword And Return Status   Get Value  xpath=.//span[contains(.,'Head of Household')]/following::img[@alt="Checked"][1]
-    Log  ${HoH_Flag}
-    ${HoH_Flag1}=    Get Value  xpath=.//*[@id='00Nf4000009heqM_chkbox']
-    Log  ${HoH_Flag1}
-    ${HoH_Flag2}=    Get Value  xpath=.//span[contains(.,'Head of Household')]/following::img[@alt="Checked"][1]
-    Log  ${HoH_Flag2}
-    ${True1}=   Wait Until Page Contains Element  xpath=.//span[contains(.,'Head of Household')]/following::img[@alt="Checked"][1]
-    Run Keyword If  ${True1}=='Pass'    Log To Console  True
-    ${HoH_Flag3}=    Run Keyword And Return Status   Get Text  xpath=.//span[contains(.,'Head of Household')]/following::img[@alt="Checked"][1]
-    Log  ${HoH_Flag3}
-    #${HoH_Flag4}=    Run Keyword And Return Status   Get Value  xpath=.//*[@id='00Nf4000009heqM_chkbox']
-    #Log  ${HoH_Flag4}
-    ${HOH3}=    Get Title
-    Log  ${HOH3}
 
 Verifyng_FindDuplicates_VF_Page
 
@@ -836,7 +730,6 @@ Duplicate_Contact_Creation
     Input Text      ${Mobile_Phone_E}   ${Mobile_V}
     Set Selenium Implicit Wait  5s
     Click Element    ${Continue/Save_E}
-
 
 Verifying_the_Contact_Record_Deletion
 
@@ -909,3 +802,147 @@ Exsting_Related Addres_Related List_From_Contact (OLD)
     \    Log    ${GetTablevalue}
     \    Click Element    xpath=.//*[@id='${RecordID}_00Nf400000AI7r3_body']/table/tbody/tr[${k}]/td[${J}]/a
     \    Exit For Loop
+
+
+
+        #Church Alliance Community Record Verification*
+
+
+Church_ODP_Contact_Verification
+
+    Wait Until Element Is Visible    name=edit
+    ${contactName}=    Get Text    ${Contact_Name_VE}
+    Set Global Variable    ${contactName}
+    Should Be Equal  ${contactName}     ${ChurchName_V}
+    ${AccountName}=    Get Text    ${Account_Name_VE}
+    Set Global Variable    ${AccountName}
+    Should Be Equal  ${AccountName}     ${ChurchName_V}
+    ${Membership}=    Get Text    ${Membership_E}
+    Should Be Equal  ${Membership}      Church Alliance
+    ${Primary_Phone}=    Get Value      ${Primary_Phone_VE}
+    Set Global Variable  ${Primary_Phone}
+    Should Be Equal     ${Primary_Phone}    ${Church_Phone_V}
+    ${Contact_Owner}=   Get Text        ${Contact_Owner_VE}
+    Set Global Variable  ${Contact_Owner}
+    Should Be Equal     ${Contact_Owner_VE}     ADF Admin - MST
+    ${Contact_Email}=   Get Text    ${Emai_VE}
+    Set Global Variable  ${Contact_Email}
+    Should Be Equal     ${Contact_Email}   ${Church_Email_V}
+    ${Classifcation_Type}=  Get Text    xpath=.//h3[contains(.,'Classification Type Contacts')]/following::th[contains(text(),'CA-Church Member')]
+    Set Global Variable  ${Classifcation_Type}
+    Church_ODP_Communication_fields_Verification
+
+Church_ODP_Communication_fields_Verification
+    Click Element  ${Edit_Button}
+    Set Selenium Implicit Wait  10s
+    ${ADF_Checkbox}=     Run Keyword And Return Status  checkbox should be selected   ${ADFMailOptout_VE}
+    Set Global Variable  ${ADF_Checkbox}
+    ${ADF_Foundation_Checkbox}=     Run Keyword And Return Status  checkbox should be selected   ${ADF_Foundation_Mail_OptOut_VE}
+    Set Global Variable     ${ADF_Foundation_Checkbox}
+    ${FaithJustice_Checkbox}=     Run Keyword And Return Status  checkbox should be selected   ${Faith&Justice_VE}
+    Set Global Variable     ${FaithJustice_Checkbox}
+    ${Telemarketing}=       Run Keyword And Return Status  checkbox should be selected   ${Telemarketing_VE}
+    Set Global Variable   ${Telemarketing}
+    ${DoNotMail}=   Run Keyword And Return Status  checkbox should be selected   ${DonNot_Mail_VE}
+    Set Global Variable  ${DoNotMail}
+    Should Be Equal  ${ADF_Checkbox}     ${True}
+    Should Be Equal  ${ADF_Foundation_Checkbox}     ${True}
+    Should Be Equal  ${FaithJustice_Checkbox}     ${True}
+    Should Be Equal   ${Telemarketing}     ${True}
+    Should Be Equal  ${DoNotMail}   ${False}
+
+Church_Primary_Household_Contact_Verification
+    ${contactName}=    Get Text    ${Contact_Name_VE}
+    Set Global Variable    ${contactName}
+    ${AccountName}=    Get Text    ${Account_Name_VE}
+    Set Global Variable    ${AccountName}
+    Should Be Equal  ${AccountName}      ${contactName} Household
+    ${Cont_Email}=    Get Text    ${Emai_VE}
+    Set Global Variable   ${Cont_Email}
+    Should Be Equal  ${Cont_Email}  ${Primary_Email_V}
+    ${Primary_Phone}=    Get Value      ${Primary_Phone_VE}
+    Set Global Variable  ${Primary_Phone}
+    Should Be Equal     ${Primary_Phone}        ${Primary_Phone_V}
+    ${Classifcation_Type}=  Get Text    xpath=.//h3[contains(.,'Classification Type Contacts')]/following::th[contains(text(),'CA-Member Pastor')]
+    Set Global Variable  ${Classifcation_Type}
+    Church_Household_Contact_Communication_Field_Verification
+
+Church_Secondary_Household_Contact_Verification
+
+    ${contactName}=    Get Text    ${Contact_Name_VE}
+    Set Global Variable    ${contactName}
+    ${AccountName}=    Get Text    ${Account_Name_VE}
+    Set Global Variable    ${AccountName}
+    Should Be Equal  ${AccountName}      ${contactName} Household
+    ${Cont_Email}=    Get Text    ${Emai_VE}
+    Set Global Variable   ${Cont_Email}
+    Should Be Equal  ${Cont_Email}  ${Lead_Email_V}
+    ${Primary_Phone}=    Get Value      ${Primary_Phone_VE}
+    Set Global Variable  ${Primary_Phone}
+    Should Be Equal     ${Primary_Phone}    ${Lead_Phone_V}
+    Element Should Not Be Visible    xpath=.//h3[contains(.,'Classification Type Contacts')]/following::th[contains(text(),'CA-Member Pastor')]
+    Church_Secondary_Household_Contact_Communication_Field_Verification
+
+Church_Lead/Primary_Household_Contact_Verification
+
+    ${contactName}=    Get Text    ${Contact_Name_VE}
+    Set Global Variable    ${contactName}
+    ${AccountName}=    Get Text    ${Account_Name_VE}
+    Set Global Variable    ${AccountName}
+    Should Be Equal  ${AccountName}      ${contactName} Household
+    ${Cont_Email}=    Get Text    ${Emai_VE}
+    Set Global Variable   ${Cont_Email}
+    Should Be Equal  ${Cont_Email}  ${Primary_Email_V}
+    ${Primary_Phone}=    Get Value      ${Primary_Phone_VE}
+    Set Global Variable  ${Primary_Phone}
+    Should Be Equal     ${Primary_Phone}        ${Primary_Phone_V}
+    ${Classifcation_Type}=  Get Text    xpath=.//h3[contains(.,'Classification Type Contacts')]/following::th[contains(text(),'CA-Member Pastor')]
+    Set Global Variable  ${Classifcation_Type}
+    Church_Household_Contact_Communication_Field_Verification
+
+Church_Household_Contact_Communication_Field_Verification
+
+    Click Element  ${Edit_Button}
+    Set Selenium Implicit Wait  10s
+    ${ADF_Checkbox}=     Run Keyword And Return Status  checkbox should be selected  ${ADFMailOptout_VE}
+    Set Global Variable  ${ADF_Checkbox}
+    ${ADF_Foundation_Checkbox}=     Run Keyword And Return Status  checkbox should be selected   ${ADF_Foundation_Mail_OptOut_VE}
+    Set Global Variable     ${ADF_Foundation_Checkbox}
+    ${FaithJustice_Checkbox}=     Run Keyword And Return Status  checkbox should be selected   ${Faith&Justice_VE}
+    Set Global Variable     ${FaithJustice_Checkbox}
+    ${Telemarketing}=       Run Keyword And Return Status  checkbox should be selected   ${Telemarketing_VE}
+    Set Global Variable   ${Telemarketing}
+    ${DoNotMail}=   Run Keyword And Return Status  checkbox should be selected   ${DonNot_Mail_VE}
+    Set Global Variable  ${DoNotMail}
+    Should Be Equal  ${ADF_Checkbox}     ${FALSE}
+    Should Be Equal  ${ADF_Foundation_Checkbox}     ${FALSE}
+    Should Be Equal  ${FaithJustice_Checkbox}     ${FALSE}
+    Should Be Equal   ${Telemarketing}     ${True}
+    Should Be Equal  ${DoNotMail}   ${True}
+
+Church_Secondary_Household_Contact_Communication_Field_Verification
+    Click Element  ${Edit_Button}
+    Set Selenium Implicit Wait  10s
+    ${ADF_Checkbox}=     Run Keyword And Return Status  checkbox should be selected  ${ADFMailOptout_VE}
+    Set Global Variable  ${ADF_Checkbox}
+    ${ADF_Foundation_Checkbox}=     Run Keyword And Return Status  checkbox should be selected   ${ADF_Foundation_Mail_OptOut_VE}
+    Set Global Variable     ${ADF_Foundation_Checkbox}
+    ${FaithJustice_Checkbox}=     Run Keyword And Return Status  checkbox should be selected   ${Faith&Justice_VE}
+    Set Global Variable     ${FaithJustice_Checkbox}
+    ${Telemarketing}=       Run Keyword And Return Status  checkbox should be selected   ${Telemarketing_VE}
+    Set Global Variable   ${Telemarketing}
+    ${DoNotMail}=   Run Keyword And Return Status  checkbox should be selected   ${DonNot_Mail_VE}
+    Set Global Variable  ${DoNotMail}
+    Should Be Equal  ${ADF_Checkbox}     ${FALSE}
+    Should Be Equal  ${ADF_Foundation_Checkbox}     ${FALSE}
+    Should Be Equal  ${FaithJustice_Checkbox}     ${FALSE}
+    Should Be Equal   ${Telemarketing}     ${FALSE}}
+    Should Be Equal  ${DoNotMail}   ${FALSE}}
+
+Primary_Applicant_Record_Selection
+    Click Element  xpath=.//h3[contains(.,'Applicant Details (Organization Contact)')]/following::a[contains(text(),'${Primary_FirstName_V}')]
+    Wait Until Element Is Visible  ${Edit_Button}
+
+Lead/Primary_Applicant_Record_Selection
+    Click Element  xpath=.//h3[contains(.,'Applicant Details (Organization Contact)')]/following::a[contains(text(),'${Lead_FirstName_V}')]
+    Wait Until Element Is Visible  ${Edit_Button}
