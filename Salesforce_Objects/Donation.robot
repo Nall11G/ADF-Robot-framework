@@ -7,7 +7,7 @@ Resource   ../TestCases/TestSuiteVariables.robot
 #Variables  ../TestCases/TestSuiteVariables.robot
 Resource  ../Salesforce_Objects/Contact.robot
 #Resource   ../Common_Configuration/ExecuteJS.robot
-Library     ../CustomLibrary/ExcelUtilities.py
+#Library     ../CustomLibrary/ExcelUtilities.py
 
 *** Variables ***
 
