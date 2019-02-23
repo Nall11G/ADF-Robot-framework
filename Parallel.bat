@@ -1,1 +1,1 @@
-pabot --variable  --BROWSER:${Browser}  --include ADF_Demo1 E:\Robot_Framework\ADF_Project_Automation\TestCases\Reliance_Regression_TestSuite.robot & python E:\Robot_Framework\ADF_Project_Automation\TestResults\robotmetrics.py
+pybot --variable  --BROWSER:${Browser}  --include ADF_Demo1 E:\Robot_Framework\ADF_Project_Automation\TestCases\Reliance_Regression_TestSuite.robot & python E:\Robot_Framework\ADF_Project_Automation\TestResults\robotmetrics.py
