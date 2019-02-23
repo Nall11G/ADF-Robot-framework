@@ -20,8 +20,8 @@ msg = MIMEMultipart()
 msg['Subject'] = 'ADFProject Automation Status'
 
 sender = 'nallavan.qa@gmail.com'
-recipients = ['nallavan.qa@gmail.com', 'nallavan@mstsolutions.com']
-ccrecipients = ['nall1sf@gmail.com', 'user4@yahoo.com']
+recipients = ['nallavan@mstsolutions.com']
+ccrecipients = ['nall1sf@gmail.com']
 
 msg['From'] = sender
 msg['To'] = ", ".join(recipients)
@@ -315,7 +315,7 @@ icons_txt= """
                     </h6>
                     <ul class="nav flex-column mb-2">
                         <li class="nav-item">
-                            <a style="color:blue;" class="tablink nav-link" target="_blank" href="https://github.com/Nall11G/RF_Demo">
+                            <a style="color:blue;" class="tablink nav-link" target="_blank" href="https://github.com/Nall11G/ADF-Robot-framework">
 							  <i class="fa fa-external-link"></i> Git Hub
 							</a>
                         </li>
