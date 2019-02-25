@@ -25,7 +25,7 @@ ${UserName_Creation}    Sandbox: Create your Church Alliance Username & Password
 
 *** Keywords ***
 Log_into_Salesforce
-    Open Browser  ${URL}    
+    Open Browser  ${URL}    $BROWSER
     Maximize Browser Window
     Input Text  ${UsernameElement}      nallavan@mstsolutions.com.qarel
     Input Text  ${PasswordElement}      metasoft@123
