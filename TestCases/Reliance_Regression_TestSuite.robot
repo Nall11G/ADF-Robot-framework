@@ -1179,7 +1179,7 @@ ADF_REG-34
 
 ADF_REG-35
 
-    [Tags]  Passed
+    [Tags]  Pass
     [Documentation]    *Functionality*
     ...    To verify whether the contact's associated Donation's  record types are updated as "Board Member" or not, while creating a classification record
     ...     Note: Classification record's 'Board Member Classification' = True
@@ -1196,12 +1196,12 @@ ADF_REG-35
     #Contact_Table_Iteration
     #Get_Donation_Records_Details_From_Contact_RelatedList
     Contact_Choose
-    Classifcation_Record_Creation_From_Contact
+    #Classifcation_Record_Creation_From_Contact
     Verfiying_Donations_Recordtype_After_Classifcation_Record_Creation
 
 ADF_REG-36
 
-    [Tags]  Passed
+    [Tags]  Pass
     [Documentation]    *Functionality*
     ...    To verify whether the contact's associated Donation's  record types are updated as "Board Member" or not, while updating a classification record
     ...     Note: Classification record's 'Board Member Classification' = True
@@ -1216,14 +1216,14 @@ ADF_REG-36
     Set Global Variable  ${ExstingClassification}
     ${RecordID}=     read excel data     Contact_Selection    ADF_REL-36     Contact_Record Id
     Set Global Variable   ${RecordID}
-    Log_into_Salesforce
+    #Log_into_Salesforce
     Contact_Choose
     #Get_Donation_Records_Details_From_Contact_RelatedList
     Classifcation_Record_update_From_Contact
     Verfiying_Donations_Recordtype_After_Classifcation_Record_Creation
 
 ADF_REG-37
-    [Tags]  Passed
+    [Tags]  Pass
     [Documentation]    *Functionality*
     ...    To verify whether the contact's associated Donation's  record types are updated as "Board Member" or not, while updating a classification record
     ...     Note: Classification record's 'Board Member Classification' = True
@@ -1283,7 +1283,7 @@ ADF_REG-38
     Organization_Account_Creation
     ODP_Contact_Choose
     #Set Selenium Implicit Wait  15s
-    ODP_Communicationn_Prefference
+    ODP_Communicatoin_Prefference
     Close Browser
 
 ADF_REG-39
