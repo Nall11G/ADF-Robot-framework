@@ -2,6 +2,7 @@
 Documentation    ADF Project Reliance Features Regresstion Test Suite
 Library  Selenium2Library
 Library  Screenshot
+Library  pabot.PabotLib
 Resource  ../Common_Configuration/Common_Configure.robot
 Resource  ../Salesforce_Objects/Contact.robot
 Resource  ../Salesforce_Objects/Account.robot
@@ -36,7 +37,7 @@ ${Cancel}         name=cancel
 
 *** Test Cases ***
 ADF_REL-01
-    [Tags]  ADF_Demo
+    [Tags]  Demo
     [Documentation]    *Functionality*
     ...    To Verify the household contact creation
     ...
@@ -502,7 +503,7 @@ ADF_REL-08
     Close Browser
 
 ADF_REL-09
-    [Tags]  TestDemo1
+    [Tags]  Demo
       [Documentation]    To verify whether the related address and email record is created or not, when updating the contact's mailing address and email field
     ...
     ...    *Test Steps*
@@ -1179,7 +1180,7 @@ ADF_REG-34
 
 ADF_REG-35
 
-    [Tags]  Pass
+    [Tags]  Passed
     [Documentation]    *Functionality*
     ...    To verify whether the contact's associated Donation's  record types are updated as "Board Member" or not, while creating a classification record
     ...     Note: Classification record's 'Board Member Classification' = True
@@ -1196,12 +1197,12 @@ ADF_REG-35
     #Contact_Table_Iteration
     #Get_Donation_Records_Details_From_Contact_RelatedList
     Contact_Choose
-    #Classifcation_Record_Creation_From_Contact
+    Classifcation_Record_Creation_From_Contact
     Verfiying_Donations_Recordtype_After_Classifcation_Record_Creation
 
 ADF_REG-36
 
-    [Tags]  Pass
+    [Tags]  Passed
     [Documentation]    *Functionality*
     ...    To verify whether the contact's associated Donation's  record types are updated as "Board Member" or not, while updating a classification record
     ...     Note: Classification record's 'Board Member Classification' = True
@@ -1216,14 +1217,14 @@ ADF_REG-36
     Set Global Variable  ${ExstingClassification}
     ${RecordID}=     read excel data     Contact_Selection    ADF_REL-36     Contact_Record Id
     Set Global Variable   ${RecordID}
-    #Log_into_Salesforce
+    Log_into_Salesforce
     Contact_Choose
     #Get_Donation_Records_Details_From_Contact_RelatedList
     Classifcation_Record_update_From_Contact
     Verfiying_Donations_Recordtype_After_Classifcation_Record_Creation
 
 ADF_REG-37
-    [Tags]  Pass
+    [Tags]  Passed
     [Documentation]    *Functionality*
     ...    To verify whether the contact's associated Donation's  record types are updated as "Board Member" or not, while updating a classification record
     ...     Note: Classification record's 'Board Member Classification' = True
@@ -1283,7 +1284,7 @@ ADF_REG-38
     Organization_Account_Creation
     ODP_Contact_Choose
     #Set Selenium Implicit Wait  15s
-    ODP_Communicatoin_Prefference
+    ODP_Communicationn_Prefference
     Close Browser
 
 ADF_REG-39
