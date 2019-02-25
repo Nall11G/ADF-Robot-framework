@@ -1,7 +1,0 @@
-*** Settings ***
-Library           Selenium2Library
-Library           Collections
-Library           Process
-Resource          C:/Python27/ReadExcelFile.py
-Library           pabot.PabotLib
-Library           BuiltIn
