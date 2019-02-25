@@ -2,6 +2,7 @@
 Documentation    Suite description
 Library     Selenium2Library
 Resource   ../TestCases/TestSuiteVariables.robot
+#Library     ../CustomLibrary/Testbrowser.py
 
 
 *** Variables ***
@@ -12,24 +13,19 @@ ${Submit}       Id=Login
 ${URL} =  https://test.salesforce.com
 ${Obj_Selection}    xpath=xpath=.//*[@id='AllTab_Tab']/a
 @{Signup}       https://qarel-adflegalv2.cs92.force.com/payment/CA_MembershipJoin_VF    https://test.salesforce.com
+${BROWSER}      Chrome
 
 #Yopmail verification
 
 ${Email_Search_Box}     xpath=.//*[@id='login']
 ${Inbox_Submit}     type=submit
 ${Check_New_Emails}     xpath=.//*[@id='lrefr']
+${UserName_Creation}    Sandbox: Create your Church Alliance Username & Password
 
-
-*** Test Cases ***
-
-TC1
-    Open Browser  https://www.google.com/   chrome
-    Set Selenium Implicit Wait  10s
-    Email_Verification_Church_Alliance
 
 *** Keywords ***
 Log_into_Salesforce
-    Open Browser  ${URL}    chrome
+    Open Browser  ${URL}    ${BROWSER}
     Maximize Browser Window
     Input Text  ${UsernameElement}      nallavan@mstsolutions.com.qarel
     Input Text  ${PasswordElement}      metasoft@123
@@ -58,6 +54,21 @@ Email_Verification_Church_Alliance
     Maximize Browser Window
     Press Key   id=lst-ib  Ctrl+Shift+N
     Select Window
+
+
+
+Email
+
+    Open Browser  http://www.yopmail.com/en/   chrome
+    Maximize Browser Window
+    Input Text  ${Email_Search_Box}     lonnie
+    Click Element   xpath=.//input[@value="Check Inbox"]
+    Wait Until Element Is Visible   xpath=.//*[@id='login']
+    #Select Frame  id=ifc
+    Select Frame  id=ifinbox
+    Element Text Should Be   xpath=.//span[Contains(., "Sandbox: Create your Church Alliance Username & Password")]     ${UserName_Creation}
+    Close Browser
+
 
 Window_Handler_Donation_Role
 
