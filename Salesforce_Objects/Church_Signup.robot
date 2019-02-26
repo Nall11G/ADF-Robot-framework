@@ -124,7 +124,7 @@ Church_Alliance_Signup_PrimaryInfo_With_CreditCard
     Input Text      ${Attorney_FirstName_E}      ${Attorney_FirstName_V}
     Input Text      ${Attorney_LastName_E}       ${Attorney_LastName_V}
     Input Text      ${Attorney_City}     ${Attorney_City_V}
-    Select From List By Value    ${Attorney_State_E}    ${Attorney_State_V}
+    #Select From List By Value    ${Attorney_State_E}    ${Attorney_State_V}
     Click Element  ${Next_Attorney_E}
     Sleep  10s
     Wait Until Element Is Visible  ${Statement_Faith_E}
@@ -144,7 +144,7 @@ Church_Alliance_Signup_PrimaryInfo_With_CreditCard
     Input Text    ${Payer_FN_E}    ${Payer_FN_V}
     Input Text    ${Payer_LN_E}    ${Payer_LN_V}
     Input Text    ${Payer_Address_E}    ${Payer_Address_V}
-    Input Text    ${Payer_Address2_E}    ${Payer_Address2_V}
+    #Input Text    ${Payer_Address2_E}    ${Payer_Address2_V}
     Input Text    ${Payer_City_E}    ${Payer_City_V}
     Select From List By Value    ${Payer_State_E}    ${Payer_State_V}
     Input Text    ${Payer_Zipcode_E}    ${payer_zipcode_v}
