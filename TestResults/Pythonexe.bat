@@ -1,1 +1,1 @@
-robot --include ADF_Demo1 E:\Robot_Framework\ADF_Project_Automation\TestCases\Reliance_Regression_TestSuite.robot & python E:\Robot_Framework\ADF_Project_Automation\TestResults\robotmetrics.py
+robot --include Demo TestCases\Reliance_Regression_TestSuite.robot & python TestResults\robotmetrics.py
