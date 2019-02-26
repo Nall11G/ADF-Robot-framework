@@ -26,7 +26,7 @@ ccrecipients = ['nall1sf@gmail.com']
 msg['From'] = sender
 msg['To'] = ", ".join(recipients)
 msg['Cc'] = ", ".join(ccrecipients)
-password = "metasoft@123"
+password = "Metasoft@1234"
 msg.add_header('Content-Type', 'text/html')
 
 # ======= END OF EMAIL SETUP CONTENT ====== #
@@ -372,7 +372,7 @@ myResult = result.generated_by_robot
 if myResult:
 	generator = "Robot"
 else:
-	generator = "Rebot"
+	generator = "Robot"
 	
 stats = result.statistics
 total= stats.total.all.total
