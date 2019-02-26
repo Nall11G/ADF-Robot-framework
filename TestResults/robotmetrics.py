@@ -19,7 +19,7 @@ server = smtplib.SMTP('smtp.gmail.com:587')
 msg = MIMEMultipart() 
 msg['Subject'] = 'ADFProject Automation Status'
 
-sender = 'nallavan.qa@gmail.com'
+sender = 'nall1sf@gmail.com'
 recipients = ['nallavan@mstsolutions.com']
 ccrecipients = ['nall1sf@gmail.com']
 
