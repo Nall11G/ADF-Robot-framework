@@ -819,12 +819,12 @@ Church_ODP_Contact_Verification
     Should Be Equal  ${AccountName}     ${ChurchName_V}
     ${Membership}=    Get Text    ${Membership_E}
     Should Be Equal  ${Membership}      Church Alliance
-    ${Primary_Phone}=    Get Value      ${Primary_Phone_VE}
+    ${Primary_Phone}=    Get Text      ${Primary_Phone_VE}
     Set Global Variable  ${Primary_Phone}
     Should Be Equal     ${Primary_Phone}    ${Church_Phone_V}
     ${Contact_Owner}=   Get Text        ${Contact_Owner_VE}
     Set Global Variable  ${Contact_Owner}
-    Should Be Equal     ${Contact_Owner_VE}     ADF Admin - MST
+    Should Contain    ${Contact_Owner}     ADF Admin - MST
     ${Contact_Email}=   Get Text    ${Emai_VE}
     Set Global Variable  ${Contact_Email}
     Should Be Equal     ${Contact_Email}   ${Church_Email_V}
@@ -850,6 +850,7 @@ Church_ODP_Communication_fields_Verification
     Should Be Equal  ${FaithJustice_Checkbox}     ${True}
     Should Be Equal   ${Telemarketing}     ${True}
     Should Be Equal  ${DoNotMail}   ${False}
+    Click Element  ${Cancel}
 
 Church_Primary_Household_Contact_Verification
     ${contactName}=    Get Text    ${Contact_Name_VE}
@@ -860,7 +861,7 @@ Church_Primary_Household_Contact_Verification
     ${Cont_Email}=    Get Text    ${Emai_VE}
     Set Global Variable   ${Cont_Email}
     Should Be Equal  ${Cont_Email}  ${Primary_Email_V}
-    ${Primary_Phone}=    Get Value      ${Primary_Phone_VE}
+    ${Primary_Phone}=    Get Text      ${Primary_Phone_VE}
     Set Global Variable  ${Primary_Phone}
     Should Be Equal     ${Primary_Phone}        ${Primary_Phone_V}
     ${Classifcation_Type}=  Get Text    xpath=.//h3[contains(.,'Classification Type Contacts')]/following::th[contains(text(),'CA-Member Pastor')]

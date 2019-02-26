@@ -62,7 +62,7 @@ Verifying_The_Primary_Applicant_Detail_record
     Set Global Variable  ${Duplication_Status}
     ${Primary_Contact}=   Get Text    ${Primary_Contact_E}
     Set Global Variable  ${Primary_Contact}
-    Should Be Equal  ${Applicant_FirstName}     ${Primary_FirstName_V}
+    Should Be Equal  ${Applicant_FirstName}    	${Primary_FirstName_V}
     Should Be Equal  ${Applicant_LastName}      ${Primary_LastName_V}
     Should Be Equal  ${Applicant_Phone}     ${Primary_Phone_V}
     Should Be Equal  ${Applicant_Email}     ${Primary_Email_V}

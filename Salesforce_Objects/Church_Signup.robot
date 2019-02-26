@@ -313,3 +313,111 @@ Church_Alliance_Signup_Leadinfo
     Click Element    ${Signup_button_E}
     Wait Until Element Is Visible  ${Thankyou_E}
     Capture Page Screenshot
+
+Church_Alliance_Signup_ACH
+
+    Open Browser        chrome  ${Church_Signup_URL}
+    Click Element   ${Signup_button_E}
+    wait until element is visible  ${ChurchName_E}
+    Input Text  ${ChurchName_E}       ${ChurchName_V}
+    Input Text      ${Church_Address_E}        ${Church_Address_V}
+    Input Text      ${Church_Address2_E}   ${church_address2_v}
+    Input Text    ${Church_City_E}    ${Church_City_V}
+    Select From List By Value     ${Church_state_E}    ${Church_State_V}
+    Input Text      ${Church_Zip_E}        ${Church_Zip_V}
+    Input Text   ${Church_Phone_E}      ${Church_Phone_V}
+    Input Text      ${Church_Email_E}        ${Church_Email_V}
+    Select From List By Value    ${HowDidYouAboutus}    M${HowDidYouAboutus_V}
+    Select From List By Value    ${Church_Denomination_E}    ${Church_Denomination_V}
+    Input Text      ${Lead_Title_E}       ${Lead_Title_V}
+    Input Text      ${Lead_FirstName_E}       ${Lead_FirstName_V}
+    Input Text      ${Lead_LastName_E}        ${Lead_LastName_E}
+    Input Text      ${Lead_Email_E}        ${Lead_Email_V}
+    Input Text      ${Lead_Phone_E}        ${Lead_Phone_V}
+    Select From List By Value        Yes
+    Input Text      ${Attorney_FirstName_E}      ${Attorney_FirstName_V}
+    Input Text      ${Attorney_LastName_E}       ${Attorney_LastName_V}
+    Input Text      ${Attorney_City}     ${Attorney_City_V}
+    Select From List By Value    ${Attorney_State_E}    ${Attorney_State_V}
+    Click Element  ${Next_Attorney_E}
+    Sleep  10s
+    Wait Until Element Is Visible  ${Statement_Faith_E}
+    Click Element       ${Statement_Faith_E}
+    Sleep  10s
+    Wait Until Element Is Visible  ${Scope_Faith_E}
+    Click Element   ${Scope_Faith_E}
+    sleep  5s
+    Wait Until Element Is Visible  ${Church_Promocode_E}
+    Click Element  ${Monthly_E}
+    Click Element  ${Payment_Date_E}
+    Click Element  ${Next_Join_E}
+    wait until element is visible  ${Payer_FN_E}
+    Input Text    ${Payer_FN_E}    ${Payer_FN_V}
+    Input Text    ${Payer_LN_E}    ${Payer_LN_V}
+    Input Text    ${Payer_Address_E}    ${Payer_Address_V}
+    Input Text    ${Payer_Address2_E}    ${Payer_Address2_V}
+    Input Text    ${Payer_City_E}    ${Payer_City_V}
+    Select From List By Value    ${Payer_State_E}    ${Payer_State_V}
+    Input Text    ${Payer_Zipcode_E}    ${Payer_Zipcode_V}
+    Input Text    ${Church_CardNo_E}     ${Church_CardNo_V}
+    Input Text    ${Church_CardName_E}   ${Church_CardName_V}
+    Input Text    ${Church_CY_E}    ${Church_City_V}
+    Input Text    ${Church_SecuirtyCode_E}    ${Church_SecuirtyCode_V}
+    sleep  10s
+    Click Element    ${Signup_button_E}
+    Wait Until Element Is Visible  ${Thankyou_E}
+    Capture Page Screenshot
+
+Church_Alliance_Signup_ACH_Promocode
+
+    Open Browser        chrome  ${Church_Signup_URL}
+    Click Element   ${Signup_button_E}
+    wait until element is visible  ${ChurchName_E}
+    Input Text  ${ChurchName_E}       ${ChurchName_V}
+    Input Text      ${Church_Address_E}        ${Church_Address_V}
+    Input Text      ${Church_Address2_E}   ${church_address2_v}
+    Input Text    ${Church_City_E}    ${Church_City_V}
+    Select From List By Value     ${Church_state_E}    ${Church_State_V}
+    Input Text      ${Church_Zip_E}        ${Church_Zip_V}
+    Input Text   ${Church_Phone_E}      ${Church_Phone_V}
+    Input Text      ${Church_Email_E}        ${Church_Email_V}
+    Select From List By Value    ${HowDidYouAboutus}    M${HowDidYouAboutus_V}
+    Select From List By Value    ${Church_Denomination_E}    ${Church_Denomination_V}
+    Input Text      ${Lead_Title_E}       ${Lead_Title_V}
+    Input Text      ${Lead_FirstName_E}       ${Lead_FirstName_V}
+    Input Text      ${Lead_LastName_E}        ${Lead_LastName_E}
+    Input Text      ${Lead_Email_E}        ${Lead_Email_V}
+    Input Text      ${Lead_Phone_E}        ${Lead_Phone_V}
+    Select From List By Value        Yes
+    Input Text      ${Attorney_FirstName_E}      ${Attorney_FirstName_V}
+    Input Text      ${Attorney_LastName_E}       ${Attorney_LastName_V}
+    Input Text      ${Attorney_City}     ${Attorney_City_V}
+    Select From List By Value    ${Attorney_State_E}    ${Attorney_State_V}
+    Click Element  ${Next_Attorney_E}
+    Sleep  10s
+    Wait Until Element Is Visible  ${Statement_Faith_E}
+    Click Element       ${Statement_Faith_E}
+    Sleep  10s
+    Wait Until Element Is Visible  ${Scope_Faith_E}
+    Click Element   ${Scope_Faith_E}
+    sleep  5s
+    Wait Until Element Is Visible  ${Church_Promocode_E}
+    Click Element  ${Monthly_E}
+    Click Element  ${Payment_Date_E}
+    Click Element  ${Next_Join_E}
+    wait until element is visible  ${Payer_FN_E}
+    Input Text    ${Payer_FN_E}    ${Payer_FN_V}
+    Input Text    ${Payer_LN_E}    ${Payer_LN_V}
+    Input Text    ${Payer_Address_E}    ${Payer_Address_V}
+    Input Text    ${Payer_Address2_E}    ${Payer_Address2_V}
+    Input Text    ${Payer_City_E}    ${Payer_City_V}
+    Select From List By Value    ${Payer_State_E}    ${Payer_State_V}
+    Input Text    ${Payer_Zipcode_E}    ${Payer_Zipcode_V}
+    Input Text    ${Church_CardNo_E}     ${Church_CardNo_V}
+    Input Text    ${Church_CardName_E}   ${Church_CardName_V}
+    Input Text    ${Church_CY_E}    ${Church_City_V}
+    Input Text    ${Church_SecuirtyCode_E}    ${Church_SecuirtyCode_V}
+    sleep  10s
+    Click Element    ${Signup_button_E}
+    Wait Until Element Is Visible  ${Thankyou_E}
+    Capture Page Screenshot

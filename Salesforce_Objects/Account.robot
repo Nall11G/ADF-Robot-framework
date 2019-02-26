@@ -62,15 +62,16 @@ Organization_Account_Creation
 
 ODP_Contact_Choose
 
-    Click Element  xpath=.//h3[contains(.,'Contacts')]/following::a[contains(text(),'${Acc_Name_V}')]
+    Click Element  xpath=.//h3[contains(.,'Contacts')]/following::a[contains(text(),'${ChurchName_V}')]
     Wait Until Element Is Visible  ${Edit_Button}
 
 Organization_Account_Selection
     Click Element  ${Account_Obj_E}
     Wait Until Element Is Visible  ${New_Button_E}
     Click Element  name=go
-    Set Selenium Implicit Wait  10s
-    Click Element  xpath=.//a[Contains(.,"${Acc_Name_V}")]
+    Wait Until Element Is Visible  xpath=.//a[contains(.,'${ChurchName_V}')]
+    Click Link  xpath=.//a[contains(.,'${ChurchName_V}')]
+    Set Selenium Implicit Wait  5s
     Wait Until Element Is Visible  ${Edit_Button}
 
 Get_values_from_Contact_record
