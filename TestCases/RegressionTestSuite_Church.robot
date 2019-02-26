@@ -99,10 +99,11 @@ ADF_CA_01
     Organization_Account_Selection
     ODP_Contact_Choose
     Church_ODP_Contact_Verification
-    Primary_Applicant_Record_Selection
-    Verifying_The_Primary_Applicant_Detail_record
-    Household_Contact_Selection_Primary
-    Church_Primary_Household_Contact_Verification
+    #Set Selenium Implicit Wait  10s
+    #Primary_Applicant_Record_Selection
+    #Verifying_The_Primary_Applicant_Detail_record
+    #Household_Contact_Selection_Primary
+    #Church_Primary_Household_Contact_Verification
     Close Browser
 
 ADF_CA_02
@@ -132,3 +133,48 @@ ADF_CA_03
     Household_Contact_Selection_Primary
     Church_Primary_Household_Contact_Verification
     Close Browser
+
+
+ADF_CA_04
+
+    Church_Alliance_Signup_ACH
+    Log_into_Salesforce
+    Set Selenium Implicit Wait  10s
+    Organization_Account_Selection
+    ODP_Contact_Choose
+    Church_ODP_Contact_Verification
+    Primary_Applicant_Record_Selection
+    Verifying_The_Primary_Applicant_Detail_record
+    Household_Contact_Selection_Primary
+    Church_Primary_Household_Contact_Verification
+    Close Browser
+
+ADF_CA_05
+
+    Church_Alliance_Signup_ACH_Promocode
+    Log_into_Salesforce
+    Set Selenium Implicit Wait  10s
+    Organization_Account_Selection
+    ODP_Contact_Choose
+    Church_ODP_Contact_Verification
+    Primary_Applicant_Record_Selection
+    Verifying_The_Primary_Applicant_Detail_record
+    Household_Contact_Selection_Primary
+    Church_Primary_Household_Contact_Verification
+    Close Browser
+
+
+ADFM_CA_06
+
+    Church_Alliance_Signup_ACH_Promocode
+    Log_into_Salesforce
+    Set Selenium Implicit Wait  10s
+    Organization_Account_Selection
+    ODP_Contact_Choose
+    Church_ODP_Contact_Verification
+    Primary_Applicant_Record_Selection
+    Verifying_The_Primary_Applicant_Detail_record
+    Household_Contact_Selection_Primary
+    Church_Primary_Household_Contact_Verification
+    Close Browser
+

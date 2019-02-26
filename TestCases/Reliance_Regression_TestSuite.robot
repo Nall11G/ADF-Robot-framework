@@ -37,7 +37,7 @@ ${Cancel}         name=cancel
 
 *** Test Cases ***
 ADF_REL-01
-    [Tags]  Demo
+    [Tags]  Demo1
     [Documentation]    *Functionality*
     ...    To Verify the household contact creation
     ...
@@ -455,7 +455,7 @@ ADF_REL-07
     Close Browser
 
 ADF_REL-08
-    [Tags]  Passed
+    [Tags]  Demo
     [Documentation]    *Functionality*
     ...    To Verify the Communication preffernce field in Household contact
     ...
