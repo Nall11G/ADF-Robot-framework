@@ -1,1 +1,1 @@
-robot --include Demo TestCases\Re*.robot & python TestResults\robotmetrics.py
+robot --listener AllureReportLibrary.AllureListener --include Demo TestCases\Re*.robot
