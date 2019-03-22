@@ -1,8 +1,8 @@
 *** Settings ***
 Documentation    ADF Project Reliance Features Regresstion Test Suite
-Library  Selenium2Library
+Library  SeleniumLibrary
 Library  Screenshot
-Library  pabot.PabotLib
+#Library  pabot.PabotLib
 Resource  ../Common_Configuration/Common_Configure.robot
 Resource  ../Salesforce_Objects/Contact.robot
 Resource  ../Salesforce_Objects/Account.robot
@@ -13,11 +13,13 @@ Resource  ../Salesforce_Objects/Designation.robot
 Resource  ../Salesforce_Objects/RelatedAddress.robot
 Resource  ../Salesforce_Objects/RelatedEmail.robot
 Library     ../CustomLibrary/ExcelUtilities.py
+Library  AllureReportLibrary
 #Variables   TestSuiteVariables.robot
 Resource   TestSuiteVariables.robot
 #Resource    ../TestCases/TestSuiteVariables.robot
 #Suite Setup     Log_into_Salesforce
 #Suite Setup     Log_into_Salesforce
+
 
 
 
@@ -89,6 +91,7 @@ ADF_REL-01
     Verifying_Greeting_Field_Value
     Should Be Equal  ${Greeting_Value}  ${FirstName_V}
     Close Browser
+
 
 ADF_REL-02
     [Tags]  Passed
@@ -318,13 +321,14 @@ ADF_REL-05
     Contact Creation With Home Phone
     Set Selenium Implicit Wait  15s
     Verify_Preffered_Phone_Value
+    Verify_Preffered_Phone_Value
     Should Be Equal  ${Primary_Phone}   ${HomePhone_V}
     Capture Page Screenshot
     Close Browser
 
 ADF_REL-06
 
-    [Tags]  Passed
+    [Tags]  Demo1
     [Documentation]    *Functionality*
     ...    To check whether the "Phone" field value is updated or not based on the selection of "Preferred Phone" type, while creating a new contact record.
     ...
@@ -591,7 +595,7 @@ ADF_REG-10
     Close Browser
 
 ADF_REL-11
-    [Tags]  Passed
+    [Tags]  Org
     [Documentation]    *Functionality*
     ...    To verify whether the Organization Donor Proxy Contact record is created or not, when creating a Organization Account
     ...
@@ -1454,6 +1458,8 @@ ADF_REG-44
     Set Global Variable  ${Second_Relationship_V}
     ${Start_Date_V}=    read excel data     Relationship    ADF_REG-44      Start Date
     Set Global Variable  ${Start_Date_V}
+    ${ObjectName}=      read excel data  Object_Selection   ADF_REG-44  Objects
+    Set Global Variable  ${ObjectName}
     Log_into_Salesforce
     Obejct_Selection
     Account-Contact_Relationship_Type_Detail_Record_Creation
@@ -1467,14 +1473,16 @@ ADF_REG-45
 
       ...      To verify whether the Duplicate relationship record is created or not
 
-    ${FirstAccount_V}=      read excel data     Relationship    ADF_REG-47      FirstAccount
+    ${FirstAccount_V}=      read excel data     Relationship    ADF_REG-45      FirstAccount
     Set Global Variable  ${FirstAccount_V}
-    ${SecondContact_V}=      read excel data     Relationship    ADF_REG-47      SecondContact
+    ${SecondContact_V}=      read excel data     Relationship    ADF_REG-45      SecondContact
     Set Global Variable  ${SecondContact_V}
-    ${First_Relationship_V}=    read excel data     Relationship    ADF_REG-47      First Relationship
+    ${First_Relationship_V}=    read excel data     Relationship    ADF_REG-45      First Relationship
     Set Global Variable  ${First_Relationship_V}
-    ${Second_Relationship_V}=     read excel data     Relationship    ADF_REG-47      Second Relationship
+    ${Second_Relationship_V}=     read excel data     Relationship    ADF_REG-45      Second Relationship
     Set Global Variable  ${Second_Relationship_V}
+    ${ObjectName}=      read excel data  Object_Selection   ADF_REG-45  Objects
+    Set Global Variable  ${ObjectName}
     Log_into_Salesforce
     Obejct_Selection
     Account-Contact_Relationship_Type_Detail_Record_Creation
@@ -1497,6 +1505,8 @@ ADF_REG-46
     Set Global Variable  ${First_Relationship_V}
     ${Second_Relationship}=     read excel data     Relationship    ADF_REG-46      Second Relationship
     Set Global Variable  ${Second_Relationship}
+    ${ObjectName}=      read excel data  Object_Selection   ADF_REG-46  Objects
+    Set Global Variable  ${ObjectName}
     Log_into_Salesforce
     Obejct_Selection
     Account-Account_Relationship_Type_Detail_Record_Creation
@@ -1517,6 +1527,8 @@ ADF_REG-47
     Set Global Variable  ${First_Relationship_V}
     ${Second_Relationship}=     read excel data     Relationship    ADF_REG-47      Second Relationship
     Set Global Variable  ${Second_Relationship}
+    ${ObjectName}=      read excel data  Object_Selection   ADF_REG-47  Objects
+    Set Global Variable  ${ObjectName}
     Log_into_Salesforce
     Obejct_Selection
     Contact-Contact_Relationship_Type_Detail_Record_Creation
@@ -1624,6 +1636,20 @@ ADF_REG-53
     Verifying_the_Desingation_Record_Deletion
     Close Window
 
+ADF_REG-54
+
+    [Tags]  Passed
+    [Documentation]    *Functionality*
+    ...    To verify whether the Designation record is are created or not
+    ...
+
+    ...    *Test Steps*
+
+    ${DesignationName_V}=     read excel data     Designation    ADF_REL-54     Contact Select
+    Set Global Variable  ${DesignationName_V}
+    Log_into_Salesforce
+    Obejct_Selection
+    Designation_Record_Creation
 
 *** Keywords ***
 

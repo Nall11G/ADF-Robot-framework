@@ -1,7 +1,8 @@
 *** Settings ***
 Documentation    Suite description
-Library  Selenium2Library
+Library  SeleniumLibrary
 Library  pabot.PabotLib
+Library  AllureReportLibrary
 Resource  ../Common_Configuration/Common_Configure.robot
 Resource  ../Salesforce_Objects/Contact.robot
 Resource  ../Salesforce_Objects/Account.robot
@@ -93,17 +94,17 @@ ADF_CA_01
     set global variable   ${Church_CY_V}
     ${Church_SecuirtyCode_V}=     read excel data  Church_Alliance    TC5     Security Code
     set global variable   ${Church_SecuirtyCode_V}
-    Church_Alliance_Signup_PrimaryInfo_With_CreditCard
+    #Church_Alliance_Signup_PrimaryInfo_With_CreditCard
     Log_into_Salesforce
     Set Selenium Implicit Wait  10s
     Organization_Account_Selection
     ODP_Contact_Choose
     Church_ODP_Contact_Verification
-    #Set Selenium Implicit Wait  10s
-    #Primary_Applicant_Record_Selection
-    #Verifying_The_Primary_Applicant_Detail_record
-    #Household_Contact_Selection_Primary
-    #Church_Primary_Household_Contact_Verification
+    Set Selenium Implicit Wait  10s
+    Primary_Applicant_Record_Selection
+    Verifying_The_Primary_Applicant_Detail_record
+    Household_Contact_Selection_Primary
+    Church_Primary_Household_Contact_Verification
     Close Browser
 
 ADF_CA_02
