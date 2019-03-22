@@ -1,6 +1,6 @@
 *** Settings ***
 Documentation    Suite description
-Library     Selenium2Library
+Library     SeleniumLibrary
 Resource   ../TestCases/TestSuiteVariables.robot
 #Library     ../CustomLibrary/Testbrowser.py
 
