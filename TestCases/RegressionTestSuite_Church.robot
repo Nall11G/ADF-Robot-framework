@@ -2,7 +2,6 @@
 Documentation    Suite description
 Library  SeleniumLibrary
 Library  pabot.PabotLib
-Library  AllureReportLibrary
 Resource  ../Common_Configuration/Common_Configure.robot
 Resource  ../Salesforce_Objects/Contact.robot
 Resource  ../Salesforce_Objects/Account.robot
