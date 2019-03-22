@@ -13,7 +13,6 @@ Resource  ../Salesforce_Objects/Designation.robot
 Resource  ../Salesforce_Objects/RelatedAddress.robot
 Resource  ../Salesforce_Objects/RelatedEmail.robot
 Library     ../CustomLibrary/ExcelUtilities.py
-Library  AllureReportLibrary
 #Variables   TestSuiteVariables.robot
 Resource   TestSuiteVariables.robot
 #Resource    ../TestCases/TestSuiteVariables.robot
