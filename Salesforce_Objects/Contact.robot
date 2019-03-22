@@ -72,6 +72,7 @@ ${Row}            tr
 ${Tabel row}      ${table xpath}/${Row}
 &{Table}
 #${Column}         ${table xpath}/${Row}/td
+${PrimaryContact_Name}
 
 #Contact_Field_Verification_Webelements
 
@@ -843,7 +844,7 @@ Church_ODP_Communication_fields_Verification
     Set Global Variable     ${FaithJustice_Checkbox}
     ${Telemarketing}=       Run Keyword And Return Status  checkbox should be selected   ${Telemarketing_VE}
     Set Global Variable   ${Telemarketing}
-    ${DoNotMail}=   Run Keyword And Return Status  checkbox should be selected   ${DonNot_Mail_VE}
+    ${DoNotMail}=   Run Keyword And Return Status  checkbox should not be selected   ${DonNot_Mail_VE}
     Set Global Variable  ${DoNotMail}
     Should Be Equal  ${ADF_Checkbox}     ${True}
     Should Be Equal  ${ADF_Foundation_Checkbox}     ${True}
@@ -941,7 +942,10 @@ Church_Secondary_Household_Contact_Communication_Field_Verification
     Should Be Equal  ${DoNotMail}   ${FALSE}}
 
 Primary_Applicant_Record_Selection
-    Click Element  xpath=.//h3[contains(.,'Applicant Details (Organization Contact)')]/following::a[contains(text(),'${Primary_FirstName_V}')]
+    ${PrimaryContact_Name}=   catenate  ${Primary_FirstName_V}    ${Primary_LastName_V}
+    Log  ${PrimaryContact_Name}
+    Set Global Variable  ${PrimaryContact_Name}
+    Click Element  xpath=.//h3[contains(.,'Applicant Details (Organization Contact)')]/following::a[contains(text(),'${Primary_LastName_V}')]
     Wait Until Element Is Visible  ${Edit_Button}
 
 Lead/Primary_Applicant_Record_Selection

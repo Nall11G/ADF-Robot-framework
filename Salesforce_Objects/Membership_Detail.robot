@@ -1,8 +1,8 @@
 *** Settings ***
 Documentation    Suite description
-Library     Selenium2Library
+Library     SeleniumLibrary
 Resource   ../TestCases/TestSuiteVariables.robot
-Resource  ../Salesforce_Objects/Church_Signup.robot
+#Resource  ../Salesforce_Objects/Church_Signup.robot
 Resource  ../Common_Configuration/Common_Configure.robot
 
 

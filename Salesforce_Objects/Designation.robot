@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation    Suite description
-Library     Selenium2Library
-Resource   ../TestCases/TestSuiteVariables.robot
+Library     SeleniumLibrary
+#Resource   ../TestCases/TestSuiteVariables.robot
 
 *** Variables ***
 
@@ -28,12 +28,12 @@ ${URL} =  https://test.salesforce.com
 
 
 *** Keywords ***
+
 Designation_Record_Creation
 
-   Obejct_Selection
    Wait Until Element Is Visible  ${New_button_E}
    Click Element  ${New_button_E}
-   Input Text  ${Designation_Name_E}    Test
+   Input Text  ${Designation_Name_E}
    Click Element  ${Active_Checkbox_E}
    Click Element  ${Save_button_E}
 
@@ -47,10 +47,3 @@ Designation_Record_Choose
     Wait Until Element Is Visible  ${New_button_E}
     Set Selenium Implicit Wait  5s
     Click Element  xpath=.//th/a[contains(.,"Designation1}")]
-
-Obejct_Selection
-
-    Sleep  10s
-    Click Element  xpath=.//*[@id='AllTab_Tab']/a
-    Wait Until Element Is Visible  xpath=.//a[contains(.,"Designations")]
-    Click Element  xpath=.//a[contains(.,"Designations")]

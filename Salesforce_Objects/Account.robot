@@ -1,8 +1,9 @@
 *** Settings ***
 Documentation    Suite description
-Library     Selenium2Library
+Library     SeleniumLibrary
 Resource   ../TestCases/TestSuiteVariables.robot
 Resource   ../Salesforce_Objects/Contact.robot
+Library     ../CustomLibrary/ExcelUtilities.py
 
 
 *** Variables ***
@@ -21,6 +22,7 @@ ${Continue}     xpath=.//*[@id='bottomButtonRow']/input[1]
 ${Save}    name=save
 ${EditButton_E}     name=edit
 ${Click_Here_Button}         xpath=.//input[@name="j_id0:j_id1:j_id28"]
+${Church_Contact}    xpath=.//a[contains(.,'${ChurchName_V}')]
 
 #Account field verification
 
@@ -33,11 +35,6 @@ ${Account_Type_E}       xpath=.//*[@id='acc6_ileinner']
 ${Billing_Address_Table_E}      xpath=.//*[@id='acc17_ileinner']/table/tbody/tr[1]/td
 ${ODP_Contact_E}    xpath=.//h3[contains(.,'Contacts')]/following::a[contains(text(),'${Acc_Name_V}')]
 ${AccountName}  IdaMyers_Church
-
-${UsernameElement}      Id=username
-${PasswordElement}      Id=password
-${Submit}       Id=Login
-${URL} =  https://test.salesforce.com
 
 
 *** Keywords ***
@@ -65,10 +62,13 @@ ODP_Contact_Choose
     Click Element  xpath=.//h3[contains(.,'Contacts')]/following::a[contains(text(),'${ChurchName_V}')]
     Wait Until Element Is Visible  ${Edit_Button}
 
+
 Organization_Account_Selection
+    Log To Console  ${ChurchName_V}
     Click Element  ${Account_Obj_E}
     Wait Until Element Is Visible  ${New_Button_E}
     Click Element  name=go
+    Set Selenium Implicit Wait  5s
     Wait Until Element Is Visible  xpath=.//a[contains(.,'${ChurchName_V}')]
     Click Link  xpath=.//a[contains(.,'${ChurchName_V}')]
     Set Selenium Implicit Wait  5s
@@ -79,22 +79,6 @@ Get_values_from_Contact_record
     Set Global Variable      ${Account_Owner}
     ${Account_Type}=    Get Text    ${Account_Type_VE}
     Set Global Variable  ${Account_Type}
-
-
-Organization_Account_Verification
-
-
-
-
-
-
-Household_Account_Verification
-
-
-
-
-
-
 
 ODP_Contact_Verification_From_Account
     ${AccountName}=    Get Text    ${Account_Name_VF}
@@ -128,7 +112,6 @@ International_Contact_Creation_From_Account
     Wait Until Element Is Visible  ${Edit_Button}
     Click Element  xpath=.//h3[contains(.,'Contact')]/following::input[@name='new_advocacy_contact']
     Wait Until Element Is Visible   ${save}
-
 
 
 Account_Billing_Address

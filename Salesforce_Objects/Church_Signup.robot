@@ -1,6 +1,6 @@
 *** Settings ***
 Documentation    Suite description
-Library     Selenium2Library
+Library     SeleniumLibrary
 #Library     ../CustomLibrary/AccountLibrary.py
 Resource   ../TestCases/TestSuiteVariables.robot
 
@@ -154,7 +154,7 @@ Church_Alliance_Signup_PrimaryInfo_With_CreditCard
     Input Text    ${Church_SecuirtyCode_E}    ${Church_SecuirtyCode_V}
     sleep  5s
     Click Element    ${Submit_button_E}
-    Set Selenium Implicit Wait  5s
+    Set Selenium Implicit Wait  10s
     Capture Page Screenshot
     Close Browser
 
@@ -421,3 +421,6 @@ Church_Alliance_Signup_ACH_Promocode
     Click Element    ${Signup_button_E}
     Wait Until Element Is Visible  ${Thankyou_E}
     Capture Page Screenshot
+
+ Test
+

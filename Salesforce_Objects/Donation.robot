@@ -1,6 +1,6 @@
 *** Settings ***
 Documentation    Suite description
-Library     Selenium2Library
+Library     SeleniumLibrary
 Library  Screenshot
 Library  Collections
 Resource   ../TestCases/TestSuiteVariables.robot

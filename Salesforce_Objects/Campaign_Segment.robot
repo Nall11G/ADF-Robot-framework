@@ -1,6 +1,6 @@
 *** Settings ***
 Documentation    Suite description
-Library  Selenium2Library
+Library  SeleniumLibrary
 Resource   ../TestCases/TestSuiteVariables.robot
 
 
@@ -30,11 +30,13 @@ Campaign_Segment_Record_Creation
     Select From List By Value  ${SubChannel_E}    @{SubChannel}[2]
     Click Element  ${Save}
 
+
 Obejct_Selection
 
     Click Element  xpath=.//*[@id='AllTab_Tab']/a/img
     Wait Until Element Is Visible  xpath=.//a[contains(.,"Relationship Type Details")]
     Click Element  xpath=.//a[contains(.,"Campaign Segments")]
+
 
 Verfiying_the_Sourcecode_Value
 
