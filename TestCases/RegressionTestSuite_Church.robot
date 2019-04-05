@@ -1,7 +1,8 @@
 *** Settings ***
 Documentation    Suite description
 Library  SeleniumLibrary
-Library  pabot.PabotLib
+#Library  pabot.PabotLib
+Library  AllureReportLibrary
 Resource  ../Common_Configuration/Common_Configure.robot
 Resource  ../Salesforce_Objects/Contact.robot
 Resource  ../Salesforce_Objects/Account.robot
@@ -178,3 +179,34 @@ ADFM_CA_06
     Church_Primary_Household_Contact_Verification
     Close Browser
 
+ADFM_CA_07
+    [Tags]  QA_Demo
+
+    Log_into_Salesforce
+    #Switch to Lightning
+    Set Selenium Implicit Wait  10s
+    Wait Until Element Is Visible  xpath=//nav[@class='appLauncher slds-context-bar__icon-action']//button[@type='button']
+    sleep  3s
+    click element  xpath=//nav[@class='appLauncher slds-context-bar__icon-action']//button[@type='button']
+    Sleep   3s
+    #click link  Sales
+    click element  xpath=//span[contains(text(),'Leads')]
+    #click element  xpath=//a[contains(text(),"Sales")]
+    #wait until element is visible  xpath=//span[@class='slds-truncate'][contains(text(),'Leads')]
+    #Click Element  xpath=//span[@class='slds-truncate'][contains(text(),'Leads')]
+    Wait Until Element Is Visible  xpath=//div[@title='New']
+    Click Element  xpath=//div[@title='New']
+    #Click Element    //div[@class="slds-r5"]
+    #Click Element    //p[@id="visibleDescription_07p7F000000RAIdQAO"]
+    #Click Element    //svg[@class="slds-icon slds-icon-text-default slds-icon_xx-small"]
+    #Click Element    xpath=(//span)[44]
+    #Click Link    xpath=(//a[@href="javascript:void(0);"])[13]
+    Sleep  5s
+    #Select From List By Value    xpath=//a[contains(.,"--None--")]    @{Salutation}[2]
+    Input Text    css=input[placeholder='Last Name']     Test Demo Lead
+    Set Selenium Implicit Wait  2s
+    #scroll down   xpath=.//label/span[1][text()='Company']//following::input[@required='']
+    Input Text     xpath=.//label/span[1][text()='Company']//following::input[@required='']   MST_QA
+    #Click Element    //div[@class="full forcePageBlock forceRecordLayout"]
+    #Input Text    //input[@id="454:838;a"]    60000
+    Click Element    xpath=//button[@title='Save']
