@@ -9,7 +9,7 @@ ${UsernameElement}      Id=username
 ${PasswordElement}      Id=password
 ${Submit}       Id=Login
 ${URL} =  https://test.salesforce.com
-${Browser}  chrome
+${Browser}  firefox
 
 
 *** Keywords ***
