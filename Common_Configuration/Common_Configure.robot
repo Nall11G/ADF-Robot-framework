@@ -9,11 +9,12 @@ ${UsernameElement}      Id=username
 ${PasswordElement}      Id=password
 ${Submit}       Id=Login
 ${URL} =  https://test.salesforce.com
+${Browser}  chrome
 
 
 *** Keywords ***
 Log_into_Salesforce
-    Open Browser  ${URL}    chrome
+    Open Browser  ${URL}    ${Browser}
     Maximize Browser Window
     Input Text  ${UsernameElement}      nallavan@mstsolutions.com.qarel
     Input Text  ${PasswordElement}      metasoft@123
