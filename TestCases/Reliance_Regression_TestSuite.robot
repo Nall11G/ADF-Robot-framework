@@ -93,7 +93,7 @@ ADF_REL-01
 
 
 ADF_REL-02
-    [Tags]  Passed
+    [Tags]  Passed1
     [Documentation]    *Functionality*
     ...    To check whether the "Greeting" field value is updated or not,  when a user creating the
     ...    household contact record with "Salutation"   field value
@@ -149,7 +149,7 @@ ADF_REL-02
 
 ADF_REL-03
 
-    [Tags]  Passed
+    [Tags]  Passed1
     [Documentation]    *Functionality*
     ...    To check whether the "Greeting" field value is updated or not,  when a user creating the household contact record
     ...
@@ -261,7 +261,7 @@ ADF_REL-04
 
 ADF_REL-05
 
-    [Tags]  Passed
+    [Tags]  Passed1
     [Documentation]    *Functionality*
     ...    To check whether the "Phone" field value is updated or not based on the selection of "Preferred Phone" type, while creating a new contact record.
     ...
@@ -394,7 +394,7 @@ ADF_REL-06
 
 ADF_REL-07
 
-    [Tags]  Passed
+    [Tags]  Passed1
     [Documentation]    *Functionality*
     ...    To check whether the "Phone" field value is updated or not based on the selection of "Preferred Phone" type, while creating a new contact record.
     ...
@@ -685,7 +685,7 @@ ADF_REL-12
 
 ADF_REL-13
 
-    [Tags]  Passed
+    [Tags]  Passed1
     [Documentation]    *Functionality*
     ...    To verify whether the Head of Household flag is updated or not, when user creating the second record with HOH is chencked
     ...    *Test Steps*
@@ -736,7 +736,7 @@ ADF_REL-13
 
 ADF_REL-14
 
-    [Tags]  Passed
+    [Tags]  Passed1
     [Documentation]    *Functionality*
     ...    To verify whether the donation record is created or not
     ...
@@ -1085,7 +1085,7 @@ ADF_REG-30
 
 ADF_REL-31
 
-    [Tags]  Demotestt
+    [Tags]  Passed1
     [Documentation]    *Functionality*
     ...    To verify whether the donation contact role amount, when updating the amount value partial to full
     ...    *Test Steps*
@@ -1164,7 +1164,7 @@ ADF_REG-33
 
 ADF_REG-34
 
-    [Tags]  Passed
+    [Tags]  Passed1
     [Documentation]    *Functionality*
     ...    To verify whether the donation name after updating the Donor Value
     ...
@@ -1336,7 +1336,7 @@ ADF_REG-39
 
 ADF_REG-40
 
-    [Tags]  Demotest
+    [Tags]  Passed1
     [Documentation]  *Functionality*
     ...    TTo verify whether the campaign segment record is created or not
     ...
