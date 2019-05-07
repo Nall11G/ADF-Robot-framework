@@ -37,7 +37,7 @@ Log_into_Salesforce
     #Log  ${URL}
     #${Username}=    Get Variable Value     ${config.QAENV_SF.Username}
     #${Password}=    Get Variable Value     ${config.QAENV_SF.Password}
-    Open Browser  ${URL.${ENVIRONMENT}}   
+    Open Browser  ${URL.${ENVIRONMENT}}   chrome
     Maximize Browser Window
     Input Text  ${UsernameElement}  ${username.${ENVIRONMENT}}
     Input Text  ${PasswordElement}  ${password.${ENVIRONMENT}}
