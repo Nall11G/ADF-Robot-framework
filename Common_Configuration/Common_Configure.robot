@@ -21,6 +21,7 @@ ${Obj_Selection}    xpath=xpath=.//*[@id='AllTab_Tab']/a
 #${CONFIG.${En}.SF.URL}
 #${CONFIG.${En}.SF.Username}
 #${CONFIG.${En}.SF.Password}
+${BROWSER}
 #Yopmail verification
 
 ${Email_Search_Box}     xpath=.//*[@id='login']
@@ -36,7 +37,7 @@ Log_into_Salesforce
     #Log  ${URL}
     #${Username}=    Get Variable Value     ${config.QAENV_SF.Username}
     #${Password}=    Get Variable Value     ${config.QAENV_SF.Password}
-    Open Browser  ${URL.${ENVIRONMENT}}   Chrome
+    Open Browser  ${URL.${ENVIRONMENT}}   ${BROWSER}
     Maximize Browser Window
     Input Text  ${UsernameElement}  ${username.${ENVIRONMENT}}
     Input Text  ${PasswordElement}  ${password.${ENVIRONMENT}}
