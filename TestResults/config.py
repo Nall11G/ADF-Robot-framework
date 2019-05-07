@@ -1,0 +1,19 @@
+# === ARES TEST DATA === #
+
+ARES_API_BASE_URI = "http://testastra.com/graph"
+
+# === MANDATORY INFO === #
+
+USER_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NTU3NDkwMTAsImVtYWlsIjoibmFsbGF2YW4ucWFAZ21haWwuY29tIiwiaWF0IjoxNTU1NjYyNjEwfQ.mm1vPKLB5KZOUI-CeEtiyse45ixIMGYQlBnTQPB7IKI"
+WORK_SPACE_NAME = "Robot Framework"
+PROJECT_NAME = "Salesforce"
+PROJECT_KEY = "5cb9878ee0fdfc214906f04b"
+PRODUCT_NAME = PROJECT_NAME
+
+# === OTHER INFO === #
+
+TEST_BROWSER = "Chrome"
+TEST_DEVICE = "Desktop"
+RUN_BY_USER = "Nallavan G"
+EXECUTION_MODE = "Sequence"
+FAIL_TYPE = ""
