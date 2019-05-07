@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-from __future__ import print_function
 import sys
 import os
 import math
@@ -14,28 +13,12 @@ from email.mime.text import MIMEText
 from email.mime.base import MIMEBase 
 from email import encoders
 
-# ======= START OF EMAIL SETUP CONTENT ====== #
-server = smtplib.SMTP('smtp.gmail.com:587')
-msg = MIMEMultipart() 
-msg['Subject'] = 'ADFProject Automation Status'
-
-sender = 'nall1sf@gmail.com'
-recipients = ['nallavan@mstsolutions.com']
-ccrecipients = ['nall1sf@gmail.com']
-
-msg['From'] = sender
-msg['To'] = ", ".join(recipients)
-msg['Cc'] = ", ".join(ccrecipients)
-password = "Metasoft@1234"
-msg.add_header('Content-Type', 'text/html')
-
-# ======= END OF EMAIL SETUP CONTENT ====== #
-
+writer = sys.stdout.write
 
 # ======================== START OF CUSTOMIZE REPORT ================================== #
 
 # URL or filepath of your company logo
-logo = "https://www.mstsolutions.com/app/uploads/2018/06/MST_Logo-2.png "
+logo = "https://www.mstsolutions.com/app/uploads/2018/06/MST_Logo-2.png"
 
 # Ignores following library keywords in metrics report
 ignore_library = [
@@ -51,7 +34,6 @@ ignore_type = [
     'foritem',
     'for',
     ]
-
 
 # ======================== END OF CUSTOMIZE REPORT ================================== #
 
@@ -94,6 +76,12 @@ if '-output' in myargs:
 else:
     output_name = os.path.join(path,'output.xml')
 
+# email status
+if '-email' in myargs:
+    send_email = myargs['-email'][0]
+else:
+    send_email = 'true'
+
 mtTime = datetime.now().strftime('%Y%m%d-%H%M%S')
 # Output result file location
 result_file_name = 'metrics-'+ mtTime + '.html'
@@ -105,7 +93,26 @@ result.configure(stat_config={'suite_stat_level': 2,
                               'tag_stat_combine': 'tagANDanother'})
 
 							  
-print("Converting .xml to .html file. This may take few minutes...")
+writer("Converting .xml to .html file. This may take few minutes...")
+
+# ======= START OF EMAIL SETUP CONTENT ====== #
+if send_email in ['true', '1', 't', 'y', 'yes']:
+    server = smtplib.SMTP('smtp.gmail.com:587')
+
+msg = MIMEMultipart() 
+msg['Subject'] = 'MyProject Automation Status'
+
+sender = 'nall11sf@gmail.com'
+recipients = ['nallavan.qa@gmail.com', 'nallavan@mstsolutions.com']
+ccrecipients = ['user3@gmail.com', 'user4@yahoo.com']
+
+msg['From'] = sender
+msg['To'] = ", ".join(recipients)
+msg['Cc'] = ", ".join(ccrecipients)
+password = "metasoft@123"
+msg.add_header('Content-Type', 'text/html')
+
+# ======= END OF EMAIL SETUP CONTENT ====== #
 
 head_content = """
 <!doctype html>
@@ -124,28 +131,13 @@ head_content = """
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     
-   <script src="https://code.jquery.com/jquery-3.3.1.js" type="text/javascript">
-   </script>
+   <script src="https://code.jquery.com/jquery-3.3.1.js" type="text/javascript"></script>
+   
+    <!-- Bootstrap core Googleccharts -->
+   <script src="https://www.gstatic.com/charts/loader.js" type="text/javascript"></script>
+   <script type="text/javascript">google.charts.load('current', {packages: ['corechart']});</script>
 
-     <!-- Bootstrap core JavaScript
-    ================================================== -->
-   <!-- Placed at the end of the document so the pages load faster -->
-   <script crossorigin="anonymous" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" src="https://code.jquery.com/jquery-3.3.1.slim.min.js">
-   </script>
-   <script crossorigin="anonymous" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js">
-   </script>
-   <script crossorigin="anonymous" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js">
-   </script>
-    <!-- Bootstrap core Googleccharts
-    ================================================== -->
-   <script src="https://www.gstatic.com/charts/loader.js" type="text/javascript">
-   </script>
-   <script type="text/javascript">
-    google.charts.load('current', {packages: ['corechart']});
-   </script>
-   <!-- Bootstrap core Datatable
-    ================================================== -->
-
+   <!-- Bootstrap core Datatable-->
 	<script src="https://code.jquery.com/jquery-3.3.1.js" type="text/javascript"></script>
 	<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" type="text/javascript"></script>
 	<script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js" type="text/javascript"></script>
@@ -155,7 +147,6 @@ head_content = """
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js" type="text/javascript"></script>
 	<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js" type="text/javascript"></script>
 	<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js" type="text/javascript"></script>
-
 
     <style>        
         .sidebar {
@@ -252,7 +243,9 @@ head_content = """
 		.tile.tile-head {
 		  background: #616161!important;
 		}
-
+        .dt-buttons {
+            margin-left: 5px;
+        }
     </style>
 </head>
 """
@@ -315,12 +308,12 @@ icons_txt= """
                     </h6>
                     <ul class="nav flex-column mb-2">
                         <li class="nav-item">
-                            <a style="color:blue;" class="tablink nav-link" target="_blank" href="https://github.com/Nall11G/ADF-Robot-framework">
+                            <a style="color:blue;" class="tablink nav-link" target="_blank" href="https://www.github.com">
 							  <i class="fa fa-external-link"></i> Git Hub
 							</a>
                         </li>
 						<li class="nav-item">
-                            <a style="color:blue;" class="tablink nav-link" target="_blank" href="https://mstadfm.atlassian.net/browse/ADFM-1459">
+                            <a style="color:blue;" class="tablink nav-link" target="_blank" href="https://www.jira.com">
 							  <i class="fa fa-external-link"></i> JIRA
 							</a>
                         </li>
@@ -338,7 +331,7 @@ page_content_div["role"] = "main"
 page_content_div["class"] = "col-md-9 ml-sm-auto col-lg-10 px-4"
 body.insert(50, page_content_div)
 
-print("1 of 6: Capturing dashboard content...")
+writer('\n' + "1 of 6: Capturing dashboard content...")
 ### ============================ START OF DASHBOARD ======================================= ####
 total_suite = 0
 passed_suite = 0
@@ -372,7 +365,7 @@ myResult = result.generated_by_robot
 if myResult:
 	generator = "Robot"
 else:
-	generator = "Robot"
+	generator = "Rebot"
 	
 stats = result.statistics
 total= stats.total.all.total
@@ -408,7 +401,12 @@ class KeywordResults(ResultVisitor):
                     failed_keywords += 1
 
 result.visit(KeywordResults())
-kwpp = round(passed_keywords*100.0/total_keywords,2)
+
+# Handling ZeroDivisionError exception when no keywords are found
+if total_keywords > 0:
+    kwpp = round(passed_keywords*100.0/total_keywords,2)
+else:
+    kwpp = 0
 
 dashboard_content="""
 <div class="tabcontent" id="dashboard">
@@ -565,7 +563,7 @@ function openInNewTab(url,element_id) {
 page_content_div.append(BeautifulSoup(dashboard_content, 'html.parser'))
 
 ### ============================ END OF DASHBOARD ============================================ ####
-print("2 of 6: Capturing suite metrics...")
+writer('\n' + "2 of 6: Capturing suite metrics...")
 ### ============================ START OF SUITE METRICS ======================================= ####
 
 # Tests div
@@ -669,7 +667,7 @@ test_icon_txt="""
 """
 suite_div.append(BeautifulSoup(test_icon_txt, 'html.parser'))
 ### ============================ END OF SUITE METRICS ============================================ ####
-print("3 of 6: Capturing test metrics...")
+writer('\n' + "3 of 6: Capturing test metrics...")
 ### ============================ START OF TEST METRICS ======================================= ####
 # Tests div
 tm_div = soup.new_tag('div')
@@ -752,7 +750,7 @@ test_icon_txt="""
 """
 tm_div.append(BeautifulSoup(test_icon_txt, 'html.parser'))
 ### ============================ END OF TEST METRICS ============================================ ####
-print("4 of 6: Capturing keyword metrics...")
+writer('\n' + "4 of 6: Capturing keyword metrics...")
 ### ============================ START OF KEYWORD METRICS ======================================= ####
 
 # Keywords div
@@ -1124,7 +1122,7 @@ script_text="""
         {
             retrieve: true,
             "order": [[ Number(sortCol), "desc" ]],
-            dom: 'Bfrtip',
+            dom: 'l<".margin" B>frtip',
             buttons: [
                 'copy',
                 {
@@ -1236,6 +1234,9 @@ email_content = """
 		 td {
             height: 25px;
          }
+        .dt-buttons {
+            margin-left: 30px;
+        }
       </style>
    </head>
    <body>
@@ -1303,13 +1304,17 @@ attachmentName = 'attachment; filename=%s'%(result_file_name)
 rfmetrics.add_header('Content-Disposition',attachmentName)
 msg.attach(rfmetrics)
 
-# Start server
-server.starttls()
-print("5 of 6: Sending email with robotmetrics.html...")
-# Login Credentials for sending the mail
-server.login(msg['From'], password)
- 
-server.sendmail(sender, recipients, msg.as_string())
-print("6 of 6: Email sent successfully!")
-print("robotframework-metrics.html is created successfully")
+if send_email in ['true', '1', 't', 'y', 'yes']:
+    # Start server
+    server.starttls()
+    writer('\n' + "5 of 6: Sending email with robotmetrics.html...")
+    # Login Credentials for sending the mail
+    server.login(msg['From'], password)
+    
+    server.sendmail(sender, recipients, msg.as_string())
+    writer('\n' + "6 of 6: Email sent successfully!")
+else:
+    writer('\n' + "6 of 6: Skipping step 5 (send email)!")
+
+writer('\n' + "robotframework-metrics.html is created successfully")
 # ==== END OF EMAIL CONTENT ====== #
