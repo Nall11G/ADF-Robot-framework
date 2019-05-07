@@ -2,7 +2,7 @@
 Documentation    ADF Project Reliance Features Regresstion Test Suite
 Library  SeleniumLibrary
 Library  Screenshot
-#Library  pabot.PabotLib
+Library  pabot.PabotLib
 Resource  ../Common_Configuration/Common_Configure.robot
 Resource  ../Salesforce_Objects/Contact.robot
 Resource  ../Salesforce_Objects/Account.robot
@@ -13,15 +13,12 @@ Resource  ../Salesforce_Objects/Designation.robot
 Resource  ../Salesforce_Objects/RelatedAddress.robot
 Resource  ../Salesforce_Objects/RelatedEmail.robot
 Library     ../CustomLibrary/ExcelUtilities.py
+Library   ../CustomLibrary/EmailVerification.py
 #Variables   TestSuiteVariables.robot
 Resource   TestSuiteVariables.robot
 #Resource    ../TestCases/TestSuiteVariables.robot
 #Suite Setup     Log_into_Salesforce
 #Suite Setup     Log_into_Salesforce
-
-
-
-
 
 
 *** Variables ***
@@ -38,7 +35,7 @@ ${Cancel}         name=cancel
 
 *** Test Cases ***
 ADF_REL-01
-    [Tags]  Demo11
+    [Tags]  QA1_Demo
     [Documentation]    *Functionality*
     ...    To Verify the household contact creation
     ...
@@ -93,7 +90,7 @@ ADF_REL-01
 
 
 ADF_REL-02
-    [Tags]  Passed1
+    [Tags]  ADF
     [Documentation]    *Functionality*
     ...    To check whether the "Greeting" field value is updated or not,  when a user creating the
     ...    household contact record with "Salutation"   field value
@@ -147,9 +144,10 @@ ADF_REL-02
     Capture Page Screenshot
     Close Browser
 
+
 ADF_REL-03
 
-    [Tags]  Passed1
+    [Tags]
     [Documentation]    *Functionality*
     ...    To check whether the "Greeting" field value is updated or not,  when a user creating the household contact record
     ...
@@ -205,7 +203,7 @@ ADF_REL-03
 
 ADF_REL-04
 
-    [Tags]  Passed
+    [Tags]  QA1_Demo
     [Documentation]    *Functionality*
     ...    To check whether the "Greeting" field value, when a user creating the household contact record with "Nickname" field value.
     ...
@@ -261,7 +259,7 @@ ADF_REL-04
 
 ADF_REL-05
 
-    [Tags]  Passed1
+    [Tags]  Email_QA
     [Documentation]    *Functionality*
     ...    To check whether the "Phone" field value is updated or not based on the selection of "Preferred Phone" type, while creating a new contact record.
     ...
@@ -316,18 +314,25 @@ ADF_REL-05
     set global variable  ${WorkPhone_V}
     ${WorkPhone_Extension_V}   read excel data     Contact     ADF_REL-05     Work Phone Extension
     set global variable  ${WorkPhone_Extension_V}
-    Log_into_Salesforce
-    Contact Creation With Home Phone
-    Set Selenium Implicit Wait  15s
-    Verify_Preffered_Phone_Value
-    Verify_Preffered_Phone_Value
-    Should Be Equal  ${Primary_Phone}   ${HomePhone_V}
-    Capture Page Screenshot
-    Close Browser
+    ${EmailContent_V}   read excel data     Email     ADF_REL-05     Email Content
+    set global variable  ${EmailContent_V}
+    ${Test}=   read_email_body     nall11sf@gmail.com      metasoft@123
+    Log  ${Test}
+    Should Contain  ${EmailContent_V}   ${Test}
+    ${content}=    read subject  ${Test}
+    Log  ${content}
+    #Log_into_Salesforce
+    #Contact Creation With Home Phone
+    #Set Selenium Implicit Wait  15s
+    #Verify_Preffered_Phone_Value
+    #Verify_Preffered_Phone_Value
+    #Should Be Equal  ${Primary_Phone}   ${HomePhone_V}
+    #Capture Page Screenshot
+    #Close Browser
 
 ADF_REL-06
 
-    [Tags]  Demo1
+    [Tags]  QA1_Demo
     [Documentation]    *Functionality*
     ...    To check whether the "Phone" field value is updated or not based on the selection of "Preferred Phone" type, while creating a new contact record.
     ...
@@ -394,7 +399,7 @@ ADF_REL-06
 
 ADF_REL-07
 
-    [Tags]  Passed1
+    [Tags]  Passed
     [Documentation]    *Functionality*
     ...    To check whether the "Phone" field value is updated or not based on the selection of "Preferred Phone" type, while creating a new contact record.
     ...
@@ -594,7 +599,7 @@ ADF_REG-10
     Close Browser
 
 ADF_REL-11
-    [Tags]  Org
+    [Tags]  QA1_Demo
     [Documentation]    *Functionality*
     ...    To verify whether the Organization Donor Proxy Contact record is created or not, when creating a Organization Account
     ...
@@ -633,7 +638,7 @@ ADF_REL-11
 
 ADF_REL-12
 
-    [Tags]  ADF_Demo
+    [Tags]  QA1_Demo
     [Documentation]    *Functionality*
     ...    To verify whether the new contact record is created or not under the household account by clicking "New" button
     ...
@@ -685,7 +690,7 @@ ADF_REL-12
 
 ADF_REL-13
 
-    [Tags]  Passed1
+    [Tags]  Passed
     [Documentation]    *Functionality*
     ...    To verify whether the Head of Household flag is updated or not, when user creating the second record with HOH is chencked
     ...    *Test Steps*
@@ -736,7 +741,7 @@ ADF_REL-13
 
 ADF_REL-14
 
-    [Tags]  Passed1
+    [Tags]  QA1_Demo
     [Documentation]    *Functionality*
     ...    To verify whether the donation record is created or not
     ...
@@ -773,7 +778,7 @@ ADF_REL-14
 
 ADF_REG-15
 
-    [Tags]  Passed
+    [Tags]  QA1_Demo
     [Documentation]    *Functionality*
     ...    To verify whether the donation contact role record is created or not
     ...
@@ -1085,7 +1090,7 @@ ADF_REG-30
 
 ADF_REL-31
 
-    [Tags]  Passed1
+    [Tags]  QA_Demo
     [Documentation]    *Functionality*
     ...    To verify whether the donation contact role amount, when updating the amount value partial to full
     ...    *Test Steps*
@@ -1164,7 +1169,7 @@ ADF_REG-33
 
 ADF_REG-34
 
-    [Tags]  Passed1
+    [Tags]  Passed
     [Documentation]    *Functionality*
     ...    To verify whether the donation name after updating the Donor Value
     ...
@@ -1227,7 +1232,7 @@ ADF_REG-36
     Verfiying_Donations_Recordtype_After_Classifcation_Record_Creation
 
 ADF_REG-37
-    [Tags]  Passed
+    [Tags]  QA1_Demo
     [Documentation]    *Functionality*
     ...    To verify whether the contact's associated Donation's  record types are updated as "Board Member" or not, while updating a classification record
     ...     Note: Classification record's 'Board Member Classification' = True
@@ -1250,7 +1255,7 @@ ADF_REG-37
 
 ADF_REG-38
 
-     [Tags]  Passed
+     [Tags]  QA1_Demo
      [Documentation]  *Functionality*
     ...    To Verify the Communication preffernce field in ODP contact
     ...
@@ -1292,7 +1297,7 @@ ADF_REG-38
 
 ADF_REG-39
 
-    [Tags]  Passed
+    [Tags]  QA1_Demo
      [Documentation]  *Functionality*
     ...    TTo verify whether the Related address details are updated to the contact's mailing address fields or not
     ...    When a user click 'Make Primary' button on Related address record
@@ -1336,7 +1341,7 @@ ADF_REG-39
 
 ADF_REG-40
 
-    [Tags]  Passed1
+    [Tags]  QA1_Demo
     [Documentation]  *Functionality*
     ...    TTo verify whether the campaign segment record is created or not
     ...
@@ -1437,8 +1442,6 @@ ADF_REG-43
     Contact_Choose
     Get_The_Values_From_Contact_FindDuplcates_Verifiation
     Verifyng_FindDuplicates_VF_Page
-
-
 
 ADF_REG-44
 
@@ -1628,7 +1631,6 @@ ADF_REG-53
     ...
 
     ...    *Test Steps*
-
 
     #Log_into_Salesforce
     Designation_Record_Choose
