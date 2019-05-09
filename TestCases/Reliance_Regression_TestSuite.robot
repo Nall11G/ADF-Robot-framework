@@ -35,7 +35,8 @@ ${Cancel}         name=cancel
 
 *** Test Cases ***
 ADF_REL-01
-    [Tags]  DemoQA1
+    [Tags]  
+    1
     [Documentation]    *Functionality*
     ...    To Verify the household contact creation
     ...
@@ -92,7 +93,7 @@ ADF_REL-01
 
 
 ADF_REL-02
-    [Tags]  DemoQA
+    [Tags]  DemoQA1
     [Documentation]    *Functionality*
     ...    To check whether the "Greeting" field value is updated or not,  when a user creating the
     ...    household contact record with "Salutation"   field value
