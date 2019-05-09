@@ -2,7 +2,7 @@
 Documentation    ADF Project Reliance Features Regresstion Test Suite
 Library  SeleniumLibrary
 Library  Screenshot
-Library  pabot.PabotLib
+#Library  pabot.PabotLib
 Resource  ../Common_Configuration/Common_Configure.robot
 Resource  ../Salesforce_Objects/Contact.robot
 Resource  ../Salesforce_Objects/Account.robot
@@ -13,7 +13,7 @@ Resource  ../Salesforce_Objects/Designation.robot
 Resource  ../Salesforce_Objects/RelatedAddress.robot
 Resource  ../Salesforce_Objects/RelatedEmail.robot
 Library     ../CustomLibrary/ExcelUtilities.py
-Library   ../CustomLibrary/EmailVerification.py
+#Library   ../CustomLibrary/EmailVerification.py
 #Variables   TestSuiteVariables.robot
 Resource   TestSuiteVariables.robot
 #Resource    ../TestCases/TestSuiteVariables.robot
@@ -35,7 +35,7 @@ ${Cancel}         name=cancel
 
 *** Test Cases ***
 ADF_REL-01
-    [Tags]  QA1_Demo
+    [Tags]  DemoQA1
     [Documentation]    *Functionality*
     ...    To Verify the household contact creation
     ...
@@ -59,6 +59,8 @@ ADF_REL-01
     ...    11.2 New \ soft credit contact role record should \ be created \ from the donor's relaitionship viwer VF page
 
     #TestCase
+    ${Browser}=     read_excel_data  Contact     ADF_REL-01    Browser
+    Set Global Variable  ${Browser}
     ${FirstName_V}=    read_excel_data  Contact     ADF_REL-01    FirstName
     Set Global Variable   ${FirstName_V}
     ${LastName_V}=    read_excel_data  Contact      ADF_REL-01    LastName
@@ -90,7 +92,7 @@ ADF_REL-01
 
 
 ADF_REL-02
-    [Tags]  ADF
+    [Tags]  DemoQA
     [Documentation]    *Functionality*
     ...    To check whether the "Greeting" field value is updated or not,  when a user creating the
     ...    household contact record with "Salutation"   field value
@@ -112,6 +114,8 @@ ADF_REL-02
     ...    9.1 The "Greeting" field value should be updated as  " Mr Test 8 Aug_28"
 
     #TestCase
+    ${Browser}=     read_excel_data  Contact     ADF_REL-02    Browser
+    Set Global Variable  ${Browser}
     ${FirstName_V}=    read_excel_data  Contact     ADF_REL-02     FirstName
     Set Global Variable   ${FirstName_V}
     ${LastName_V}=    read_excel_data  Contact      ADF_REL-02    LastName
@@ -147,7 +151,7 @@ ADF_REL-02
 
 ADF_REL-03
 
-    [Tags]
+    [Tags]  DemoQA
     [Documentation]    *Functionality*
     ...    To check whether the "Greeting" field value is updated or not,  when a user creating the household contact record
     ...
@@ -169,6 +173,8 @@ ADF_REL-03
     ...    9.1 The "Greeting" field value should be updated as "Friend"
 
     #TestCase
+    ${Browser}=     read_excel_data  Contact     ADF_REL-03    Browser
+    Set Global Variable  ${Browser}
     ${FirstName_V}=    read_excel_data  Contact     ADF_REL-03     FirstName
     Set Global Variable   ${FirstName_V}
     ${LastName_V}=    read_excel_data  Contact      ADF_REL-03    LastName
@@ -332,7 +338,7 @@ ADF_REL-05
 
 ADF_REL-06
 
-    [Tags]  QA1_Demo
+    [Tags]  DemoQA
     [Documentation]    *Functionality*
     ...    To check whether the "Phone" field value is updated or not based on the selection of "Preferred Phone" type, while creating a new contact record.
     ...
@@ -355,6 +361,8 @@ ADF_REL-06
     ...    10.1 The "Phone" field value should be populated from the Mobile field
 
     #TestCase
+    ${Browser}=     read_excel_data  Contact     ADF_REL-06    Browser
+    Set Global Variable  ${Browser}
     ${FirstName_V}=    read_excel_data  Contact     ADF_REL-06     FirstName
     Set Global Variable   ${FirstName_V}
     ${LastName_V}=    read_excel_data  Contact      ADF_REL-06     LastName
@@ -690,7 +698,7 @@ ADF_REL-12
 
 ADF_REL-13
 
-    [Tags]  Passed
+    [Tags]  DemoQA
     [Documentation]    *Functionality*
     ...    To verify whether the Head of Household flag is updated or not, when user creating the second record with HOH is chencked
     ...    *Test Steps*
@@ -711,6 +719,8 @@ ADF_REL-13
     ...    9.2 Head of Household flag should be True
     ...    9.3 Exsting Contact's Head of Household flag should be updated as False
     #Testcase
+    ${Browser}=     read_excel_data  Contact     ADF_REL-08    Browser
+    Set Global Variable  ${Browser}
     ${FirstName_V}=    read_excel_data  Contact     ADF_REL-08    FirstName
     Set Global Variable   ${FirstName_V}
     ${LastName_V}=    read_excel_data  Contact      ADF_REL-08    LastName
@@ -849,7 +859,7 @@ ADF_REG-17
     Close Browser
 
 ADF_REG-18
-    [Tags]  ADF_Demo
+    [Tags]  DemoQA
     [Documentation]    *Functionality*
     ...
     ...    To check whether the Contact record is updated or not when updating the "Head Of Household " is true to false
@@ -1463,7 +1473,7 @@ ADF_REG-44
     ${ObjectName}=      read excel data  Object_Selection   ADF_REG-44  Objects
     Set Global Variable  ${ObjectName}
     Log_into_Salesforce
-    Obejct_Selection
+    Obejct_Selection_Salesforce
     Account-Contact_Relationship_Type_Detail_Record_Creation
     Checkbox_Verification
 
@@ -1486,7 +1496,7 @@ ADF_REG-45
     ${ObjectName}=      read excel data  Object_Selection   ADF_REG-45  Objects
     Set Global Variable  ${ObjectName}
     Log_into_Salesforce
-    Obejct_Selection
+    Obejct_Selection_Salesforce
     Account-Contact_Relationship_Type_Detail_Record_Creation
     Capture Page Screenshot
     Cancelling_the_Edit_Mode
@@ -1510,7 +1520,7 @@ ADF_REG-46
     ${ObjectName}=      read excel data  Object_Selection   ADF_REG-46  Objects
     Set Global Variable  ${ObjectName}
     Log_into_Salesforce
-    Obejct_Selection
+    Obejct_Selection_Salesforce
     Account-Account_Relationship_Type_Detail_Record_Creation
     Cancelling_the_Edit_Mode
 
@@ -1532,7 +1542,7 @@ ADF_REG-47
     ${ObjectName}=      read excel data  Object_Selection   ADF_REG-47  Objects
     Set Global Variable  ${ObjectName}
     Log_into_Salesforce
-    Obejct_Selection
+    Obejct_Selection_Salesforce
     Contact-Contact_Relationship_Type_Detail_Record_Creation
     Cancelling_the_Edit_Mode
     Close Browser
@@ -1649,8 +1659,7 @@ ADF_REG-54
     ${DesignationName_V}=     read excel data     Designation    ADF_REL-54     Contact Select
     Set Global Variable  ${DesignationName_V}
     Log_into_Salesforce
-    Obejct_Selection
+    Obejct_Selection_Salesforce
     Designation_Record_Creation
 
-*** Keywords ***
 

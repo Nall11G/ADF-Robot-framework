@@ -2,7 +2,7 @@
 Documentation    Suite description
 Library  SeleniumLibrary
 #Library  pabot.PabotLib
-Library  AllureReportLibrary
+#Library  AllureReportLibrary
 Resource  ../Common_Configuration/Common_Configure.robot
 Resource  ../Salesforce_Objects/Contact.robot
 Resource  ../Salesforce_Objects/Account.robot
@@ -23,7 +23,7 @@ ${HoH_Error_Alert}    The Head of Household flag should be true for this Contact
 ADF_CA_01
 
     [Documentation]
-    [Tags]  Demo
+    [Tags]  DemoQA
     ${ChurchName_V}=    read_excel_data   Church_Alliance     TC5     Church Name
     set global variable  ${ChurchName_V}
     ${Church_Address_V}=    read excel data  Church_Alliance  TC5     Address
@@ -94,7 +94,10 @@ ADF_CA_01
     set global variable   ${Church_CY_V}
     ${Church_SecuirtyCode_V}=     read excel data  Church_Alliance    TC5     Security Code
     set global variable   ${Church_SecuirtyCode_V}
+    #Primary_Contact_With_New_ContactInformation
     #Church_Alliance_Signup_PrimaryInfo_With_CreditCard
+    CA_Membership_Record_Creation_EmailVerification
+    #Welcome_Email_Verification_CA
     Log_into_Salesforce
     Set Selenium Implicit Wait  10s
     Organization_Account_Selection
@@ -124,7 +127,7 @@ ADF_CA_02
 ADF_CA_03
 
     Church_Alliance_Signup_Leadinfo
-     Log_into_Salesforce
+    Log_into_Salesforce
     Set Selenium Implicit Wait  10s
     Organization_Account_Selection
     ODP_Contact_Choose
@@ -210,3 +213,38 @@ ADFM_CA_07
     #Click Element    //div[@class="full forcePageBlock forceRecordLayout"]
     #Input Text    //input[@id="454:838;a"]    60000
     Click Element    xpath=//button[@title='Save']
+
+
+ADFM_CA_08
+
+      [Tags]  Amb
+      Open Browser  	https://qarel-adflegalrv2.cs92.force.com/AmbassadorCommunity        chrome
+      Maximize Browser Window
+      Wait Until Element Is Visible  xpath=//input[@id='adf:memberlogin:useremail']
+      Input Text  xpath=//input[@id='adf:memberlogin:useremail']    testamb1
+      Input Text  xpath=//input[@id='adf:memberlogin:password']     Admin123
+      Click Element  xpath=//input[@id='adf:memberlogin:j_id30']
+      set selenium implicit wait  20s
+      sleep  10s
+      #Click Element    //button[@class="slds-container_fluid slds-button slds-button--reset slds-truncate"]
+      Click Element  xpath=//button[contains(text(),'My Impact')]
+      sleep  10s
+      Click Element    Xpath=.//a/span[text()='My Contacts']
+      Log  Pass
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
