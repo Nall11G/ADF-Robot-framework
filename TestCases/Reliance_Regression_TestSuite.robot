@@ -35,8 +35,7 @@ ${Cancel}         name=cancel
 
 *** Test Cases ***
 ADF_REL-01
-    [Tags]  
-    1
+    [Tags]  DemoQA1
     [Documentation]    *Functionality*
     ...    To Verify the household contact creation
     ...
